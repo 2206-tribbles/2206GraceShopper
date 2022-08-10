@@ -4,7 +4,16 @@
   "description": "Fullstack Capstone Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+      "seed:dev": "nodemon src/db/seed.js",
+      "seed": "node src/db/seed.js",
+      "start:dev": "nodemon server.js",
+      "start": "node server.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-plugin-jest": "^25.2.4",
+    "nodemon": "^2.0.4"
   },
   "author": "Audrey Hershenson, Taylor Edelman, Rick Ropac, Michael Hoffman",
   "license": "ISC",
