@@ -27,7 +27,42 @@ async function createUser({ first_name, last_name, email, address, username, pas
     }
 }
 
-//getUserById (users.id) | returning: (user Object)
+// loginUser (username, password) | return (token, userId)
+
+async function loginUser({ username, password }) {
+    const tempUser = await getUserByUsername(username);
+    const hashedPassword = tempUser.password;
+    const passwordsMatch = await bcrypt.compare(password, hashedPassword);
+  
+    if (passwordsMatch) {
+      let user = { id: tempUser.id, username: tempUser.username };
+      return user;
+    } else {
+      console.log('Error getting user!');
+    }
+  }
+
+  //getUserById (users.id) | returning: (user Object)
+
+  async function getUserByUsername(username) {
+    try {
+      const {
+        rows: [user],
+      } = await client.query(
+        `
+      SELECT *
+      FROM users
+      WHERE username=$1;
+    `,
+        [username]
+      );
+  
+      return user;
+    } catch (error) {
+      console.error('Error getting user by username!');
+      throw error;
+    }
+  }
 
 async function getUserById({id}) {
     try {
@@ -48,10 +83,70 @@ async function getUserById({id}) {
     }
 } 
 
+//updateUser updating/return 
+//(first_name, last_name, username, email, address)
+
+async function updateUser({ id, ...fields }) {
+   // build the set string
+  const setString = Object.keys(fields)
+  .map((key, index) => `"${key}"=$${index + 1}`)
+  .join(", ");
+
+  // return early if this is called without fields
+  if (setString.length === 0) {
+  return;
+  }
+    try {
+        const {
+            rows: [user],
+        } = await client.query(
+            `
+            UPDATE users
+            SET ${setString}
+            WHERE id=${id}
+            RETURNING *;
+            `,
+            Object.values(fields)
+        );
+        return user;
+    } catch (error) {
+        console.error("Error Retrieving User", error);
+        throw error;
+    }
+} 
+
+async function destroyUser(id) {
+    await client.query(
+      `
+      DELETE FROM an_order cart 
+       WHERE user_id=${id};
+      DELETE FROM order_history reviews 
+       WHERE user_id=${id};
+      DELETE FROM users
+       WHERE id=${id};
+      `
+    );
+    await client.query(
+      `
+     DELETE FROM an_order cart 
+      WHERE user_id=${id};
+     DELETE FROM order_history reviews 
+      WHERE user_id=${id};
+     DELETE FROM users
+      WHERE id=${id};
+      `
+    );
+  }
+
+
 //export functions
 
 module.exports = {
     createUser,
-    getUserById
+    getUserById,
+    getUserByUsername,
+    loginUser,
+    updateUser,
+    destroyUser
   }
   

@@ -7,8 +7,8 @@ async function dropTables() {
     DROP TABLE IF EXISTS reviews;
     DROP TABLE IF EXISTS order_history;
     DROP TABLE IF EXISTS cart;
-    DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS an_order;
+    DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS users;
 
     `);
@@ -48,20 +48,22 @@ async function createTables() {
       CREATE TABLE products(
         id SERIAL PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
+        artist VARCHAR(255) NOT NULL,
         description TEXT NOT NULL,
+        release_date DATE,
         price MONEY NOT NULL,
         inventory INTEGER NOT NULL,
         format VARCHAR(30)  NOT NULL,
         genre VARCHAR(30)  NOT NULL
       );
 
-      INSERT INTO products(title, description, price, inventory, format, genre)
+      INSERT INTO products(title, artist, description, release_date, price, inventory, format, genre)
       VALUES
-      ('The Tubes','All their number one hits','45.00','39','CD', 'Rock'),
-      ('Donna Summer','All her number one hits','50','12','CD', 'Disco'),
-      ('Men Without Hats','All their number one hits','23.00','5','8-Track', 'Rock'),
-      ('80s Greatest Hits','All number one hits from the 80s','5.00','100','CD', 'Dance'),
-      ('90s Greatest Hits','All number one hits from the 90s','10.00','139','Vinal', 'Dance');
+      ('The Tubes Greatest Hits','Tubes','All their number one hits','02/03/1978','45.00','39','CD', 'Rock'),
+      ('Donna Summers Hits','Donna Summer','All her number one hits','06/06/1980','50','12','CD', 'Disco'),
+      ('Men Without Hats Hits','Men Without Hats','All their number one hits','05/06/1982','23.00','5','8-Track', 'Rock'),
+      ('80s Greatest Hits', 'Various','All number one hits from the 80s','01/01/1990','5.00','100','CD', 'Dance'),
+      ('90s Greatest Hits','Various','All number one hits from the 90s','01/01/2000','10.00','139','Vinal', 'Dance');
 
       `);
 
@@ -83,8 +85,9 @@ async function createTables() {
       CREATE TABLE cart(
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id),
-        order_id INTEGER REFERENCES an_order(id),
-        order_status BOOLEAN
+        order_id INTEGER [], 
+      /*  order_id REFERENCES an_order(id), */
+        order_completed BOOLEAN
         );
         `);
     await client.query(`
