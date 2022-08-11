@@ -5,10 +5,10 @@ async function dropTables() {
     console.log("Dropping All Tables...");
     await client.query(`
     DROP TABLE IF EXISTS reviews;
-    DROP TABLE IF EXISTS orderHistory;
+    DROP TABLE IF EXISTS order_history;
     DROP TABLE IF EXISTS cart;
-    DROP TABLE IF EXISTS anOrder;
     DROP TABLE IF EXISTS products;
+    DROP TABLE IF EXISTS an_order;
     DROP TABLE IF EXISTS users;
 
     `);
@@ -26,25 +26,25 @@ async function createTables() {
     await client.query(`
       CREATE TABLE users(
         id SERIAL PRIMARY KEY,
-        firstName VARCHAR(20) NOT NULL,
-        lastName VARCHAR(40) NOT NULL,
-        email VARCHAR(255) NOT NULL,
+        first_name VARCHAR(20) NOT NULL,
+        last_name VARCHAR(40) NOT NULL,
+        email VARCHAR(255) UNIQUE NOT NULL,
         address VARCHAR(255) NOT NULL,
         username VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL
     );
-    INSERT INTO users(id,firstName,lastName,email,address,username,password)
+    INSERT INTO users(first_name,last_name,email,address,username,password)
     VALUES
-    (1,'Zeus','Yang','tincidunt.orci@icloud.ca','3893 Iaculis Street','YZeus', 'abc123'),
-    (2,'Kalia','Park','vulputate.nisi.sem@google.edu','726 Eu Road','kaliapart','sadlk;fj'),
-    (3,'Phelan','Oneil','vel.pede.blandit@icloud.couk','1704 Enim Rd.','DPete','abcdef'),
-    (4,'Declan','Petersen','imperdiet.erat@icloud.org','188-821 Sed, Ave','Pouch','nightmare'),
-    (5,'Tana','Kline','ante.dictum@yahoo.couk','662-532 Arcu Street','TheKline','a;sldkjf');
+    ('Zeus','Yang','tincidunt.orci@icloud.ca','3893 Iaculis Street','YZeus', 'abc123'),
+    ('Kalia','Park','vulputate.nisi.sem@google.edu','726 Eu Road','kaliapart','sadlk;fj'),
+    ('Phelan','Oneil','vel.pede.blandit@icloud.couk','1704 Enim Rd.','DPete','abcdef'),
+    ('Declan','Petersen','imperdiet.erat@icloud.org','188-821 Sed, Ave','Pouch','nightmare'),
+    ('Tana','Kline','ante.dictum@yahoo.couk','662-532 Arcu Street','TheKline','a;sldkjf');
     `);
 
-    
-    
-     await client.query(`
+
+
+    await client.query(`
       CREATE TABLE products(
         id SERIAL PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
@@ -55,60 +55,58 @@ async function createTables() {
         genre VARCHAR(30)  NOT NULL
       );
 
-      INSERT INTO products(id, title, description, price, inventory, format, genre)
+      INSERT INTO products(title, description, price, inventory, format, genre)
       VALUES
-      (10,'The Tubes','All their number one hits','45.00','39','CD', 'Rock'),
-      (20,'Donna Summer','All her number one hits','50','12','CD', 'Disco'),
-      (30,'Men Without Hats','All their number one hits','23.00','5','8-Track', 'Rock'),
-      (40,'80s Greatest Hits','All number one hits from the 80s','5.00','100','CD', 'Dance'),
-      (50,'90s Greatest Hits','All number one hits from the 90s','10.00','139','Vinal', 'Dance');
+      ('The Tubes','All their number one hits','45.00','39','CD', 'Rock'),
+      ('Donna Summer','All her number one hits','50','12','CD', 'Disco'),
+      ('Men Without Hats','All their number one hits','23.00','5','8-Track', 'Rock'),
+      ('80s Greatest Hits','All number one hits from the 80s','5.00','100','CD', 'Dance'),
+      ('90s Greatest Hits','All number one hits from the 90s','10.00','139','Vinal', 'Dance');
 
       `);
-      
+
     await client.query(`
-      CREATE TABLE anOrder(
+      CREATE TABLE an_order(
         id SERIAL PRIMARY KEY,
-        "userId" INTEGER REFERENCES users(id),
+        user_id INTEGER REFERENCES users(id),
         status VARCHAR NOT NULL,
-        "productId" INTEGER REFERENCES products(id),
+        product_id INTEGER REFERENCES products(id),
         quantity INTEGER NOT NULL,
         price MONEY NOT NULL
       );
 
-      /*INSERT INTO anOrder(id, userId, status, productId, quantity, price)
+      INSERT INTO an_order(user_id, status, product_id, quantity, price)
        VALUES
-       (1,'2','Pending','20',2,100);
-      */ 
-
+       ('2','Pending','2',2,100);
       `);
     await client.query(`
       CREATE TABLE cart(
         id SERIAL PRIMARY KEY,
-        "userId" INTEGER REFERENCES users(id),
-        "orderId" INTEGER REFERENCES anOrder(id),
-        orderStatus BOOLEAN
+        user_id INTEGER REFERENCES users(id),
+        order_id INTEGER REFERENCES an_order(id),
+        order_status BOOLEAN
         );
         `);
     await client.query(`
-        CREATE TABLE orderHistory(
+        CREATE TABLE order_history(
         id SERIAL PRIMARY KEY,
-         "userId" INTEGER REFERENCES users(id),
-         "orderId" INTEGER REFERENCES anOrder(id),
-         "productId" INTEGER REFERENCES products(id),
+         user_id INTEGER REFERENCES users(id),
+         order_id INTEGER REFERENCES an_order(id),
+         product_id INTEGER REFERENCES products(id),
          quantity INTEGER,
          price MONEY,
-         purchaseDate DATE
+         purchase_date DATE
         )
         `);
 
     await client.query(`
         CREATE TABLE reviews(
         id SERIAL PRIMARY KEY,
-        "userId" INTEGER REFERENCES users(id),
-        "productId" INTEGER REFERENCES products(id),
-        "orderHistoryId" INTEGER REFERENCES orderHistory(id),
-        reviewTitle VARCHAR(255) NOT NULL,
-        reviewComments TEXT NOT NULL
+        user_id INTEGER REFERENCES users(id),
+        product_id INTEGER REFERENCES products(id),
+        order_history_id INTEGER REFERENCES order_history(id),
+        review_title VARCHAR(255) NOT NULL,
+        review_comments TEXT NOT NULL
         )
     `);
     console.log("Finished building tables!");
