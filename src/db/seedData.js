@@ -33,8 +33,18 @@ async function createTables() {
         username VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL
     );
-     `);
-    await client.query(`
+    INSERT INTO users(id,firstName,lastName,email,address,username,password)
+    VALUES
+    (1,'Zeus','Yang','tincidunt.orci@icloud.ca','3893 Iaculis Street','YZeus', 'abc123'),
+    (2,'Kalia','Park','vulputate.nisi.sem@google.edu','726 Eu Road','kaliapart','sadlk;fj'),
+    (3,'Phelan','Oneil','vel.pede.blandit@icloud.couk','1704 Enim Rd.','DPete','abcdef'),
+    (4,'Declan','Petersen','imperdiet.erat@icloud.org','188-821 Sed, Ave','Pouch','nightmare'),
+    (5,'Tana','Kline','ante.dictum@yahoo.couk','662-532 Arcu Street','TheKline','a;sldkjf');
+    `);
+
+    
+    
+     await client.query(`
       CREATE TABLE products(
         id SERIAL PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
@@ -44,7 +54,17 @@ async function createTables() {
         format VARCHAR(30)  NOT NULL,
         genre VARCHAR(30)  NOT NULL
       );
+
+      INSERT INTO products(id, title, description, price, inventory, format, genre)
+      VALUES
+      (10,'The Tubes','All their number one hits','45.00','39','CD', 'Rock'),
+      (20,'Donna Summer','All her number one hits','50','12','CD', 'Disco'),
+      (30,'Men Without Hats','All their number one hits','23.00','5','8-Track', 'Rock'),
+      (40,'80s Greatest Hits','All number one hits from the 80s','5.00','100','CD', 'Dance'),
+      (50,'90s Greatest Hits','All number one hits from the 90s','10.00','139','Vinal', 'Dance');
+
       `);
+      
     await client.query(`
       CREATE TABLE anOrder(
         id SERIAL PRIMARY KEY,
@@ -54,6 +74,12 @@ async function createTables() {
         quantity INTEGER NOT NULL,
         price MONEY NOT NULL
       );
+
+      /*INSERT INTO anOrder(id, userId, status, productId, quantity, price)
+       VALUES
+       (1,'2','Pending','20',2,100);
+      */ 
+
       `);
     await client.query(`
       CREATE TABLE cart(
