@@ -1,17 +1,17 @@
 const client = require('./client');
 
-async function createCart({ user_id, order_id, order_completed }) {
+async function createCart({ user_id, product_id }) {
 
     try {
         const {
             rows: [cart],
         } = await client.query(
             `
-            INSERT INTO cart(user_id, order_id, order_completed)
-            VALUES ($1, $2, $3)
+            INSERT INTO carts(user_id, product_id)
+            VALUES ($1, $2)
             RETURNING *;
             `,
-            [user_id, order_id, order_completed]
+            [user_id, product_id]
         );
         
         console.log(cart);
@@ -29,7 +29,7 @@ async function getCartByUserId({id}) {
         } = await client.query(
             `
             SELECT *
-            FROM cart
+            FROM carts
             WHERE id = $1;
             
             `
@@ -42,7 +42,7 @@ async function getCartByUserId({id}) {
     }
 } 
 
-async function updateProduct({ id, ...fields }) {
+async function updateCartItem({ id, ...fields }) {
     // build the set string
    const setString = Object.keys(fields)
    .map((key, index) => `"${key}"=$${index + 1}`)
@@ -71,11 +71,47 @@ async function updateProduct({ id, ...fields }) {
      }
  } 
 
+ async function destroyItemInCart(cartId, productId) {
+    try {
+      const {
+        rows: [carts],
+      } = await client.query(
+        `
+    DELETE FROM carts_products
+    WHERE cart_id=${cartId} && product_id=${productId};
+    RETURNING id;
+    `,
+        [id]
+      );
+      return carts;
+    } catch (error) {
+      console.error('Error destroying item in cart!');
+    }
+  }
+
+
+  async function destroyCart(id) {
+    try {
+      await client.query(
+        `
+        DELETE FROM routine_activities
+        WHERE "routineId"=${id}
+        `
+      );
+    return true;
+    } catch (error) {
+    console.error("Error Deleting Cart", error);
+    throw error;
+    }
+    
+  }
+
   //export functions
 
   module.exports = {
     createCart,
-    getCartById,
-    updateCart,
+    getCartByUserId,
+    updateCartItem,
+    destroyItemInCart,
     destroyCart
   }

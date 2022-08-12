@@ -70,7 +70,40 @@ async function updateProduct({ id, ...fields }) {
         throw error;
     }
 } 
- 
+
+async function addProductToCart({
+    cartId,
+    productId,
+    quantity,
+    sale_price,
+  }) {
+    try {
+      const {
+        rows: [product],
+      } = await client.query(
+        `
+          INSERT INTO carts_products("cartId",
+            "productId",
+            quantity,
+            sale_price
+            ) 
+          VALUES($1, $2, $3, $4) 
+          ON CONFLICT DO NOTHING
+          RETURNING *;
+        `,
+        [cartId, productId, quantity, sale_price]
+      );
+  
+      //console.log('THIS IS THE ROUTINE TO RETURN: ', routine);
+      return product;
+    } catch (error) {
+      console.error('Error adding product to cart!');
+      throw error;
+    }
+  }
+  
+
+
  async function destroyProduct(id) {
     await client.query(
       `

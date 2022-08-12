@@ -5,9 +5,8 @@ async function dropTables() {
     console.log("Dropping All Tables...");
     await client.query(`
     DROP TABLE IF EXISTS reviews;
-    DROP TABLE IF EXISTS order_history;
-    DROP TABLE IF EXISTS cart;
-    DROP TABLE IF EXISTS an_order;
+    DROP TABLE IF EXISTS carts_products;
+    DROP TABLE IF EXISTS carts;
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS users;
 
@@ -42,8 +41,6 @@ async function createTables() {
     ('Tana','Kline','ante.dictum@yahoo.couk','662-532 Arcu Street','TheKline','a;sldkjf');
     `);
 
-
-
     await client.query(`
       CREATE TABLE products(
         id SERIAL PRIMARY KEY,
@@ -66,50 +63,37 @@ async function createTables() {
       ('90s Greatest Hits','Various','All number one hits from the 90s','01/01/2000','10.00','139','Vinal', 'Dance');
 
       `);
-
+    
     await client.query(`
-      CREATE TABLE an_order(
+      CREATE TABLE carts(
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id),
-        status VARCHAR NOT NULL,
-        product_id INTEGER REFERENCES products(id),
-        quantity INTEGER NOT NULL,
-        price MONEY NOT NULL
-      );
-
-      INSERT INTO an_order(user_id, status, product_id, quantity, price)
-       VALUES
-       ('2','Pending','2',2,100);
-      `);
-    await client.query(`
-      CREATE TABLE cart(
-        id SERIAL PRIMARY KEY,
-        user_id INTEGER REFERENCES users(id),
-        order_id INTEGER [], 
-      /*  order_id REFERENCES an_order(id), */
-        order_completed BOOLEAN
+        product_id INTEGER REFERENCES products(id), 
+        order_completed BOOLEAN DEFAULT false,
+        purchase_date TIMESTAMP DEFAULT NULL  /* DEFAULT CURRENT_TIMESTAMP */,
+        UNIQUE (id, product_id)
         );
         `);
-    await client.query(`
-        CREATE TABLE order_history(
-        id SERIAL PRIMARY KEY,
-         user_id INTEGER REFERENCES users(id),
-         order_id INTEGER REFERENCES an_order(id),
-         product_id INTEGER REFERENCES products(id),
-         quantity INTEGER,
-         price MONEY,
-         purchase_date DATE
-        )
-        `);
 
+    await client.query(`
+      CREATE TABLE carts_products(
+          id SERIAL PRIMARY KEY,
+          cart_id INTEGER REFERENCES carts(id),
+          product_id INTEGER REFERENCES products(id), 
+          quantity INTEGER NOT NULL,
+          sale_price MONEY NOT NULL,
+          UNIQUE (cart_id, product_id)
+          );
+          `);     
+   
     await client.query(`
         CREATE TABLE reviews(
         id SERIAL PRIMARY KEY,
-        user_id INTEGER REFERENCES users(id),
-        product_id INTEGER REFERENCES products(id),
-        order_history_id INTEGER REFERENCES order_history(id),
+        review_id INTEGER REFERENCES reviews(id),
+        cart_id INTEGER REFERENCES carts(id),
         review_title VARCHAR(255) NOT NULL,
-        review_comments TEXT NOT NULL
+        review_comments TEXT NOT NULL,
+        UNIQUE (review_id, cart_id)
         )
     `);
     console.log("Finished building tables!");
