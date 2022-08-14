@@ -33,9 +33,67 @@ async function getReviewsById({ id }) {
             `,
       [id]
     );
+    return review;
   } catch (error) {
     console.error("Error Getting review", error);
     throw error;
+  }
+}
+async function getReviewsByCartId({ cart_id }) {
+  try {
+    const {
+      rows: [review],
+    } = await client.query(
+      `
+            SELECT *
+            FROM review
+            WHERE cart_id = $1;
+            `,
+      [cart_id]
+    );
+    return review;
+  } catch (error) {
+    console.error("Error Getting review", error);
+    throw error;
+  }
+}
+
+async function updateReview({ id, ...fields }) {
+  const setString = Object.keys(fields)
+    .map((key, index) => `"${key}"=$${index + 1}`)
+    .join(", ");
+
+  if (setString.length === 0) {
+    return;
+  }
+  try {
+    const {
+      rows: [review],
+    } = await client.query(
+      `Update review
+        SET ${setString}
+        WHERE id=${id}
+        RETURNING *`,
+      object.values(fields)
+    );
+    return review;
+  } catch (error) {
+    console.error("Error Retrieving review", error);
+    throw error;
+  }
+}
+
+async function destroyReview({ id, reviewTitle }) {
+  try {
+    const {
+      rows: [review],
+    } = await client.query(
+      `DELETE FROM review
+            WHERE "id" =${id} AND "reviewTitle" =${reviewTitle}`
+    );
+    return true;
+  } catch (error) {
+    console.error("Error deleting review", error);
   }
 }
 
@@ -44,4 +102,7 @@ async function getReviewsById({ id }) {
 module.exports = {
   createReview,
   getReviewsById,
+  getReviewsByCartId,
+  destroyReview,
+  updateReview,
 };
