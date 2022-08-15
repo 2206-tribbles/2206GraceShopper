@@ -72,7 +72,7 @@ async function getUserById({id}) {
             SELECT id, username
             FROM users
             WHERE id = $1;
-            `
+            `,
             [id]
         );
         return user;
@@ -117,20 +117,12 @@ async function updateUser({ id, ...fields }) {
 async function destroyUser(id) {
     await client.query(
       `
-      DELETE FROM an_order cart 
-       WHERE user_id=${id};
-      DELETE FROM order_history reviews 
-       WHERE user_id=${id};
       DELETE FROM users
        WHERE id=${id};
       `
     );
     await client.query(
       `
-     DELETE FROM an_order cart 
-      WHERE user_id=${id};
-     DELETE FROM order_history reviews 
-      WHERE user_id=${id};
      DELETE FROM users
       WHERE id=${id};
       `
