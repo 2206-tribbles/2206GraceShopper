@@ -12,9 +12,9 @@ async function createUser({ first_name, last_name, email, address, username, pas
             rows: [user],
         } = await client.query(
             `
-            INSERT INTO users first_name, last_name, email, address, username, password)
+            INSERT INTO users first_name, last_name, email, address, username, hashedPassword)
             VALUES ($1, $2, $3, $4, $5, $6)
-            RETURNING *;
+            RETURNING users first_name, last_name, email, address, username;
             `,
             [first_name, last_name, email, address, username, hashedPassword]
         );

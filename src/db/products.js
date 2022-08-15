@@ -7,11 +7,11 @@ async function createProduct({ title, artist, description, release_date, price, 
             rows: [product],
         } = await client.query(
             `
-            INSERT INTO products(title, artist, description, release_date, price, inventory, format, genre)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            INSERT INTO products(title, artist, description, release_date, price, inventory, format, genre, photo)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
             RETURNING *;
             `,
-            [title, artist, description, release_date, price, inventory, format, genre]
+            [title, artist, description, release_date, price, inventory, format, genre, photo]
         );
         
         console.log(product);
@@ -72,8 +72,8 @@ async function updateProduct({ id, ...fields }) {
 } 
 
 async function addProductToCart({
-    cartId,
-    productId,
+    cart_id,
+    product_id,
     quantity,
     sale_price,
   }) {
@@ -82,8 +82,8 @@ async function addProductToCart({
         rows: [product],
       } = await client.query(
         `
-          INSERT INTO carts_products("cartId",
-            "productId",
+          INSERT INTO carts_products("cart_id",
+            "product_id",
             quantity,
             sale_price
             ) 
