@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-      "seed:dev": "nodemon src/db/seed.js",
-      "seed": "node src/db/seed.js",
-      "start:dev": "nodemon server.js",
-      "start": "node server.js"
+    "seed:dev": "nodemon src/db/seed.js",
+    "seed": "node src/db/seed.js",
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
   },
   "devDependencies": {
     "eslint": "^8.2.0",
@@ -20,6 +20,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
