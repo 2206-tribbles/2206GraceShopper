@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed:dev": "nodemon src/db/seed.js",
-    "seed": "node src/db/seed.js",
+    "seed:dev": "nodemon backend/db/seed.js",
+    "seed": "node backend/db/seed.js",
     "start": "node index.js",
     "start:dev": "nodemon index.js"
   },

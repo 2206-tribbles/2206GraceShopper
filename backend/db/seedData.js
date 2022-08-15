@@ -20,6 +20,7 @@ async function dropTables() {
 
 async function createTables() {
   try {
+
     console.log("Starting to build tables...");
 
     await client.query(`
@@ -71,7 +72,7 @@ async function createTables() {
         user_id INTEGER REFERENCES users(id),
         product_id INTEGER REFERENCES products(id), 
         order_completed BOOLEAN DEFAULT false,
-        purchase_date TIMESTAMP DEFAULT NULL  /* DEFAULT CURRENT_TIMESTAMP */,
+        purchase_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         `);
 
@@ -91,9 +92,9 @@ async function createTables() {
         id SERIAL PRIMARY KEY,
         carts_products_id INTEGER REFERENCES carts_products(id),
         review_title VARCHAR(255) NOT NULL,
-        review_comments TEXT NOT NULL
-        UNIQUE (id, cart_products_id)
-        )
+        review_comments TEXT NOT NULL,
+        UNIQUE (id, carts_products_id)
+        );
     `);
     console.log("Finished building tables!");
   } catch (error) {

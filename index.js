@@ -1,4 +1,5 @@
-const PORT = 3000;
+require('dotenv').config();
+const PORT = 3005;
 const express = require('express');
 const server = express();
 
@@ -10,7 +11,7 @@ server.use(morgan('dev'));
 server.use(express.json())
 
 server.use(cors())
-server.use('/api', router)
+server.use('/api', router) //get server functionality from /api routes
 
 
 server.use((error, req, res, _) => {
@@ -21,3 +22,4 @@ server.use((error, req, res, _) => {
 server.listen(PORT, () => {
   console.log('The server is up on port', PORT)
 });
+
