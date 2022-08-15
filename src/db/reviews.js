@@ -39,7 +39,7 @@ async function getReviewsById({ id }) {
     throw error;
   }
 }
-async function getReviewsByCartId({ cart_id }) {
+async function getReviewsByCartId({ carts_products_id }) {
   try {
     const {
       rows: [review],
@@ -47,9 +47,9 @@ async function getReviewsByCartId({ cart_id }) {
       `
             SELECT *
             FROM review
-            WHERE cart_id = $1;
+            WHERE carts_products_id = $1;
             `,
-      [cart_id]
+      [carts_products_id]
     );
     return review;
   } catch (error) {
