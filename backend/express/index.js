@@ -48,8 +48,8 @@ router.use("/users", usersRouter)
 // const productsRouter = require("./products"); 
 // router.use("/productsRouter", productsRouter)
 
-// const reviewsRouter = require("./reviews"); 
-// router.use("/reviewsRouter", reviewsRouter)
+const reviewsRouter = require("./routers/reviews"); 
+router.use("/reviews", reviewsRouter)
 
 
 module.exports = router;

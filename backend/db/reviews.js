@@ -1,16 +1,16 @@
 const client = require("./client");
 
-async function createReview({ user_id, reviewTitle, reviewComment }) {
+async function createReview({ carts_id, reviewTitle, reviewComment }) {
   try {
     const {
       rows: [review],
     } = await client.query(
       `
-            INSERT INTO review(user_id, review_title, review_comment)
+            INSERT INTO reviews(carts_id, review_title, review_comments)
             VALUES ($1, $2, $3)
             RETURNING *;
             `,
-      [user_id, reviewTitle, reviewComment]
+      [carts_id, reviewTitle, reviewComment]
     );
 
     console.log(review);
@@ -39,17 +39,17 @@ async function getReviewsById({ id }) {
     throw error;
   }
 }
-async function getReviewsByCartId({ carts_products_id }) {
+async function getReviewsByCartId({ carts_id }) {
   try {
     const {
       rows: [review],
     } = await client.query(
       `
             SELECT *
-            FROM review
-            WHERE carts_products_id = $1;
+            FROM reviews
+            WHERE carts_id = $1;
             `,
-      [carts_products_id]
+      [carts_id]
     );
     return review;
   } catch (error) {
@@ -70,7 +70,7 @@ async function updateReview({ id, ...fields }) {
     const {
       rows: [review],
     } = await client.query(
-      `Update review
+      `Update reviews
         SET ${setString}
         WHERE id=${id}
         RETURNING *`,
@@ -88,7 +88,7 @@ async function destroyReview({ id, reviewTitle }) {
     const {
       rows: [review],
     } = await client.query(
-      `DELETE FROM review
+      `DELETE FROM reviews
             WHERE "id" =${id} AND "reviewTitle" =${reviewTitle}`
     );
     return true;
