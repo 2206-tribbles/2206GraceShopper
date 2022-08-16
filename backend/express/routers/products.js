@@ -10,8 +10,6 @@ const {
 } = require("../../db");
 
 productsRouter.post("/", async (req, res, next) => {
-  console.log("creating product...");
-  console.log("line8");
   const {
     title,
     artist,
@@ -25,7 +23,6 @@ productsRouter.post("/", async (req, res, next) => {
   } = req.body;
 
   try {
-    console.log("line12");
     const _product = await getProductByTitle(title);
     if (_product) {
       next({
@@ -33,7 +30,6 @@ productsRouter.post("/", async (req, res, next) => {
         message: "A product by that name already exists",
       });
     }
-    console.log(title, "line21");
     const product = await createProduct({
       title,
       artist,
@@ -53,7 +49,6 @@ productsRouter.post("/", async (req, res, next) => {
 });
 
 productsRouter.patch("/:productId", async (req, res, next) => {
-  console.log(req.params.productId, "line 33");
   const {
     title,
     artist,
@@ -96,11 +91,7 @@ productsRouter.patch("/:productId", async (req, res, next) => {
     updateFields.photo = photo;
   }
   try {
-    // const originalProduct = await getProductById(id);
-    console.log(updateFields, "line65");
-    // updateFields.id = product_id
     const updatedProduct = await updateProduct(updateFields);
-    console.log("hello world");
     res.send(updatedProduct);
   } catch (error) {
     next();
@@ -108,14 +99,13 @@ productsRouter.patch("/:productId", async (req, res, next) => {
 });
 
 productsRouter.delete("/:productId", async (req, res, next) => {
-  const  id  = req.params.productId;
-  console.log(id, "line94")
+  const id = req.params.productId;
   try {
-    const product = await getProductById({id});
-  
-      await destroyProduct(id);
-      res.send(product);
-   
+    const product = await getProductById({ id });
+
+    await destroyProduct(id);
+    res.send(product);
+
   } catch (error) {
     next(error);
   }
