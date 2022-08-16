@@ -1,6 +1,6 @@
 const client = require('./client');
 
-async function createProduct({ title, artist, description, release_date, price, inventory, format, genre }) {
+async function createProduct({ title, artist, description, release_date, price, inventory, format, genre, photo }) {
 
     try {
         const {
@@ -24,6 +24,7 @@ async function createProduct({ title, artist, description, release_date, price, 
 
 async function updateProduct({ id, ...fields }) {
     // build the set string
+    console.log(id, fields, "line27")
    const setString = Object.keys(fields)
    .map((key, index) => `"${key}"=$${index + 1}`)
    .join(", ");
@@ -71,6 +72,25 @@ async function updateProduct({ id, ...fields }) {
     }
 } 
 
+async function getProductByTitle(title) {
+  try {
+    const {
+      rows: [product],
+    } = await client.query(
+      `
+    SELECT *
+    FROM products
+    WHERE title=$1;
+  `,
+      [title]
+    );
+    return product;
+  } catch (error) {
+    console.error('Error getting product by title!');
+    throw error;
+  }
+}
+
 async function addProductToCart({
     cart_id,
     product_id,
@@ -107,24 +127,20 @@ async function addProductToCart({
  async function destroyProduct(id) {
     await client.query(
       `
-      DELETE FROM an_order order_history
-       WHERE product_id=${id};
-      DELETE FROM reviews 
-       WHERE product_id=${id};
       DELETE FROM products
        WHERE id=${id};
       `
     );
-    await client.query(
-      `
-     DELETE FROM an_order cart 
-      WHERE product_id=${id};
-     DELETE FROM order_history reviews 
-      WHERE product_id=${id};
-     DELETE FROM products
-      WHERE id=${id};
-      `
-    );
+    // await client.query(
+    //   `
+    //  DELETE FROM an_order cart 
+    //   WHERE product_id=${id};
+    //  DELETE FROM order_history reviews 
+    //   WHERE product_id=${id};
+    //  DELETE FROM products
+    //   WHERE id=${id};
+    //   `
+    // );
   }
 
   //export functions
@@ -133,5 +149,6 @@ module.exports = {
     createProduct,
     getProductById,
     updateProduct,
-    destroyProduct
+    destroyProduct,
+    getProductByTitle
   }

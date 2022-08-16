@@ -45,8 +45,8 @@ router.use("/users", usersRouter)
 // const cartsProductsRouter = require("./cartsProducts"); 
 // router.use("/cartsProductsRouter", cartsProductsRouter)
 
-// const productsRouter = require("./products"); 
-// router.use("/productsRouter", productsRouter)
+const productsRouter = require("./routers/products"); 
+router.use("/products", productsRouter)
 
 // const reviewsRouter = require("./reviews"); 
 // router.use("/reviewsRouter", reviewsRouter)
