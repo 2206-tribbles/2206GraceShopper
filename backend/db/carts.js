@@ -22,6 +22,26 @@ async function createCart({ user_id, product_id }) {
     }
 }
 
+async function getCartById({id}) {
+  try {
+      const {
+          rows: [cart],
+      } = await client.query(
+          `
+          SELECT *
+          FROM cart
+          WHERE id = $1;
+          
+          `
+          [id]
+      );
+      return cart;
+  } catch (error) {
+      console.error("Error Retrieving Cart", error);
+      throw error;
+  }
+} 
+
 async function getCartByUserId({id}) {
     try {
         const {
@@ -40,6 +60,35 @@ async function getCartByUserId({id}) {
         console.error("Error Retrieving Cart", error);
         throw error;
     }
+} 
+
+async function updateCart({ id, ...fields }) {
+  // build the set string
+ const setString = Object.keys(fields)
+ .map((key, index) => `"${key}"=$${index + 1}`)
+ .join(", ");
+
+ // return early if this is called without fields
+ if (setString.length === 0) {
+ return;
+ }
+   try {
+       const {
+           rows: [cart],
+       } = await client.query(
+           `
+           UPDATE carts
+           SET ${setString}
+           WHERE id=${id}
+           RETURNING *;
+           `,
+           Object.values(fields)
+       );
+       return cart;
+   } catch (error) {
+       console.error("Error Retrieving Product", error);
+       throw error;
+   }
 } 
 
 async function updateCartItem({ id, ...fields }) {
@@ -94,8 +143,8 @@ async function updateCartItem({ id, ...fields }) {
     try {
       await client.query(
         `
-        DELETE FROM routine_activities
-        WHERE "routineId"=${id}
+        DELETE FROM carts
+        WHERE "id"=${id}
         `
       );
     return true;
@@ -110,7 +159,9 @@ async function updateCartItem({ id, ...fields }) {
 
   module.exports = {
     createCart,
+    getCartById,
     getCartByUserId,
+    updateCart,
     updateCartItem,
     destroyItemInCart,
     destroyCart
