@@ -115,7 +115,9 @@ async function createTables() {
 
         INSERT INTO reviews(carts_id, review_title, review_comments)
         VALUES
-        ('1','Test review','This is the greatest of tests')
+        ('1','Test review for Cart 1','This is the greatest of tests'),
+        ('3','Test review for cart 3','This is the greatest of tests yahoo for you'),
+        ('4','Test review for Cart 4','This is the greatest of tests')
 
     `);
     console.log("Finished building tables!");
