@@ -1,47 +1,49 @@
 const client = require("./client");
-/* eslint-disable */
 
-async function addProductToCartProducts({
-  title,
-  artist,
-  description,
-  release_date,
-  price,
-  inventory,
-  format,
-  genre,
+
+async function createCartsProducts({
+  cart_id,
+  product_id,
+  quantity, 
+  sale_price
+  
 }) {
   try {
     const {
       rows: [carts_products],
     } = await client.query(
       `
-      INSERT INTO carts_products (title, artist, description, release_date, price, inventory, format, genre)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      INSERT INTO carts_products ( 
+        cart_id,
+        product_id,
+        quantity, 
+        sale_price)
+      VALUES ($1, $2, $3, $4)
       RETURNING *;
       `,
-      [(title, artist, description, release_date, price, inventory, format, genre)]
+      [cart_id, product_id, quantity, sale_price]
     );
+    console.log("LINE 26 INSIDE CREATE CP: ", carts_products)
     return carts_products;
   } catch (error) {
     throw error;
   }
 }
 
-async function getCartsProductsById(id) {
+async function getCartsProductsById({id}) {
   try {
     const {
-      rows: [products],
+      rows,
     } = await client.query(
       `
       SELECT *
-      FROM cart_products
+      FROM carts_products
       WHERE id=$1;
     `,
       [id]
     );
 
-    return products;
+    return rows;
   } catch (error) {
     throw error;
   }
@@ -49,7 +51,7 @@ async function getCartsProductsById(id) {
 
 async function getCartsProductsByProductId({ id }) {
   try {
-    const { rows: product } = await client.query(
+    const { rows } = await client.query(
       `
     SELECT *
     FROM carts_products
@@ -58,7 +60,7 @@ async function getCartsProductsByProductId({ id }) {
   `,
       [id]
     );
-    return product;
+    return rows;
   } catch (error) {
     throw error;
   }
@@ -93,7 +95,7 @@ async function updateCartsProducts({ id, ...fields }) {
   }
 }
 
-async function destroyCartsProducts(id) {
+async function destroyCartsProducts({id}) {
   try {
     const {
       rows: [product],
@@ -104,16 +106,16 @@ async function destroyCartsProducts(id) {
     `,
       [id]
     );
-    return product;
+    return true;
   } catch (error) {
     throw error;
   }
 }
 
 module.exports = {
+    createCartsProducts,
     destroyCartsProducts,
     updateCartsProducts,
     getCartsProductsById,
-    addProductToCartProducts,
     getCartsProductsByProductId
 };
