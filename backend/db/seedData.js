@@ -74,6 +74,15 @@ async function createTables() {
         order_completed BOOLEAN DEFAULT false,
         purchase_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
+
+        INSERT INTO carts(user_id, product_id)
+        VALUES
+        ('1','1'),
+        ('2','3'),
+        ('1','2'),
+        ('4','3'),
+        ('5','1')
+
         `);
 
     await client.query(`
@@ -85,16 +94,30 @@ async function createTables() {
           sale_price MONEY NOT NULL,
           UNIQUE (cart_id, product_id)
           );
+
+          INSERT INTO carts_products(cart_id, product_id, quantity, sale_price)
+          VALUES
+          ('1','1','2','10'),
+          ('2','3','3','4.35'),
+          ('3','2','8','400'),
+          ('4','1','10','30')
+   
           `);     
    
     await client.query(`
         CREATE TABLE reviews(
         id SERIAL PRIMARY KEY,
-        carts_products_id INTEGER REFERENCES carts_products(id),
+        carts_id INTEGER REFERENCES carts(id) UNIQUE,
         review_title VARCHAR(255) NOT NULL,
-        review_comments TEXT NOT NULL,
-        UNIQUE (id, carts_products_id)
+        review_comments TEXT NOT NULL
         );
+
+        INSERT INTO reviews(carts_id, review_title, review_comments)
+        VALUES
+        ('1','Test review for Cart 1','This is the greatest of tests'),
+        ('3','Test review for cart 3','This is the greatest of tests yahoo for you'),
+        ('4','Test review for Cart 4','This is the greatest of tests')
+
     `);
     console.log("Finished building tables!");
   } catch (error) {

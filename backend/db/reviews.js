@@ -1,16 +1,16 @@
 const client = require("./client");
 
-async function createReview({ user_id, reviewTitle, reviewComment }) {
+async function createReview({ carts_id, reviewTitle, reviewComment }) {
   try {
     const {
       rows: [review],
     } = await client.query(
       `
-            INSERT INTO review(user_id, review_title, review_comment)
+            INSERT INTO reviews(carts_id, review_title, review_comments)
             VALUES ($1, $2, $3)
             RETURNING *;
             `,
-      [user_id, reviewTitle, reviewComment]
+      [carts_id, reviewTitle, reviewComment]
     );
 
     console.log(review);
@@ -28,7 +28,7 @@ async function getReviewsById({ id }) {
     } = await client.query(
       `
             SELECT *
-            FROM review
+            FROM reviews
             WHERE id = $1;
             `,
       [id]
@@ -39,19 +39,41 @@ async function getReviewsById({ id }) {
     throw error;
   }
 }
-async function getReviewsByCartId({ carts_products_id }) {
+async function getReviewsByCartId({ carts_id }) {
   try {
     const {
       rows: [review],
     } = await client.query(
       `
             SELECT *
-            FROM review
-            WHERE carts_products_id = $1;
+            FROM reviews
+            WHERE carts_id = $1;
             `,
-      [carts_products_id]
+      [carts_id]
     );
     return review;
+  } catch (error) {
+    console.error("Error Getting review", error);
+    throw error;
+  }
+}
+
+async function getReviewsByUserId({ user_id }) {
+  try {
+    console.log("63 User Id: ", user_id);
+    const {
+      rows
+    } = await client.query(
+      `
+            SELECT reviews.id, reviews.carts_id, carts.user_id, reviews.review_title, reviews.review_comments
+            FROM reviews
+            JOIN carts ON reviews.carts_id = carts.id
+            WHERE carts.user_id = $1;
+            `,
+      [user_id]
+    );
+    console.log("74Review: ",rows);
+    return rows;
   } catch (error) {
     console.error("Error Getting review", error);
     throw error;
@@ -70,11 +92,11 @@ async function updateReview({ id, ...fields }) {
     const {
       rows: [review],
     } = await client.query(
-      `Update review
+      `Update reviews
         SET ${setString}
         WHERE id=${id}
         RETURNING *`,
-      object.values(fields)
+      Object.values(fields)
     );
     return review;
   } catch (error) {
@@ -83,13 +105,13 @@ async function updateReview({ id, ...fields }) {
   }
 }
 
-async function destroyReview({ id, reviewTitle }) {
+async function destroyReview({ id }) {
   try {
     const {
       rows: [review],
     } = await client.query(
-      `DELETE FROM review
-            WHERE "id" =${id} AND "reviewTitle" =${reviewTitle}`
+      `DELETE FROM reviews
+            WHERE "id" =${id}`
     );
     return true;
   } catch (error) {
@@ -105,4 +127,5 @@ module.exports = {
   getReviewsByCartId,
   destroyReview,
   updateReview,
+  getReviewsByUserId
 };
