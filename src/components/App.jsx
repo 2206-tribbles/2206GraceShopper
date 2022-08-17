@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, Routes, Route } from "react-router-dom";
-import { Home, Header } from "./index";
+import { Home, Header, Footer, Products, SingleProduct } from "./index";
 
 const App = () => {
 
@@ -25,6 +25,7 @@ const App = () => {
           <Route path="/activities" element={<Activities />} />
           <Route path="/activities/:id" element={<ActivityMod />} /> */}
         </Routes> 
+        <Footer />
       </>);
 };
 

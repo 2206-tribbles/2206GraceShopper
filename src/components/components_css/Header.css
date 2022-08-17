@@ -5,24 +5,21 @@ body {
 }
 
 #header {
-    display:flex;
+    display: flex;
     flex-direction: column;
     width: 100%;
     top: 0;
-    background-image: linear-gradient(
-        to right,
-        rgb(175, 23, 23),
-        rgb(209, 85, 28)
-    );
+    background-color: rgb(156, 64, 53);
 }
 
 #title {
-    font-size: 72px;
-    background-image: linear-gradient(
-        to right,
-        rgb(175, 23, 23),
-        rgb(209, 85, 28)
-    );
+    display: flex;
+    flex-direction: row;
+    font-size: 60px;
+    /* background-image: linear-gradient(to right,
+            rgb(156, 64, 53),
+            rgb(209, 85, 28)); */
+            background-color: rgb(156, 64, 53);
     color: white;
     font-family: Monoton;
     padding-top: 10px;
@@ -30,15 +27,16 @@ body {
     padding-right: 10px;
 }
 
+.capital {
+    font-size:72px;
+}
+
 #controls {
     display: flex;
     justify-content: space-between;
     /* background-color: rgb(175, 23, 23); */
-    background-image: linear-gradient(
-        to right,
-        rgb(175, 23, 23),
-        rgb(209, 85, 28)
-    );
+    
+    background-color: rgb(200, 134, 48);
     color: white;
     padding: 10px;
     font-family: 'Courier New', Courier, monospace;
@@ -59,10 +57,11 @@ body {
     font-weight: bolder;
     font-size: large;
 }
+
 .link:hover {
     color: rgb(207, 207, 207);
-  }
+}
 
-  .dropdown {
-    padding-right:50px;
-  }
+.dropdown {
+    padding-right: 5px;
+}

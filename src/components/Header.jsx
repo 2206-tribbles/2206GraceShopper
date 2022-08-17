@@ -6,7 +6,7 @@ const Header = () => {
 
     return (
         <div id="header">
-            <div id="title">Grace Shopper</div>
+            <div id="title"><div className="capital">G</div>raceland <div className="capital">S</div>hopper</div>
             <div id="controls">
                 <div id="categories">
                     <select name="genre" placeholder="Genre"><option value="all" class="dropdown">Genre</option></select>
@@ -18,8 +18,7 @@ const Header = () => {
                     <button>Search</button>
                 </div>
                 <div id="userlinks">
-                    <NavLink to="/Login" className="link">Login</NavLink>
-                    <NavLink to="/Register" className="link">Register</NavLink>
+                    <NavLink to="/Login" className="link">Login/Register</NavLink>
                     <NavLink to="/Cart" className="link">Cart</NavLink>
                 </div>
             </div>
