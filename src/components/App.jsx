@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, Routes, Route } from "react-router-dom";
-import { Home } from "./index";
+import { Home, Header } from "./index";
 
 const App = () => {
 
     return (<>
-        {/* <NavBar /> */}
-        {/* <Routes>
-          <Route path="/" element={<Navigate replace to="/home" />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+        <Header />
+         <Routes>
+          {/* <Route path="/" element={<Navigate replace to="/home" />} /> */}
+          <Route path="/" element={<Home />} />
+         {/* <Route path="/login" element={<Login />} />
           <Route
             path="/profile"
             element={
@@ -23,8 +23,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/routines" element={<Routines user={user}/>} />
           <Route path="/activities" element={<Activities />} />
-          <Route path="/activities/:id" element={<ActivityMod />} />
-        </Routes> */} <div>"Hello World</div>
+          <Route path="/activities/:id" element={<ActivityMod />} /> */}
+        </Routes> 
       </>);
 };
 
