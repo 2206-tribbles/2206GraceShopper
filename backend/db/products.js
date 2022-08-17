@@ -72,6 +72,23 @@ async function updateProduct({ id, ...fields }) {
     }
 } 
 
+async function getAllProducts() {
+  try {
+      const {
+          rows: [product],
+      } = await client.query(
+          `
+          SELECT *
+          FROM products;
+          `
+      );
+      return product;
+  } catch (error) {
+      console.error("Error Retrieving Products", error);
+      throw error;
+  }
+} 
+
 async function getProductByTitle(title) {
   try {
     const {
@@ -150,5 +167,7 @@ module.exports = {
     getProductById,
     updateProduct,
     destroyProduct,
-    getProductByTitle
+    getProductByTitle,
+    addProductToCart,
+    getAllProducts
   }

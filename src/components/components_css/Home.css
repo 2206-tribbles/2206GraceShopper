@@ -1,0 +1,36 @@
+body {
+    background-color: rgb(56, 93, 101);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#home {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#staffpicks,
+#misc,
+#highlights {
+    display: flex;
+    background-color: white;
+    margin: 10px;
+    border-radius: 10px;
+    height: 74vh;
+    justify-content: center;
+    padding: 10px;
+}
+
+#staffpicks,
+#misc {
+    width: 25%
+}
+
+#highlights {
+    width: 45%;
+}
+
+.divtitle {
+    justify-content: center;
+    font-weight: bold;
+    font-size: large;
+}
