@@ -17,10 +17,9 @@ const Products = ({
 
         }
         allProducts();
-
+        
     }, []) 
     
-
     return (
         <>
             <section className="products_gallery">

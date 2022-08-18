@@ -1,5 +1,4 @@
-
-const BASE = "http://localhost:3004/api";   //Port to talk to Backend Server
+const BASE = "http://localhost:3005/api"; //Port to talk to Backend Server
 
 export async function registerUser(userObj) {
   try {
@@ -43,7 +42,7 @@ export async function getAllProducts() {
 
 export async function getProductById(productId) {
   try {
-    const response = await fetch(`${BASE}/products/productById/${productId}`)
+    const response = await fetch(`${BASE}/products/productById/${productId}`);
     const data = await response.json();
     return data;
   } catch (error) {
