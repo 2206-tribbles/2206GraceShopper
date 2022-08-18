@@ -10,8 +10,8 @@ const Header = () => {
             <div id="controls">
                 <div id="categories">
                 <NavLink to="/Products" className="link">All products</NavLink>
-                    <select name="genre" placeholder="Genre"><option value="all" class="dropdown">Genre</option></select>
-                    <select name="format" placeholder="Format"><option value="all" class="dropdown">Format</option></select>
+                    <select name="genre" placeholder="Genre"><option value="all" className="dropdown">Genre</option></select>
+                    <select name="format" placeholder="Format"><option value="all" className="dropdown">Format</option></select>
                     <button>Search</button>
                 </div>
                 <div id="searchbarcontainer">

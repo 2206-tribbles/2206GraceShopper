@@ -39,8 +39,8 @@ async function createTables() {
     ('Kalia','Park','vulputate.nisi.sem@google.edu','726 Eu Road','kaliapart','sadlk;fj'),
     ('Phelan','Oneil','vel.pede.blandit@icloud.couk','1704 Enim Rd.','DPete','abcdef'),
     ('Declan','Petersen','imperdiet.erat@icloud.org','188-821 Sed, Ave','Pouch','nightmare'),
-    ('Tana','Kline','ante.dictum@yahoo.couk','662-532 Arcu Street','TheKline','a;sldkjf');
-    ('Ad','Min','admin@gracelandshopper.com', '1000 Cool Drive', 'Admin','Password' ) 
+    ('Tana','Kline','ante.dictum@yahoo.couk','662-532 Arcu Street','TheKline','a;sldkjf'),
+    ('Ad','Min','admin@gracelandshopper.com', '1000 Cool Drive', 'Admin','Password' ) ;
     `);
 
     await client.query(`
@@ -61,7 +61,7 @@ async function createTables() {
       INSERT INTO products(title, artist, description, release_date, price, inventory, format, genre, photo, spotif)
       VALUES
       ('The Tubes Greatest Hits','Tubes','All their number one hits','02/03/1978','45.00','39','CD', 'Rock', '/pics/Tubes.jpg', 'soptif'),
-      ('Donna Summers Hits','Donna Summer','All her number one hits','06/06/1980','50','12','CD', 'Disco', '/pics/DonnaSummer.jpg', 'https://open.spotify.com/embed/artist/1mjVqH9hvJfVXdonvtWof1?utm_source=generator'),
+      ('Donna Summers: On The Radio','Donna Summer','All her number one hits','06/06/1980','50','12','CD', 'Disco', '/pics/DonnaSummerOTR.bmp', 'https://open.spotify.com/embed/album/1DeQ0MqQiY2RpMSMFEsILA?utm_source=generator'),
       ('Men Without Hats Hits','Men Without Hats','All their number one hits','05/06/1982','23.00','5','8-Track', 'Rock', '/pics/MenWithoutHats.jpg', 'spotif'),
       ('80s Greatest Hits', 'Various','All number one hits from the 80s','01/01/1990','5.00','100','CD', 'Dance', '/pics/80sGreatestHits.jpg','spotif'),
       ('90s Greatest Hits','Various','All number one hits from the 90s','01/01/2000','10.00','139','Vinal', 'Dance', '/pics/90sGreatestHits.jpg', 'spotif');
