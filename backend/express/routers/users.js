@@ -1,13 +1,24 @@
 const express = require("express");
 const usersRouter = express.Router();
 const jwt = require("jsonwebtoken");
-const { getUserByUsername, createUser, getUserById, destroyUser } = require("../../db");
+const {
+  getUserByUsername,
+  createUser,
+  getUserById,
+  destroyUser,
+} = require("../../db");
 // /api/users/register
 usersRouter.post("/register", async (req, res, next) => {
   console.log("registering user...");
   const { first_name, last_name, email, address, username, password } =
     req.body;
-
+  const check = { first_name, last_name, email, address, username, password };
+  // if (!check) {
+  //   next({
+  //     name: "nullError",
+  //     message: "No open fields allowed",
+  //   });
+  // }
   try {
     const _user = await getUserByUsername(username);
     console.log("getting user by username...", _user);
@@ -47,7 +58,7 @@ usersRouter.post("/register", async (req, res, next) => {
   }
 });
 
-usersRouter.get("/login", async (req, res, next) => {
+usersRouter.post("/login", async (req, res, next) => {
   const { username, password } = req.body;
 
   // request must have both
@@ -90,21 +101,20 @@ usersRouter.get("/login", async (req, res, next) => {
   }
 });
 usersRouter.delete("/:users_id", async (req, res, next) => {
-  const  id  = req.params.users_id;
-  console.log(id, "line94")
+  const id = req.params.users_id;
+  console.log(id, "line94");
   try {
-    const user = await getUserById({id});
-    console.log(user, id, "line 97")
-    if (user.username === req.body.username)
-    {
+    const user = await getUserById({ id });
+    console.log(user, id, "line 97");
+    if (user.username === req.body.username) {
       await destroyUser(id);
       res.send(user);
     } else {
-      res.status(403)
-      console.log(req.body.username, "line104")
+      res.status(403);
+      console.log(req.body.username, "line104");
       next({
-        name: '403Error',
-        error: 'An Error Occured',
+        name: "403Error",
+        error: "An Error Occured",
         message: `User ${req.body.username} is not allowed to delete ${req.body.username}`,
       });
     }

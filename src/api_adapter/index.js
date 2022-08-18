@@ -9,15 +9,26 @@ export async function registerUser(userObj) {
       },
       body: JSON.stringify(userObj),
     });
-    return response;
+    const result = await response.json();
+    return result;
   } catch (error) {
     throw error;
   }
 }
-export async function loginUser(username, password) {
-  console.log(username, password, "line 12");
+export async function loginUser(userObj) {
+  console.log(userObj, "line 12");
   try {
-    const response = await fetch(`${BASE}/users/login`);
+    const response = await fetch(`${BASE}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userObj),
+    });
+    const result = await response.json();
+    console.log("result: ", result);
+    console.log("line 23 this is response:", response);
+    return result;
   } catch (error) {
     throw error;
   }

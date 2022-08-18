@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, Routes, Route } from "react-router-dom";
-import { Home, Header, Footer, Products, SingleProduct, ProductDetails } from "./index";
+import { Home, Header, Footer, Products, SingleProduct, ProductDetails, Login, Register } from "./index";
 
 const App = () => {
 
@@ -11,8 +11,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:productId" element={<ProductDetails/>} />
-         {/* <Route path="/login" element={<Login />} />
-          <Route
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+         {/* <Route path="
             path="/profile"
             element={
               <Profile
@@ -22,7 +23,6 @@ const App = () => {
               />
             }
           />
-          <Route path="/register" element={<Register />} />
           <Route path="/routines" element={<Routines user={user}/>} />
           <Route path="/activities" element={<Activities />} />
           <Route path="/activities/:id" element={<ActivityMod />} /> */}
