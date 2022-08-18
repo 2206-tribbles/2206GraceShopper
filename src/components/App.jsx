@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, Routes, Route } from "react-router-dom";
-import { Home, Header, Footer, Products, SingleProduct } from "./index";
+import { Home, Header, Footer, Products, SingleProduct, ProductDetails } from "./index";
 
 const App = () => {
 
@@ -9,6 +9,8 @@ const App = () => {
          <Routes>
           {/* <Route path="/" element={<Navigate replace to="/home" />} /> */}
           <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:productId" element={<ProductDetails/>} />
          {/* <Route path="/login" element={<Login />} />
           <Route
             path="/profile"
