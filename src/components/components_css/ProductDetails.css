@@ -1,0 +1,54 @@
+.page {
+    display:flex;
+    justify-content: center;
+}
+
+.product {
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(236, 234, 221);
+    border-radius: 15px;
+    margin: 25px;
+    padding: 25px;
+    width: fit-content;
+}
+
+.product_photo {
+    width: 400px;
+    height: 400px;
+}
+
+.product_title {
+    font-size: 30px;
+    font-weight: bold;
+    padding-bottom: 10px;
+
+}
+
+.product_photo {
+    padding-bottom: 10px;
+}
+
+.photo_info {
+    border-bottom: 1px gray solid;
+}
+
+.main_info {
+    padding-bottom: 10px;
+    border-bottom: 1px gray solid;
+}
+
+.storeInfo {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product_description {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.product_artist {
+    font-size: 24px;
+    padding-bottom: 5px;
+}

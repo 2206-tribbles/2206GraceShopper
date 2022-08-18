@@ -6,9 +6,10 @@ const Header = () => {
 
     return (
         <div id="header">
-            <div id="title"><div className="capital">G</div>raceland <div className="capital">S</div>hopper</div>
+            <NavLink to="/" className="link"><div id="title"><div className="capital">G</div>raceland <div className="capital">S</div>hopper</div></NavLink>
             <div id="controls">
                 <div id="categories">
+                <NavLink to="/Products" className="link">All products</NavLink>
                     <select name="genre" placeholder="Genre"><option value="all" class="dropdown">Genre</option></select>
                     <select name="format" placeholder="Format"><option value="all" class="dropdown">Format</option></select>
                     <button>Search</button>
