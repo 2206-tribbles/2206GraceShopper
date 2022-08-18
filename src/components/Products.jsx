@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { getAllProducts } from "../api_adapter";
+import SingleProduct from "./SingleProduct";
+import "./components_css/Products.css"
+// import { NavLink } from "react-router-dom";
 
 
 const Products = ({
@@ -8,21 +11,22 @@ const Products = ({
     const [allProducts, setAllProducts] = useState([]);
 
     useEffect(() => {
-        getAllProducts().then(
-            (response) => {
-                setAllProducts(response.data.Products)
-            }
-        )
-    })
+        const allProducts = async () => {
+          const products = await getAllProducts()
+          setAllProducts(products)
 
-
+        }
+        allProducts();
+        
+    }, []) 
+    
     return (
         <>
-            <div id="productspage">
+            <section className="products_gallery">
                 {allProducts.map((element) => {
                     return <SingleProduct element={element} />;
                 })}
-            </div>
+            </section>
         </>
     );
 };

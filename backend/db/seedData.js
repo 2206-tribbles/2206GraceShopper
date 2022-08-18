@@ -53,16 +53,16 @@ async function createTables() {
         inventory INTEGER NOT NULL,
         format VARCHAR(30)  NOT NULL,
         genre VARCHAR(30)  NOT NULL,
-        photo BYTEA
+        photo VARCHAR(255) NOT NULL
       );
 
       INSERT INTO products(title, artist, description, release_date, price, inventory, format, genre, photo)
       VALUES
-      ('The Tubes Greatest Hits','Tubes','All their number one hits','02/03/1978','45.00','39','CD', 'Rock', './pics/Tubes.jpg'),
-      ('Donna Summers Hits','Donna Summer','All her number one hits','06/06/1980','50','12','CD', 'Disco', './pics/DonnaSummer.jpg'),
-      ('Men Without Hats Hits','Men Without Hats','All their number one hits','05/06/1982','23.00','5','8-Track', 'Rock', './pics/MenWithoutHats.jpg'),
-      ('80s Greatest Hits', 'Various','All number one hits from the 80s','01/01/1990','5.00','100','CD', 'Dance', './pics/80sGreatestHits.jpg'),
-      ('90s Greatest Hits','Various','All number one hits from the 90s','01/01/2000','10.00','139','Vinal', 'Dance', './pics/90sGreatestHits.jpg');
+      ('The Tubes Greatest Hits','Tubes','All their number one hits','02/03/1978','45.00','39','CD', 'Rock', '/pics/Tubes.jpg'),
+      ('Donna Summers Hits','Donna Summer','All her number one hits','06/06/1980','50','12','CD', 'Disco', '/pics/DonnaSummer.jpg'),
+      ('Men Without Hats Hits','Men Without Hats','All their number one hits','05/06/1982','23.00','5','8-Track', 'Rock', '/pics/MenWithoutHats.jpg'),
+      ('80s Greatest Hits', 'Various','All number one hits from the 80s','01/01/1990','5.00','100','CD', 'Dance', '/pics/80sGreatestHits.jpg'),
+      ('90s Greatest Hits','Various','All number one hits from the 90s','01/01/2000','10.00','139','Vinal', 'Dance', '/pics/90sGreatestHits.jpg');
 
       `);
     

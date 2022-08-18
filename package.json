@@ -6,14 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed:dev": "nodemon backend/db/seed.js",
+    "server": "nodemon index.js",
     "seed": "node backend/db/seed.js",
     "start": "node index.js",
-    "start:dev":  "react-scripts start"
+    "start:dev": "react-scripts start"
   },
   "devDependencies": {
     "eslint": "^8.2.0",
     "eslint-plugin-jest": "^25.2.4",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.19"
   },
   "author": "Audrey Hershenson, Taylor Edelman, Rich Ropac, Michael Hoffman",
   "license": "ISC",
