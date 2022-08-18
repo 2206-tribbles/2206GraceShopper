@@ -27,6 +27,10 @@ body {
     padding-right: 10px;
 }
 
+#title:hover {
+    color: rgb(200, 134, 48);
+}
+
 .capital {
     font-size:72px;
 }

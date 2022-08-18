@@ -12,7 +12,7 @@ body {
 #misc,
 #highlights {
     display: flex;
-    background-color: white;
+    background-color: rgb(236, 234, 221);
     margin: 10px;
     border-radius: 10px;
     height: 74vh;
