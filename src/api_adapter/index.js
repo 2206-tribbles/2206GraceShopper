@@ -43,7 +43,7 @@ export async function getHealth() {
 }
 export async function getAllProducts() {
   try {
-    const response = await fetch(`${BASE}/products`);
+    const response = await fetch(`${BASE}/Products`);
     const data = await response.json();
     return data;
   } catch (error) {

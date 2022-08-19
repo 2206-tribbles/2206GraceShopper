@@ -67,6 +67,7 @@
     font-size: 24px;
     padding-bottom: 5px;
 }
+/* _______________ */
 
 /* ________ */
 
@@ -88,3 +89,12 @@
     padding: 25px;
     width: fit-content;
 } */
+.add_to_cart {
+    display:flex;
+    flex-direction: column;
+    background-color: rgb(236, 234, 221);
+    border-radius: 15px;
+    margin: 25px;
+    padding: 25px;
+    width: fit-content;
+}

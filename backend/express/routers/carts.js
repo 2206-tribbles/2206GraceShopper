@@ -9,6 +9,8 @@ const {
     getCartById,
     destroyCart
 } = require("../../db");
+
+
 //CREATE CART
 cartsRouter.post("/", async (req, res) => {
     console.log("creating cart...")
