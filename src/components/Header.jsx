@@ -5,7 +5,7 @@ import "./components_css/Header.css"
 const Header = () => {
 
     return (
-        <div id="header">
+        <header id="header">
             <NavLink to="/" className="link"><div id="title"><div className="capital">G</div>raceland <div className="capital">S</div>hopper</div></NavLink>
             <div id="controls">
                 <div id="categories">
@@ -23,7 +23,7 @@ const Header = () => {
                     <NavLink to="/Cart" className="link">Cart</NavLink>
                 </div>
             </div>
-        </div>
+        </header>
     );
 }
 
