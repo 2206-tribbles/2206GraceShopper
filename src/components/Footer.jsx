@@ -5,11 +5,11 @@ import "./components_css/Footer.css"
 const Footer = () => {
 
     return (
-        <div id="footer">
+        <footer id="footer">
             <div id="footerlinks">
                 <NavLink to="/Contact" className="link">Contact us</NavLink>
             </div>
-        </div>
+        </footer>
     );
 }
 
