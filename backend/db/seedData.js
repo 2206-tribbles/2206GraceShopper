@@ -20,7 +20,6 @@ async function dropTables() {
 
 async function createTables() {
   try {
-
     console.log("Starting to build tables...");
 
     await client.query(`
@@ -67,23 +66,22 @@ async function createTables() {
       ('90s Greatest Hits','Various','All number one hits from the 90s','01/01/2000','10.00','139','Vinal', 'Dance', '/pics/90sGreatestHits.jpg', 'spotif');
 
       `);
-    
+
     await client.query(`
       CREATE TABLE carts(
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id),
-        product_id INTEGER REFERENCES products(id), 
         order_completed BOOLEAN DEFAULT false,
         purchase_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
 
-        INSERT INTO carts(user_id, product_id)
+        INSERT INTO carts(user_id)
         VALUES
-        ('1','1'),
-        ('2','3'),
-        ('1','2'),
-        ('4','3'),
-        ('5','1')
+        ('1'),
+        ('2'),
+        ('1'),
+        ('4'),
+        ('5')
 
         `);
 
@@ -104,8 +102,8 @@ async function createTables() {
           ('3','2','8','400'),
           ('4','1','10','30')
    
-          `);     
-   
+          `);
+
     await client.query(`
         CREATE TABLE reviews(
         id SERIAL PRIMARY KEY,

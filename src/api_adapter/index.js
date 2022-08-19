@@ -60,3 +60,9 @@ export async function getProductById(productId) {
     throw error;
   }
 }
+
+export async function getCartByUserId({ id }) {
+  try {
+    const response = await fetch(`${BASE}/products/`);
+  } catch (error) {}
+}
