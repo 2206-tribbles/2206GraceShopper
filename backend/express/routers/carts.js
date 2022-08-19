@@ -9,7 +9,7 @@ const {
     getCartById,
     destroyCart
 } = require("../../db");
-const { reqUser } = require('./utils')
+
 
 //CREATE CART
 cartsRouter.post("/", async (req, res) => {
