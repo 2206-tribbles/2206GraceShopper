@@ -1,7 +1,10 @@
 .page {
     display:flex;
+    flex-direction: row;
     justify-content: center;
+    text-justify: center;
 }
+
 
 .product {
     display:flex;
@@ -11,6 +14,18 @@
     margin: 25px;
     padding: 25px;
     width: fit-content;
+    justify-content: center;
+    text-align: center;
+}
+
+.album_spotif {
+    display:flex;
+    flex-direction: row;
+}
+
+.albumInfo {
+    display:flex;
+    flex-direction: column;
 }
 
 .product_photo {
@@ -54,6 +69,26 @@
 }
 /* _______________ */
 
+/* ________ */
+
+.spotifContainer {
+    border-radius: 15px;
+    background-color: black;
+    margin-left: 25px;
+    margin-bottom: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 0px;
+    padding-bottom: 15px;
+    width: fit-content;
+}
+
+/* .spotif {
+    border-radius: 15px;
+    margin: 25px;
+    padding: 25px;
+    width: fit-content;
+} */
 .add_to_cart {
     display:flex;
     flex-direction: column;

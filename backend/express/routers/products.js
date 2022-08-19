@@ -61,6 +61,7 @@ productsRouter.post("/", async (req, res, next) => {
       format,
       genre,
       photo,
+      spotif
     });
 
     res.send(product);
@@ -80,6 +81,7 @@ productsRouter.patch("/:productId", async (req, res, next) => {
     format,
     genre,
     photo,
+    spotif
   } = req.body;
   const updateFields = {
     id: req.params.productId,
@@ -110,6 +112,9 @@ productsRouter.patch("/:productId", async (req, res, next) => {
   }
   if (photo) {
     updateFields.photo = photo;
+  }
+  if (spotif) {
+    updateFields.spotif = spotif;
   }
   try {
     const updatedProduct = await updateProduct(updateFields);
