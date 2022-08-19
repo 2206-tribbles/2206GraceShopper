@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getProductById } from "../api_adapter";
+import { getProductById, getCartByUserId, createCart } from "../api_adapter";
 import "./components_css/ProductDetails.css";
 
 const ProductDetails = () => {
@@ -36,6 +36,15 @@ const ProductDetails = () => {
       const currentValue = Number(inputField.value);
       inputField.value = currentValue - 1;
     });
+  }
+  function buttonHandler(userId) {
+  const cartId = getCartByUserId(userId) 
+
+    if(cartId === undefined){
+      createCart(userId)
+    }
+    console.log("cartId: ",cartId)
+    return cartId;
   }
     return (
       <div className="page">
@@ -91,7 +100,7 @@ const ProductDetails = () => {
              
             </form>
           </div>
-          <button>Add to Cart</button>
+          <button onClick="buttonHandler(localStorage.userId)">Add to Cart</button>
         </div>
 
       </div>

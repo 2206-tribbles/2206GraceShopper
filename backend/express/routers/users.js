@@ -12,7 +12,7 @@ usersRouter.post("/register", async (req, res, next) => {
   console.log("registering user...");
   const { first_name, last_name, email, address, username, password } =
     req.body;
-  const check = { first_name, last_name, email, address, username, password };
+  // const check = { first_name, last_name, email, address, username, password };
   // if (!check) {
   //   next({
   //     name: "nullError",
@@ -38,6 +38,7 @@ usersRouter.post("/register", async (req, res, next) => {
       password,
     });
     console.log("create user:", user);
+    const userId = user.id;
     const token = jwt.sign(
       {
         id: user.id,
@@ -48,10 +49,11 @@ usersRouter.post("/register", async (req, res, next) => {
         expiresIn: "1w",
       }
     );
-
+    console.log("Line 51 this is ID: ", userId);
     res.send({
       message: "thank you for signing up",
       token,
+      userId,
     });
   } catch ({ name, message }) {
     next({ name, message });

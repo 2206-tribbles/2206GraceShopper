@@ -29,6 +29,7 @@ const Login = (props) => {
       const token = result.token;
       console.log(token, "token inside of login");
       localStorage.setItem("token", token);
+      localStorage.setItem("userId", result.user.id);
 
       if(token !== undefined ){
         setLoggedIn("You are now logged in")
@@ -60,7 +61,7 @@ const Login = (props) => {
           onChange={handleOnChange}
           placeholder="Password Here"
           value={password}
-          type="text"
+          type="password"
         />
         <button className="button" type="submit">
           Login

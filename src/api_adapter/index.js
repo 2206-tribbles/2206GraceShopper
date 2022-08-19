@@ -60,3 +60,23 @@ export async function getProductById(productId) {
     throw error;
   }
 }
+
+export async function getCartByUserId(userId) {
+  try {
+    const response = await fetch(`${BASE}/products/${userId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function createCart(userId) {
+  try {
+    const response = await fetch(`${BASE}/products/createCart/${userId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
