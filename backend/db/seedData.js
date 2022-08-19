@@ -39,8 +39,8 @@ async function createTables() {
     ('Kalia','Park','vulputate.nisi.sem@google.edu','726 Eu Road','kaliapart','sadlk;fj'),
     ('Phelan','Oneil','vel.pede.blandit@icloud.couk','1704 Enim Rd.','DPete','abcdef'),
     ('Declan','Petersen','imperdiet.erat@icloud.org','188-821 Sed, Ave','Pouch','nightmare'),
-    ('Tana','Kline','ante.dictum@yahoo.couk','662-532 Arcu Street','TheKline','a;sldkjf');
-    ('Ad','Min','admin@gracelandshopper.com', '1000 Cool Drive', 'Admin','Password' ) 
+    ('Tana','Kline','ante.dictum@yahoo.couk','662-532 Arcu Street','TheKline','a;sldkjf'),
+    ('Ad','Min','admin@gracelandshopper.com', '1000 Cool Drive', 'Admin','Password' ); 
     `);
 
     await client.query(`
