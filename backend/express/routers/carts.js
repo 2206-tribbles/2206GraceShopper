@@ -15,10 +15,9 @@ const {
 //CREATE CART
 cartsRouter.post("/", async (req, res) => {
   console.log("creating cart...");
-  const { user_id, product_id, order_completed, purchase_date } = req.body;
+  const { user_id, order_completed, purchase_date } = req.body;
   const cart = await createCart({
     user_id,
-    product_id,
     order_completed,
     purchase_date,
   });
@@ -29,8 +28,8 @@ cartsRouter.get("/:user_id", async (req, res) => {
   console.log("getting cart...");
   const id = req.params.user_id;
   const userCart = await getCartByUserId(id);
-  console.log("cart user id ", userCart);
-  res.send(userCart);
+  console.log("cart user id ", userCart.id);
+  res.send(userCart.id);
 });
 //UPDATE CART
 cartsRouter.patch("/:cartId", async (req, res, next) => {

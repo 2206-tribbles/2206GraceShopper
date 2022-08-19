@@ -40,14 +40,15 @@ const Register = (props) => {
       console.log(token, "token inside of login");
       localStorage.setItem("token", token);
       if(token !== undefined){
-      setRegisteredIn("You are now registered")
-      navigate("/");}
-      else {throw new Error("Username Already Registered");}
-    } catch (err) {
-      setErrorMessage(
-        "Username Already Exists, Please Use Login Option Instead"
-      );
-    }
+        setRegisteredIn("You are now registered")
+        localStorage.setItem("userId", result.userId);
+        navigate("/");}
+        else {throw new Error("Username Already Registered");}
+      } catch (err) {
+        setErrorMessage(
+          "Username Already Exists, Please Use Login Option Instead"
+          );
+        }
   };
   return (
     <div className="form">
