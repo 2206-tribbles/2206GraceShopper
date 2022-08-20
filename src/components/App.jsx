@@ -24,7 +24,7 @@ const App = () => {
     // If product already exists in cart
     if (cart.some((_product) => _product.id === product.id)) {
       const updatedCart = cart.map((_product) => {
-        if (_product.id === product.id) {
+        if (_product.id === product.id && _product.quantity < _product.inventory) {
           return {
             ..._product,
             quantity: _product.quantity + 1,
