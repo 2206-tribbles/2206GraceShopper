@@ -49,21 +49,22 @@ async function createTables() {
         artist VARCHAR(255) NOT NULL,
         description TEXT NOT NULL,
         release_date DATE,
-        price MONEY NOT NULL,
+        price DECIMAL(12, 2) NOT NULL,
         inventory INTEGER NOT NULL,
         format VARCHAR(30)  NOT NULL,
         genre VARCHAR(30)  NOT NULL,
         photo VARCHAR(255) NOT NULL,
-        spotif VARCHAR(255)
+        spotif VARCHAR(255) DEFAULT '/pics/NoMusic.png',
+        staffpick BOOLEAN DEFAULT false
       );
 
-      INSERT INTO products(title, artist, description, release_date, price, inventory, format, genre, photo, spotif)
+      INSERT INTO products(title, artist, description, release_date, price, inventory, format, genre, photo, spotif, staffpick)
       VALUES
-      ('The Tubes Greatest Hits','Tubes','All their number one hits','02/03/1978','45.00','39','CD', 'Rock', '/pics/Tubes.jpg', 'soptif'),
-      ('Donna Summers: On The Radio','Donna Summer','All her number one hits','06/06/1980','50','12','CD', 'Disco', '/pics/DonnaSummerOTR.bmp', 'https://open.spotify.com/embed/album/1DeQ0MqQiY2RpMSMFEsILA?utm_source=generator'),
-      ('Men Without Hats Hits','Men Without Hats','All their number one hits','05/06/1982','23.00','5','8-Track', 'Rock', '/pics/MenWithoutHats.jpg', 'spotif'),
-      ('80s Greatest Hits', 'Various','All number one hits from the 80s','01/01/1990','5.00','100','CD', 'Dance', '/pics/80sGreatestHits.jpg','spotif'),
-      ('90s Greatest Hits','Various','All number one hits from the 90s','01/01/2000','10.00','139','Vinal', 'Dance', '/pics/90sGreatestHits.jpg', 'spotif');
+      ('The Tubes Greatest Hits','Tubes','All their number one hits','02/03/1978','45.00','39','CD', 'Rock', '/pics/Tubes.jpg','/pics/NoMusic.png', 'true'),
+      ('Donna Summer: On The Radio','Donna Summer','All her number one hits','06/06/1980','50','12','CD', 'Disco', '/pics/DonnaSummerOTR.bmp', 'https://oen.spotify.com/embed/album/1DeQ0MqQiY2RpMSMFEsILA?utm_source=generator', 'true'),
+      ('Men Without Hats Hits','Men Without Hats','All their number one hits','05/06/1982','23.00','5','8-Track', 'Rock', '/pics/MenWithoutHats.jpg', '/pics/NoMusic.png', true),
+      ('80s Greatest Hits', 'Various','All number one hits from the 80s','01/01/1990','5.00','100','CD', 'Dance', '/pics/80sGreatestHits.jpg','/pics/NoMusic.png', 'true'),
+      ('90s Greatest Hits','Various','All number one hits from the 90s','01/01/2000','10.00','139','Vinal', 'Dance', '/pics/90sGreatestHits.jpg', '/pics/NoMusic.png', 'true');
 
       `);
 
