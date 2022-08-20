@@ -16,28 +16,38 @@ const MyCart = (props) => {
   return (
     <div className="add_to_cart">
       {cart.map((product) => (
-        <div class="cart-item">
-          <div class="item-info" onClick="removeItemFromCart(${item.id})">
+        <div className="cart-item">
+          <div className="item-info" >
             <img src={product.photo} alt={product.name} />
             <h4>{product.name}</h4>
           </div>
-          <div class="unit-price">
+          <div className="unit-price">
             <small></small>${product.price*product.quantity}
           </div>
-          <div class="units">
+          <div className="units">
             <div
-              class="btn minus"
-              onClick="changeNumberOfUnits('minus', ${product.id})"
+              className="btn minus"
+              onClick={() => props.decrementQty(product.id)}
             >
               -
             </div>
-            <div class="number">{product.quantity}</div>
+            <div className="number">{product.quantity}</div>
             <div
-              class="btn plus"
+              className="btn plus"
               onClick={() => props.incrementQty(product.id)}
             >
               +
             </div>
+          
+            <div
+              className="delete" 
+              onClick="removeItemFromCart(${item.id})"
+              
+              >
+                img src=".\public\pic\Trashcan.jpg"
+              Delete
+            </div>
+          
           </div>
         </div>
       ))}

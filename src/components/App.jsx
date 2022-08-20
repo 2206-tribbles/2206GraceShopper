@@ -19,7 +19,7 @@ const App = () => {
     const _cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(_cart);
   }, []);
-
+  
   const addToCart = (product) => {
     // If product already exists in cart
     if (cart.some((_product) => _product.id === product.id)) {
@@ -43,7 +43,7 @@ const App = () => {
    const incrementQty = (productId) => {
       // Find that product with the productId inside our cart state and then update its quantity
       const updatedCart = cart.map((_product) => {
-        if (_product.id === productId) {
+        if (_product.id === productId  && _product.quantity < _product.inventory ) {
           return {
             ..._product,
             quantity: _product.quantity + 1,
@@ -56,6 +56,24 @@ const App = () => {
      localStorage.setItem("cart", JSON.stringify(cart));
    }
 
+   const decrementQty = (productId) => {
+    // Find that product with the productId inside our cart state and then update its quantity
+    const updatedCart = cart.map((_product) => {
+      if (_product.id === productId && _product.quantity > 1) {
+        return {
+          ..._product,
+          quantity: _product.quantity - 1,
+        };
+      }
+      return _product;
+    });
+    setCart(updatedCart);
+   // Make sure to update local storage
+   localStorage.setItem("cart", JSON.stringify(cart));
+ }
+
+
+
   return (
     <>
       <Header />
@@ -65,7 +83,8 @@ const App = () => {
         <Route path="/products" element={<Products />} />
         <Route
           path="/products/:productId"
-          element={<ProductDetails cart={cart} addToCart={addToCart} incrementQty={incrementQty} />}
+          element={<ProductDetails cart={cart} addToCart={addToCart} 
+          incrementQty={incrementQty} decrementQty={decrementQty} />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
