@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getProductById, getCartByUserId, createCart } from "../api_adapter";
+import MyCart from "./MyCart";
 import "./components_css/ProductDetails.css";
 
-const ProductDetails = () => {
+const ProductDetails = (props) => {
+  const cart = props.cart
   const params = useParams();
   const productId = params.productId;
   console.log("product Id", productId);
@@ -18,10 +20,11 @@ const ProductDetails = () => {
     _product();
   }, []);
   //changing quantity
+  
 
-  const btnAdd = document.getElementById("add");
-  const btnSubtract = document.getElementById("subtract");
-  const inputField = document.getElementById("input");
+  // const btnAdd = document.getElementById("add");
+  // const btnSubtract = document.getElementById("subtract");
+  // const inputField = document.getElementById("input");
 
   function subQuantity() {
     btnAdd.addEventListener("click", (event) => {
@@ -38,30 +41,31 @@ const ProductDetails = () => {
     });
   }
   function buttonHandler(userId) {
-  const cartId = getCartByUserId(userId) 
+    const cartId = getCartByUserId(userId);
 
-    if(cartId === undefined){
-      createCart(userId)
+    if (cartId === undefined) {
+      createCart(userId);
     }
-    console.log("cartId: ",cartId)
+    console.log("cartId: ", cartId);
     return cartId;
   }
-    return (
-      <div className="page">
-  
-  
-  
-        <div className="product">
-              <div className="product_title">{product.title}</div>
-          <div class="album_spotif">
-            <div className="album_info">
+  return (
+    <div className="page">
+      <div className="product">
+        <div className="product_title">{product.title}</div>
+        <div class="album_spotif">
+          <div className="album_info">
             <div className="photo_info">
               <img className="product_photo" src={product.photo} />
             </div>
-            <div className="product_artist"><div>{product.artist}</div></div>
+            <div className="product_artist">
+              <div>{product.artist}</div>
+            </div>
             <div className="main_info">
               <div>Release Date: {product.release_date}</div>
-              <div className="product_description">Description: {product.description}</div>
+              <div className="product_description">
+                Description: {product.description}
+              </div>
               <div className="format_genre">
                 <div>Genre: {product.genre}</div>
                 <div>Format: {product.format}</div>
@@ -72,40 +76,23 @@ const ProductDetails = () => {
               <div>{product.price}</div>
             </div>
           </div>
-            <div className="spotifContainer">
-              <iframe className="spotif"
-                border-radius="12px"
-                src={product.spotif}
-                width="100%" height="500"
-                frameBorder="0"
-                allowfullscreen="">
-              </iframe>
-            </div>
+          <div className="spotifContainer">
+            <iframe
+              className="spotif"
+              border-radius="12px"
+              src={product.spotif}
+              width="100%"
+              height="500"
+              frameBorder="0"
+              allowfullscreen=""
+            ></iframe>
           </div>
         </div>
-        <div className="add_to_cart">
-          ADD ME
-          <div>
-            <form>
-             
-              <input
-                type="number" value={orderQuantity}
-                onChange={function (event) {
-                  console.log(event.target.value);
-                  setOrderQuantity(event.target.value);
-                }}
-                id="input"
-                min='1'
-              />
-             
-            </form>
-          </div>
-          <button onClick="buttonHandler(localStorage.userId)">Add to Cart</button>
-        </div>
-
+        <button onClick={() => props.addToCart(product)}>Add to Cart</button>
       </div>
-    );
+      <MyCart cart={cart} incrementQty={props.incrementQty}/>
+    </div>
+  );
 };
-
 
 export default ProductDetails;
