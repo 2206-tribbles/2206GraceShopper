@@ -5,7 +5,7 @@ import MyCart from "./MyCart";
 import "./components_css/ProductDetails.css";
 
 const ProductDetails = (props) => {
-  const cart = props.cart
+  const cart = props.cart;
   const params = useParams();
   const productId = params.productId;
   console.log("product Id", productId);
@@ -13,14 +13,15 @@ const ProductDetails = (props) => {
   const [product, setProduct] = useState({});
   //get product
   useEffect(() => {
+    console.log("grabbing single product details...");
     const _product = async () => {
       const singleProduct = await getProductById(productId);
       setProduct(singleProduct);
     };
     _product();
-  }, []);
+  }, [productId]);
   //changing quantity
-  
+
   // function subQuantity() {
   //   btnAdd.addEventListener("click", (event) => {
   //     event.preventDefault();
@@ -76,7 +77,7 @@ const ProductDetails = (props) => {
             <iframe
               className="spotif"
               border-radius="12px"
-              src={product.spotif} 
+              src={product.spotif}
               width="95%"
               height="550"
               frameBorder="0"
@@ -84,9 +85,16 @@ const ProductDetails = (props) => {
             ></iframe>
           </div>
         </div>
-        <button className = "addPtdBtn" onClick={() => props.addToCart(product)}>Add to Cart</button>
+        <button className="addPtdBtn" onClick={() => props.addToCart(product)}>
+          Add to Cart
+        </button>
       </div>
-      <MyCart cart={cart} incrementQty={props.incrementQty} decrementQty={props.decrementQty} />
+      <MyCart
+        cart={cart}
+        incrementQty={props.incrementQty}
+        decrementQty={props.decrementQty}
+        deleteFromCart={props.deleteFromCart}
+      />
     </div>
   );
 };

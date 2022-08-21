@@ -68,6 +68,26 @@ header {
     color: rgb(207, 207, 207);
 }
 
+.cartLink {
+    position: relative;
+}
+
 .dropdown {
     padding-right: 5px;
+}
+
+.cartIcon {
+   width: 40px;
+}
+
+.productNumber {
+  font-size: 10px;
+  position: absolute;
+  left: 14px;
+  top: -5px
+
+}
+#userLinks {
+    display: flex;
+    align-items: center;
 }

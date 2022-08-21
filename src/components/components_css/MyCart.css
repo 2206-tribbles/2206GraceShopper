@@ -1,6 +1,15 @@
 /* import fonts */
 
+.trashcan_icon {
+   width: 20px
+}
 
+.deleteButton {
+  background: none;
+  border: none;
+  margin-left: 10px;
+  cursor: pointer;
+}
 
 .cart {
   height: 100%;
@@ -45,6 +54,8 @@
 }
 .cart-item .item-info img {
   width: 75px;
+  height: 75px;
+  object-fit: cover;
 }
 /* unit price */
 .cart-item .unit-price {
@@ -101,3 +112,4 @@
 
   cursor: pointer;
 }
+
