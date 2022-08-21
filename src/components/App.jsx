@@ -19,31 +19,45 @@ const App = () => {
     const _cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(_cart);
   }, []);
+
+  // Every single time our cart state is changed, we want to update it in our local storage
+  useEffect(() => {
+    console.log("updating cart....");
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  const deleteFromCart = (productId) => {
+    const updatedCart = cart.filter(product => product.id !== productId)
+    setCart(updatedCart);
+  }
   
   const addToCart = (product) => {
     // If product already exists in cart
     if (cart.some((_product) => _product.id === product.id)) {
-      const updatedCart = cart.map((_product) => {
-        if (_product.id === product.id && _product.quantity < _product.inventory) {
-          return {
-            ..._product,
-            quantity: _product.quantity + 1,
-          };
-        }
-        return _product;
-      });
-      setCart(updatedCart);
+      const _product = cart.find((_product) => _product.id === product.id);
+      if (_product.quantity < _product.inventory) {
+        const updatedCart = cart.map((_product) => {
+          if (_product.id === product.id) {
+            return {
+              ..._product,
+              quantity: _product.quantity + 1,
+            };
+          }
+          return _product;
+        });
+        setCart(updatedCart);
+      }
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
-    // Make sure to update local storage
-    localStorage.setItem("cart", JSON.stringify(cart));
   };
 
-   const incrementQty = (productId) => {
-      // Find that product with the productId inside our cart state and then update its quantity
+  const incrementQty = (productId) => {
+    // Find that product with the productId inside our cart state and then update its quantity
+    const _product = cart.find((_product) => _product.id === productId);
+    if (_product.id === productId && _product.quantity < _product.inventory) {
       const updatedCart = cart.map((_product) => {
-        if (_product.id === productId  && _product.quantity < _product.inventory ) {
+        if (_product.id === productId) {
           return {
             ..._product,
             quantity: _product.quantity + 1,
@@ -52,39 +66,45 @@ const App = () => {
         return _product;
       });
       setCart(updatedCart);
-     // Make sure to update local storage
-     localStorage.setItem("cart", JSON.stringify(cart));
-   }
+    }
+  };
 
-   const decrementQty = (productId) => {
+  const decrementQty = (productId) => {
     // Find that product with the productId inside our cart state and then update its quantity
-    const updatedCart = cart.map((_product) => {
-      if (_product.id === productId && _product.quantity > 1) {
-        return {
-          ..._product,
-          quantity: _product.quantity - 1,
-        };
-      }
-      return _product;
-    });
-    setCart(updatedCart);
-   // Make sure to update local storage
-   localStorage.setItem("cart", JSON.stringify(cart));
- }
-
-
-
+    const _product = cart.find((_product) => _product.id === productId);
+    if (_product.id === productId && _product.quantity > 1) {
+      const updatedCart = cart.map((_product) => {
+        if (_product.id === productId) {
+          return {
+            ..._product,
+            quantity: _product.quantity - 1,
+          };
+        }
+        return _product;
+      });
+      setCart(updatedCart);
+    }
+  };
   return (
     <>
-      <Header />
+      <Header 
+       cart={cart}
+      />
       <Routes>
         {/* <Route path="/" element={<Navigate replace to="/home" />} /> */}
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route
           path="/products/:productId"
-          element={<ProductDetails cart={cart} addToCart={addToCart} 
-          incrementQty={incrementQty} decrementQty={decrementQty} />}
+          element={
+            <ProductDetails
+              cart={cart}
+              addToCart={addToCart}
+              incrementQty={incrementQty}
+              decrementQty={decrementQty}
+              deleteFromCart={deleteFromCart}
+            />
+          }
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

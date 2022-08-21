@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./components_css/MyCart.css";
 
 const MyCart = (props) => {
@@ -18,7 +19,9 @@ const MyCart = (props) => {
       {cart.map((product) => (
         <div className="cart-item">
           <div className="item-info" >
+          <Link to={`/products/${product.id}`}>
             <img src={product.photo} alt={product.name} />
+          </Link>
             <h4>{product.name}</h4>
           </div>
           <div className="unit-price">
@@ -39,14 +42,11 @@ const MyCart = (props) => {
               +
             </div>
           
-            <div
-              className="delete" 
-              onClick="removeItemFromCart(${item.id})"
-              
-              >
-                img src=".\public\pic\Trashcan.jpg"
-              Delete
-            </div>
+            <button className="deleteButton" onClick={() => props.deleteFromCart(product.id)}>
+
+                <img className="trashcan_icon" src="/pics/Trashcan.png"></img>
+            
+            </button>
           
           </div>
         </div>
