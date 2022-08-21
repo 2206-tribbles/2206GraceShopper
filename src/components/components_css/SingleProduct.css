@@ -1,7 +1,7 @@
 .product_photo {
   border-radius: 15px;
-  width: 150px fixed;
-  height: 150px fixed;
+  /* width: 150px fixed;
+  height: 150px fixed; */
   object-fit: cover;
 }
 
@@ -9,7 +9,7 @@
     text-decoration: none;
 }
 
-.title {
+/* .title {
   font-size: 24px;
   padding-bottom: 20px;
   font-weight: bold;
@@ -17,4 +17,4 @@
 
 .bottom_text {
   text-align: left;
-}
+} */
