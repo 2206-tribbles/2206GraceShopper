@@ -5,10 +5,13 @@ import "./components_css/SingleProduct.css";
 const SingleProduct = ({ element }) => {
   return (
     <Link className="product" to={`/products/${element.id}`}>
-      <div>{element.title}</div>
+      <br></br>
+      <div className = "title">{element.title}</div> 
       <img className="product_photo" src={element.photo} />
-      <div>{element.artist}</div>
-      <div>{element.price}</div>
+      <div className="bottom_text">
+        <div className = "artist">{element.artist}</div>
+      <div className = "price">${element.price}</div>
+      </div>
     </Link>
   );
 };

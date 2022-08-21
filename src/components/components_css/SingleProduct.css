@@ -1,10 +1,20 @@
 .product_photo {
   border-radius: 15px;
-  width: 200px;
-  height: 200px;
+  width: 150px fixed;
+  height: 150px fixed;
   object-fit: cover;
 }
 
 .product {
     text-decoration: none;
+}
+
+.title {
+  font-size: 24px;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+
+.bottom_text {
+  text-align: left;
 }
