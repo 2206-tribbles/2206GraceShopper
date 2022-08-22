@@ -1,0 +1,79 @@
+.LoginForm {
+  display: flex;
+  align-items: center;
+  background-color: rgb(236, 234, 221);
+  margin: 10px;
+  margin-top: 0px;
+  border-radius: 10px;
+  height: 15vh;
+  justify-content: center;
+  padding: 20px;
+  border-top-left-radius: 0px;
+  width: 60%;
+  margin-left: 20vh;
+}
+
+.plsSignUp {
+  display: inline;
+  background-color: gray;
+  width: 40%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  text-decoration: none;
+}
+
+.signUpButton {
+  text-decoration: none;
+  color: black;
+}
+
+.signUpButton:hover {
+  color: orange;
+}
+
+.LoginButton {
+  border-radius: 10px;
+  display: block;
+  margin-left: 10px;
+  margin-top: 0px;
+  padding: 5px;
+  width: 280px;
+}
+
+.errorMessage {
+  text-transform: uppercase;
+}
+
+.plsLogin {
+  background-color: rgb(236, 234, 221);
+  width: 40%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 193px;
+  margin-bottom: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.username {
+  border-radius: 10px;
+  padding: 3px;
+  margin: 10px;
+  margin-bottom: 2px;
+  width: 270px;
+}
+
+.password {
+  border-radius: 10px;
+  padding: 3px;
+  margin: 10px;
+  margin-top: 2px;
+  width: 270px;
+  margin-bottom: 4px;
+}
