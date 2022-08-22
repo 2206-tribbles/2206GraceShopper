@@ -117,5 +117,5 @@ module.exports = {
     destroyCartsProducts,
     updateCartsProducts,
     getCartsProductsById,
-    getCartsProductsByProductId
+    getCartsProductsByProductId,
 };

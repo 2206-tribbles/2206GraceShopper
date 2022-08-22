@@ -49,7 +49,7 @@ const ProductDetails = (props) => {
   return (
     <div className="page">
       <div className="product">
-        <div class="album_spotif">
+        <div className="album_spotif">
           <div className="album_info">
         <div className="product_title">{product.title}</div>
             <div className="photo_info">
@@ -81,7 +81,7 @@ const ProductDetails = (props) => {
               width="95%"
               height="550"
               frameBorder="0"
-              allowfullscreen=""
+              allowFullScreen=""
             ></iframe>
           </div>
         </div>

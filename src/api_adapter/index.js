@@ -80,3 +80,78 @@ export async function createCart(userId) {
     throw error;
   }
 }
+
+async function getUserByUsername(token) {
+  try{
+  const token = localStorage.getItem("token")
+  const response = await fetch(`${BASE_URL}api/users/me`, {
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+})
+  const result = await response.json()
+  return result
+} catch (error){
+  console.log(error, "your getUserByUsername function is breaking")
+  }
+}
+
+export async function createProduct({
+  title,
+  artist,
+  description,
+  release_date,
+  price,
+  inventory,
+  format,
+  genre,
+  photo,
+  spotif,
+  staffpick
+}
+  )
+   {
+    try {const response = await fetch(`${BASE}/products/Admin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title,
+        artist,
+        description,
+        release_date,
+        price,
+        inventory,
+        format,
+        genre,
+        photo,
+        spotif,
+        staffpick
+      }),
+    });
+    const data = await response.json()
+    console.log("data in Create Product ",data);
+    return data
+  } 
+  catch (error) {console.log(error, "your createProduct function is breaking")}
+  }
+
+  export async function destroyProduct(productId) {
+    try{
+      const token = localStorage.getItem("token")
+      const response = await fetch(`${BASE}/products/${productId}`, {
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }) 
+      const result = await response.json()
+      console.log(result, "line 152")
+      return result
+  
+    }catch (error) {
+      console.error
+    }
+  }

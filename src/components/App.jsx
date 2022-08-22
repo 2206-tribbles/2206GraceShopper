@@ -10,6 +10,8 @@ import {
   Login,
   Register,
   Cart,
+  Admin,
+  ProductEdit,
 } from "./index";
 
 const App = () => {
@@ -109,6 +111,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route path="/Admin" element={<Admin />} />
+        <Route path="/ProductEdit" element={<ProductEdit />} />
         {/* <Route path="
             path="/profile"
             element={

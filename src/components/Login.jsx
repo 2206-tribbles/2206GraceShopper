@@ -12,7 +12,7 @@ const Login = (props) => {
   const navigate = useNavigate();
   const handleOnChange = (event) => {
     const changed = event.target.id;
-
+  
     if (changed === "username") {
       setUsername(event.target.value);
     } else {

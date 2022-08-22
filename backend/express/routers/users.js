@@ -125,4 +125,32 @@ usersRouter.delete("/:users_id", async (req, res, next) => {
   }
 });
 
+usersRouter.get('/me', async (req, res, next)=>{
+  try{
+  if(req.user){
+      res.send(req.user)
+  }else {
+      res
+      .status(401)
+      .send({
+          error: "401 - Unautherized",
+          message: 'You must be logged in to perform this action',
+          name: 'Unautherized'
+      })
+  }
+  } catch(error) {
+      next(error)
+  }
+});
+
+usersRouter.get('/Admin', async(req, res, next)=>{
+ try {
+  
+ } catch (error) {
+  console.log(error);
+    next(error);
+ }
+  } 
+);
+
 module.exports = usersRouter;
