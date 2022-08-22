@@ -16,7 +16,7 @@ export async function registerUser(userObj) {
   }
 }
 export async function loginUser(userObj) {
-  console.log(userObj, "line 12");
+
   try {
     const response = await fetch(`${BASE}/users/login`, {
       method: "POST",
@@ -26,6 +26,23 @@ export async function loginUser(userObj) {
       body: JSON.stringify(userObj),
     });
     const result = await response.json();
+    
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getUserByToken(token) {
+
+  try {
+    const response = await fetch(`${BASE}/users/me`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    });
+    const result = await response.json();
     console.log("result: ", result);
     console.log("line 23 this is response:", response);
     return result;
@@ -33,6 +50,7 @@ export async function loginUser(userObj) {
     throw error;
   }
 }
+
 export async function getHealth() {
   try {
     const response = await fetch(`${BASE}/health`);

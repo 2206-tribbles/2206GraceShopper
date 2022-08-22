@@ -29,7 +29,7 @@ const Login = (props) => {
       const token = result.token;
       console.log(token, "token inside of login");
       localStorage.setItem("token", token);
-      localStorage.setItem("userId", result.user.id);
+      
 
       if(token !== undefined ){
         setLoggedIn("You are now logged in")

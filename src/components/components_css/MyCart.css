@@ -69,15 +69,15 @@
 .cart-item .units .number {
   margin: 0 10px;
 
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 .cart-item .units .btn {
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
+  
+  background-color: rgb(200, 134, 48);
 
-  background-color: rgb(242, 255, 58);
-
-  border-radius: 50%;
+  border-radius: 10%;
 
   font-weight: bold;
 
