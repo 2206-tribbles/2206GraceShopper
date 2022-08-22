@@ -34,14 +34,10 @@ const Register = (props) => {
     const user = {username, password, first_name, last_name, email, address}
       event.preventDefault();
       const result = await registerUser(user);
-      console.log("THIS IS USERNAME", username)
       const token = result.token;
-      console.log("THIS IS THE RESULT: ", result)
-      console.log(token, "token inside of login");
       localStorage.setItem("token", token);
       if(token !== undefined){
-        setRegisteredIn("You are now registered")
-        localStorage.setItem("userId", result.userId);
+        setRegisteredIn("You are now registered");
         navigate("/");}
         else {throw new Error("Username Already Registered");}
       } catch (err) {

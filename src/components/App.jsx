@@ -9,12 +9,26 @@ import {
   ProductDetails,
   Login,
   Register,
-  Cart,
+  Checkout,
 } from "./index";
+import { getUserByToken } from "../api_adapter";
 
 const App = () => {
   // Grab the cart contents from local storage and store it in a cart state
   const [cart, setCart] = useState([]);
+  const [user, setUser] = useState({});
+  // Check to see if there is a token in the local storage
+  useEffect(() => {
+    const getUserInfo = async () => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      const userInfo = await getUserByToken(token)
+      setUser(userInfo)
+    }
+   }
+   getUserInfo();
+  }, [])
+
   useEffect(() => {
     const _cart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(_cart);
@@ -108,7 +122,7 @@ const App = () => {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route path="/checkout" element={<Checkout cart={cart} user={user} />} />
         {/* <Route path="
             path="/profile"
             element={

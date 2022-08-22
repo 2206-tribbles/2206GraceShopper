@@ -48,7 +48,7 @@ async function createTables() {
         title VARCHAR(255) NOT NULL,
         artist VARCHAR(255) NOT NULL,
         description TEXT NOT NULL,
-        release_date DATE,
+        release_date TEXT,
         price DECIMAL(12, 2) NOT NULL,
         inventory INTEGER NOT NULL,
         format VARCHAR(30)  NOT NULL,
