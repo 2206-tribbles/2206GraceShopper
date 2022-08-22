@@ -1,0 +1,54 @@
+.SignUpForm {
+  display: flex;
+  background-color: rgb(236, 234, 221);
+  margin: 10px;
+  margin-top: 0px;
+  border-radius: 10px;
+  height: 15vh;
+  justify-content: center;
+  padding: 20px;
+  border-top-left-radius: 0px;
+}
+
+.plsLogin2 {
+  background-color: gray;
+  width: 100px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.plsSignUp2 {
+  display: inline;
+  background-color: rgb(236, 234, 221);
+  width: 40%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  text-decoration: none;
+}
+
+.formL {
+  border-radius: 5px;
+  display: inline;
+}
+
+.formLu {
+  display: inline;
+}
+
+.formR {
+  display: inline;
+}
+
+.formRp {
+  display: inline;
+}

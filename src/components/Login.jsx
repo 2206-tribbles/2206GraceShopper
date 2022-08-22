@@ -2,7 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { loginUser } from "../api_adapter";
-
+import "./components_css/Login.css";
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -41,13 +41,16 @@ const Login = (props) => {
       );
     }
   };
-  return (
-    <form className="form" onSubmit={handleSubmit}>
-      <h2>Please Login To Begin</h2>
+  return (<div className="form-Container">
+    
+      <h2 className="plsLogin">Please Login To Begin</h2>
+      <h2 className="plsSignUp"><Link className="signUpButton" to="/Register">Sign Up</Link></h2>
+    <form className="LoginForm" onSubmit={handleSubmit}>
       <div className="">
         <div className="">
           <label className=""></label>
           <input
+          className="username"
             id="username"
             onChange={handleOnChange}
             placeholder="Username"
@@ -57,22 +60,22 @@ const Login = (props) => {
         </div>
         <label className=""></label>
         <input
+        className="password"
           id="password"
           onChange={handleOnChange}
           placeholder="Password Here"
           value={password}
           type="password"
         />
-        <button className="button" type="submit">
+        <button className="LoginButton" type="submit">
           Login
         </button>
         <p className="errorMessage">{errorMessage}</p>
         <p className="yourLoggedIn">{loggedIn}</p>
-        <p className="button">
-            <Link to="/Register">Don't Have a account? Sign Up</Link>
-          </p>
       </div>
     </form>
+    
+    </div>
   );
 };
 export default Login;

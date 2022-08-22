@@ -1,6 +1,7 @@
 import { Link ,useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { registerUser } from "../api_adapter"
+import "./components_css/SignUp.css";
 
 const Register = (props) => {
   const [username, setUsername] = useState();
@@ -48,11 +49,53 @@ const Register = (props) => {
   };
   return (
     <div className="form">
-      <h2>Please Register To Begin</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className="plsLogin2"><Link className="signUpButton" to="/Login">Log In</Link></h2>
+      <h2 className="plsSignUp2">Please begin to Sign Up</h2>
+      <form className="SignUpForm" onSubmit={handleSubmit}>
         <div className="">
           <div className="">
+            <div className="set1">
+          <input
+          className="formL"
+            id="first_name"
+            onChange={handleOnChange}
+            placeholder="First Name Here"
+            value={first_name}
+            type="text"
+          />
+         
+          <input
+          className="formR"
+            id="last_name"
+            onChange={handleOnChange}
+            placeholder="Last Name Here"
+            value={last_name}
+            type="text"
+          />
+         </div>
+         <div className="set2">
+          <input
+          className="formL"
+            id="email"
+            onChange={handleOnChange}
+            placeholder="Email Here"
+            value={email}
+            type="text"
+          />
+
+         
+          <input
+          className="formR"
+            id="address"
+            onChange={handleOnChange}
+            placeholder="address Here"
+            value={address}
+            type="text"
+          />
+         </div>
+         <div className="set3">
             <input
+            className="formLu"
               id="username"
               onChange={handleOnChange}
               placeholder="Username Here"
@@ -62,52 +105,19 @@ const Register = (props) => {
           </div>
 
           <input
+          className="formRp"
             id="password"
             onChange={handleOnChange}
             placeholder="Password Here"
             value={password}
             type="password"
           />
-          <input
-            id="first_name"
-            onChange={handleOnChange}
-            placeholder="First Name Here"
-            value={first_name}
-            type="text"
-          />
-         
-          <input
-            id="last_name"
-            onChange={handleOnChange}
-            placeholder="Last Name Here"
-            value={last_name}
-            type="text"
-          />
-         
-          <input
-            id="email"
-            onChange={handleOnChange}
-            placeholder="Email Here"
-            value={email}
-            type="text"
-          />
-         
-          <input
-            id="address"
-            onChange={handleOnChange}
-            placeholder="address Here"
-            value={address}
-            type="text"
-          />
-         
+          </div>
           <button className="button" type="submit">
             Register
           </button>
           <p className="errorMessage">{errorMessage}</p>
           <p className="registered">{registeredIn}</p>
-        <p className="button">
-            <Link to="/Login">you Already have an account? Log In</Link>
-          </p>
         </div>
       </form>
     </div>
