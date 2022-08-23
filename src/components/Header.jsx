@@ -43,21 +43,21 @@ const Header = (props) => {
                     <select name="genre" placeholder="Genre" onChange={(event)=>setSelectedGenre(event.target.value)}> 
                         <option value="all" className="dropdown">All Genres</option>
                         {genres.map((genre) => <option key={genre} value={genre} className="dropdown">{genre}</option>)}
-                    </select>
+                    </select> 
                     <select name="format" placeholder="Format" onChange={(event)=>setSelectedFormat(event.target.value)}>
                         <option value="all" className="dropdown">All Formats</option>
                         {formats.map((format) => <option key={format} value={format} className="dropdown">{format}</option>)}
-                    </select>
+                    </select> 
                     <button onClick={(event) => handleNavigate("/Products") }>Search</button>
                 </div>
                 <div id="searchbarcontainer">
-                    <input onChange={(event) => setSearchValue(event.target.value)} name="search_products" type="text" placeholder="Search all products..." id="searchbar"></input>
+                    <input onChange={(event) => setSearchValue(event.target.value)} name="search_products" type="input" placeholder="Search all products..." id="searchbar"></input>
                     <button onClick={(event) => handleNavigate("/Products") }>Search</button>
                 </div>
                 <div id="userlinks">
                     <NavLink to="/Login" className="link">Login/Register</NavLink>
                     <NavLink to="/Cart" className="link cartLink">
-                        <img className="cartIcon" src="/pics/cart.png"/>
+                        <img className="cartIcon" src="/pics/cart2.png"/>
                         <span className="productNumber">{totalProducts}</span> 
                     </NavLink>
                 </div>

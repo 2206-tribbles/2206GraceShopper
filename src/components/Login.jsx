@@ -21,60 +21,62 @@ const Login = (props) => {
   };
   const handleSubmit = async (event) => {
     try {
-        const user = {username, password}
-        console.log("USER: ", user)
+      const user = { username, password }
+      console.log("USER: ", user)
       event.preventDefault();
       const result = await loginUser(user);
-      console.log("THIS IS THE RESULT ",result);
+      console.log("THIS IS THE RESULT ", result);
       const token = result.token;
       console.log(token, "token inside of login");
       localStorage.setItem("token", token);
-      
 
-      if(token !== undefined ){
+
+      if (token !== undefined) {
         setLoggedIn("You are now logged in")
-      navigate("/");}
-      else{throw new Error("username or password is incorrect");}
+        navigate("/");
+      }
+      else { throw new Error("username or password is incorrect"); }
     } catch (err) {
       setErrorMessage(
         "Username or password is incorrect"
       );
     }
   };
-  return (<div className="form-Container">
-    
-      <h2 className="plsLogin">Please Login To Begin</h2>
-      <h2 className="plsSignUp"><Link className="signUpButton" to="/Register">Sign Up</Link></h2>
-    <form className="LoginForm" onSubmit={handleSubmit}>
-      <div className="">
-        <div className="">
-          <label className=""></label>
-          <input
-          className="username"
-            id="username"
-            onChange={handleOnChange}
-            placeholder="Username"
-            value={username}
-            type="text"
-          />
+  return (
+    <div className="fullPage">
+      <div className="formContainer">
+        <div className="tabs">
+          <h2 className="activeTab">Log In</h2>
+          <h2 className="otherTab"><Link className="tabText" to="/Register">Sign Up</Link></h2>
         </div>
-        <label className=""></label>
-        <input
-        className="password"
-          id="password"
-          onChange={handleOnChange}
-          placeholder="Password Here"
-          value={password}
-          type="password"
-        />
-        <button className="LoginButton" type="submit">
-          Login
-        </button>
-        <p className="errorMessage">{errorMessage}</p>
-        <p className="yourLoggedIn">{loggedIn}</p>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="inputs">
+            <div>Username:
+              <input className="textBox"
+              id="username"
+                onChange={handleOnChange}
+                placeholder="Username"
+                value={username}
+                type="input"
+              />
+            </div>
+            <div>Password:
+              <input className="textBox"
+              id="password"
+                onChange={handleOnChange}
+                placeholder="Password"
+                value={password}
+                type="password"
+              />
+            </div>
+          </div>
+            <button className="button" type="submit">
+              Login
+            </button>
+            <p className="errorMessage">{errorMessage}</p>
+            <p className="yourLoggedIn">{loggedIn}</p>
+        </form>
       </div>
-    </form>
-    
     </div>
   );
 };
