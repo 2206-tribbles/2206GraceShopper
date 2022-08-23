@@ -28,7 +28,7 @@ productsRouter.get("/productById/:productId", async (req, res, next) => {
   }
 });
 
-productsRouter.post("/", async (req, res, next) => {
+productsRouter.post("/Admin", async (req, res, next) => {
   const {
     title,
     artist,
@@ -39,6 +39,8 @@ productsRouter.post("/", async (req, res, next) => {
     format,
     genre,
     photo,
+    spotif,
+    staffpick
   } = req.body;
 
   try {
@@ -60,6 +62,7 @@ productsRouter.post("/", async (req, res, next) => {
       genre,
       photo,
       spotif,
+      staffpick
     });
 
     res.send(product);
@@ -80,6 +83,7 @@ productsRouter.patch("/:productId", async (req, res, next) => {
     genre,
     photo,
     spotif,
+    staffpick
   } = req.body;
   const updateFields = {
     id: req.params.productId,
@@ -114,6 +118,9 @@ productsRouter.patch("/:productId", async (req, res, next) => {
   if (spotif) {
     updateFields.spotif = spotif;
   }
+  if (staffpick){
+    updateFields.staffpick = staffpick
+  }
   try {
     const updatedProduct = await updateProduct(updateFields);
     res.send(updatedProduct);
@@ -126,8 +133,9 @@ productsRouter.delete("/:productId", async (req, res, next) => {
   const id = req.params.productId;
   try {
     const product = await getProductById({ id });
-
+    console.log("before delete product: ", product);
     await destroyProduct(id);
+    console.log("after delete product: ", product);
     res.send(product);
   } catch (error) {
     next(error);

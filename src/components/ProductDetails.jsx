@@ -81,7 +81,7 @@ const ProductDetails = (props) => {
               width="95%"
               height="550"
               frameBorder="0"
-              allowfullscreen=""
+              allowFullScreen=""
             ></iframe>
           </div>
         </div>

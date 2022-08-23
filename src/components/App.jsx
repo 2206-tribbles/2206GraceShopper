@@ -10,6 +10,9 @@ import {
   Login,
   Register,
   Checkout,
+  Cart,
+  Admin,
+  ProductEdit,
 } from "./index";
 import { getUserByToken, getCartByUserId, updateCart } from "../api_adapter";
 
@@ -165,5 +168,18 @@ const App = () => {
     </>
   );
 };
-
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
