@@ -9,6 +9,7 @@ import {
   ProductDetails,
   Login,
   Register,
+  Checkout,
   Cart,
   Admin,
   ProductEdit,
@@ -143,11 +144,8 @@ const App = () => {
             />
           }
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/cart" element={<Cart cart={cart} />} />
-        <Route path="/Admin" element={<Admin />} />
-        <Route path="/ProductEdit" element={<ProductEdit />} />
+        <Route path="/login" element={<Login  setUser={setUser}/>} />
+        <Route path="/register" element={<Register setUser={setUser}/>} />
         <Route
           path="/checkout"
           element={<Checkout setCart={setCart} cart={cart} user={user} />}
@@ -170,5 +168,18 @@ const App = () => {
     </>
   );
 };
-
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
