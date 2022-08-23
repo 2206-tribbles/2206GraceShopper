@@ -21,7 +21,7 @@ header {
     /* background-image: linear-gradient(to right,
             rgb(156, 64, 53),
             rgb(209, 85, 28)); */
-            background-color: rgb(156, 64, 53);
+    background-color: rgb(156, 64, 53);
     color: white;
     font-family: Monoton;
     padding-top: 10px;
@@ -29,19 +29,34 @@ header {
     padding-right: 10px;
 }
 
+.titleBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.loggedInAs {
+    color: white;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: right;
+
+}
+
 #title:hover {
     color: rgb(200, 134, 48);
 }
 
 .capital {
-    font-size:72px;
+    font-size: 72px;
 }
 
 #controls {
     display: flex;
     justify-content: space-between;
     /* background-color: rgb(175, 23, 23); */
-    
+
     background-color: rgb(200, 134, 48);
     color: white;
     padding: 10px;
@@ -79,19 +94,19 @@ header {
 
 .cartIcon {
     position: absolute;
-   width: 30px;
-   left: -190px;
-   top: 2px;
+    width: 30px;
+    left: -25px;
+    top: 2px;
 }
 
 .productNumber {
-  font-size: 10px;
-  text-align: center;
-  position: absolute;
-  left: -182px;
-  top: 9px
-
+    font-size: 10px;
+    text-align: center;
+    position: absolute;
+    left: -17px;
+    top: 9px
 }
+
 #userLinks {
     display: flex;
     align-items: center;

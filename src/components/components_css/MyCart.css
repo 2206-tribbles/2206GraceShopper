@@ -13,7 +13,7 @@ max-height: 727px;
 .cart-item-box {
   background-color: rgb(224, 148, 49);
   border-radius: 10px;
-  max-height: 650px;
+  max-height: 610px;
   overflow-y:scroll;
 }
 
@@ -31,6 +31,7 @@ max-height: 727px;
 .cartText {
   font-size: larger;
   margin-bottom: 15px;
+  font-weight: bold;
 }
 
 .cart {
@@ -139,6 +140,7 @@ max-height: 727px;
   position: absolute;
   bottom: 0;
   margin-bottom: 15px;
+  text-align: center;
 }
 
 .cart-footer {
@@ -169,4 +171,19 @@ max-height: 727px;
   background-color: rgb(242, 255, 58);
 
   cursor: pointer;
+}
+
+.goToCheckoutBtn {
+  margin-top: 12px;
+  margin-bottom: 11px;
+  border-radius: 15px;
+  outline: 0;
+  border: none;
+  padding: 3px;
+  color: black;
+  background-color: rgb(200, 134, 48);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 15px;
 }
