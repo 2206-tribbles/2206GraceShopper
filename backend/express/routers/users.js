@@ -49,7 +49,7 @@ usersRouter.post("/register", async (req, res, next) => {
         expiresIn: "1w",
       }
     );
-    console.log("Line 51 this is ID: ", userId);
+
     res.send({
       message: "thank you for signing up",
       token,
@@ -125,32 +125,28 @@ usersRouter.delete("/:users_id", async (req, res, next) => {
   }
 });
 
-usersRouter.get('/me', async (req, res, next)=>{
-  try{
-  if(req.user){
-      res.send(req.user)
-  }else {
-      res
-      .status(401)
-      .send({
-          error: "401 - Unautherized",
-          message: 'You must be logged in to perform this action',
-          name: 'Unautherized'
-      })
-  }
-  } catch(error) {
-      next(error)
+usersRouter.get("/me", async (req, res, next) => {
+  // Grab token from the request headers
+  const prefix = "Bearer ";
+  const token = req.headers.authorization.slice(prefix.length);
+  const userInfo = jwt.decode(token);
+  console.log(token, userInfo);
+  try {
+    if (userInfo) {
+      console.log("userInfo: ", userInfo);
+      const user = await getUserById(userInfo);
+      res.json(user);
+    } else {
+      next({
+        error: "No Token Exists",
+        message: "No Token Exists",
+        name: "No Token Exists",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    next(error);
   }
 });
-
-usersRouter.get('/Admin', async(req, res, next)=>{
- try {
-  
- } catch (error) {
-  console.log(error);
-    next(error);
- }
-  } 
-);
 
 module.exports = usersRouter;

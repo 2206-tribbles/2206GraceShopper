@@ -13,7 +13,6 @@ const {
 productsRouter.get("/", async (req, res, next) => {
   try {
     const products = await getAllProducts();
-    // console.log("here", products);
     res.json(products);
   } catch ({ name, message }) {
     next({ name, message });
@@ -23,7 +22,6 @@ productsRouter.get("/", async (req, res, next) => {
 productsRouter.get("/productById/:productId", async (req, res, next) => {
   try {
     const product = await getProductById(req.params.productId);
-    console.log("product", product);
     res.json(product);
   } catch ({ name, message }) {
     next({ name, message });

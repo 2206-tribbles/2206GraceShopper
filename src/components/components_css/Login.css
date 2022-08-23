@@ -1,0 +1,103 @@
+.fullPage {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.inputs {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  margin-top: 20px;
+  padding: 5px;
+  padding-bottom: 0px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(236, 234, 221);
+  margin-top: 0px;
+  border-radius: 10px;
+  height: fit-content;
+  padding: 20px;
+  padding-bottom: 0px;
+  border-top-left-radius: 0px;
+
+}
+
+.tabs {
+  text-decoration: none;
+  color: black;
+}
+
+.activeTab {
+  background-color: rgb(236, 234, 221);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: black;
+  margin-right: 10px;
+}
+
+
+.otherTab {
+  display: inline;
+  background-color: gray;
+  width: 40%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  text-decoration: none;
+  color: black;
+  margin-right: 10px;
+}
+
+.tabText {
+  text-decoration: none;
+  color: black;
+}
+
+.button {
+  display: block;
+  background-color: rgb(156, 64, 53);
+  border: none;
+  border-radius: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  width: 50%;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  padding: 5px;
+  transition: .3s;
+  
+}
+.button:hover {
+  background-color: orange;
+  transition: .3s;
+}
+
+.errorMessage {
+  text-transform: uppercase;
+  color:rgb(156, 64, 53)
+}
+
+.textBox {
+  border: none;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 10px;
+  margin-bottom: 2px;
+  width: 270px;
+}

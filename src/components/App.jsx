@@ -13,26 +13,63 @@ import {
   Admin,
   ProductEdit,
 } from "./index";
+import { getUserByToken, getCartByUserId, updateCart } from "../api_adapter";
 
 const App = () => {
   // Grab the cart contents from local storage and store it in a cart state
   const [cart, setCart] = useState([]);
+  const [user, setUser] = useState({});
+  const [cartId, setCartId] = useState(null);
+  // Check to see if there is a token in the local storage
   useEffect(() => {
-    const _cart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(_cart);
+    const getUserInfo = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const userInfo = await getUserByToken(token);
+        setUser(userInfo);
+      }
+    };
+    getUserInfo();
   }, []);
+
+  useEffect(() => {
+    const getCartContents = async () => {
+      if (user.id) {
+        // Grab cart from backend
+        const _cart = await getCartByUserId(user.id);
+        setCart(_cart);
+        if (_cart.length > 0) {
+          setCartId(_cart[0].cart_id);
+        }
+      } else {
+        const _cart = JSON.parse(localStorage.getItem("cart")) || [];
+        setCart(_cart);
+      }
+    };
+    getCartContents();
+  }, [user]);
 
   // Every single time our cart state is changed, we want to update it in our local storage
   useEffect(() => {
-    console.log("updating cart....");
-    localStorage.setItem("cart", JSON.stringify(cart));
+    const saveCartContents = async () => {
+      if (user.id && cart.length > 0) {
+        // Update cart in backend
+        const cart_id = await updateCart(user.id, cartId, cart);
+        setCartId(cart_id);
+      } else {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+    };
+    saveCartContents();
   }, [cart]);
 
-  const deleteFromCart = (productId) => {
-    const updatedCart = cart.filter(product => product.id !== productId)
+  const deleteFromCart = async (productId) => {
+    const cart_id = cart[0].cart_id;
+    const updatedCart = cart.filter((product) => product.id !== productId);
     setCart(updatedCart);
-  }
-  
+    const card_id = await updateCart(user.id, cartId, cart);
+  };
+
   const addToCart = (product) => {
     // If product already exists in cart
     if (cart.some((_product) => _product.id === product.id)) {
@@ -89,9 +126,7 @@ const App = () => {
   };
   return (
     <>
-      <Header 
-       cart={cart}
-      />
+      <Header cart={cart} />
       <Routes>
         {/* <Route path="/" element={<Navigate replace to="/home" />} /> */}
         <Route path="/" element={<Home />} />
@@ -113,6 +148,10 @@ const App = () => {
         <Route path="/cart" element={<Cart cart={cart} />} />
         <Route path="/Admin" element={<Admin />} />
         <Route path="/ProductEdit" element={<ProductEdit />} />
+        <Route
+          path="/checkout"
+          element={<Checkout setCart={setCart} cart={cart} user={user} />}
+        />
         {/* <Route path="
             path="/profile"
             element={
