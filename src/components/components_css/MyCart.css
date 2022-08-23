@@ -7,11 +7,14 @@ padding: 15px;
 position: relative;
 min-width: 212px;
 min-height: 727px;
+max-height: 727px;
 }
 
 .cart-item-box {
   background-color: rgb(224, 148, 49);
   border-radius: 10px;
+  max-height: 650px;
+  overflow-y:scroll;
 }
 
 .trashcan_icon {
@@ -52,6 +55,7 @@ min-height: 727px;
 }
 
 /* cart items */
+
 .cart-items {
   max-height: calc(100vh - 247px);
   overflow-y: auto;

@@ -65,7 +65,7 @@ const Checkout = (props) => {
     <div className="checkoutContainer">
       <div className="userInfoContainer">
         <div className="container">
-          <form onSubmit={checkoutCart}>
+          <form className="inputContainer" onSubmit={checkoutCart}>
             <div className="row">
               <div className="col-50">
                 <h3>Mailing Address</h3>
@@ -125,19 +125,7 @@ const Checkout = (props) => {
 
               <div className="col-50">
                 <h3>Payment</h3>
-                <label htmlFor="fname">Accepted Cards</label>
-                <div className="icon-container">
-                  <i className="fa fa-cc-visa" style={{ color: "navy" }}></i>
-                  <i className="fa fa-cc-amex" style={{ color: "blue" }}></i>
-                  <i
-                    className="fa fa-cc-mastercard"
-                    style={{ color: "red" }}
-                  ></i>
-                  <i
-                    className="fa fa-cc-discover"
-                    style={{ color: "orange" }}
-                  ></i>
-                </div>
+                
                 <label htmlFor="cname">Name on Card</label>
                 <input
                   type="text"
@@ -201,15 +189,29 @@ const Checkout = (props) => {
                     />
                   </div>
                 </div>
+                <label htmlFor="fname">Accepted Cards</label>
+                <div className="icon-container">
+                  <i className="fa fa-cc-visa" style={{ color: "navy" }}></i>
+                  <i className="fa fa-cc-amex" style={{ color: "blue" }}></i>
+                  <i
+                    className="fa fa-cc-mastercard"
+                    style={{ color: "red" }}
+                  ></i>
+                  <i
+                    className="fa fa-cc-discover"
+                    style={{ color: "orange" }}
+                  ></i>
+                </div>
               </div>
             </div>
-            <label>
+            <div><label>
               <input type="checkbox" defaultChecked={true} name="sameadr" />{" "}
               Billing address same as shipping
             </label>
             <button type="submit" className="btn">
               Checkout
             </button>
+            </div>
           </form>
         </div>
       </div>
