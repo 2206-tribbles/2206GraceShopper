@@ -1,7 +1,7 @@
-import { Link ,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { registerUser } from "../api_adapter"
-import "./components_css/SignUp.css";
+import "./components_css/Login.css";
 
 const Register = (props) => {
   const [username, setUsername] = useState();
@@ -16,110 +16,115 @@ const Register = (props) => {
   const handleOnChange = (event) => {
     const changed = event.target.id;
     if (changed === "username") {
-      setUsername(event.target.value);}
-      else if (changed === "password") {
-      setPassword(event.target.value);}
-      else if (changed === "first_name") {
-      setFirst_Name(event.target.value);}
-      else if (changed === "last_name") {
-      setLast_Name(event.target.value);}
-      else if (changed === "email") {
-      setEmail(event.target.value);}
-      else if (changed === "address") {
-      setAddress(event.target.value);}
-    
+      setUsername(event.target.value);
+    }
+    else if (changed === "password") {
+      setPassword(event.target.value);
+    }
+    else if (changed === "first_name") {
+      setFirst_Name(event.target.value);
+    }
+    else if (changed === "last_name") {
+      setLast_Name(event.target.value);
+    }
+    else if (changed === "email") {
+      setEmail(event.target.value);
+    }
+    else if (changed === "address") {
+      setAddress(event.target.value);
+    }
+
   };
 
   const handleSubmit = async (event) => {
     try {
-    const user = {username, password, first_name, last_name, email, address}
+      const user = { username, password, first_name, last_name, email, address }
       event.preventDefault();
       const result = await registerUser(user);
       const token = result.token;
       localStorage.setItem("token", token);
-      if(token !== undefined){
+      if (token !== undefined) {
         setRegisteredIn("You are now registered");
-        navigate("/");}
-        else {throw new Error("Username Already Registered");}
-      } catch (err) {
-        setErrorMessage(
-          "Username Already Exists, Please Use Login Option Instead"
-          );
-        }
+        navigate("/");
+      }
+      else { throw new Error("Username Already Registered"); }
+    } catch (err) {
+      setErrorMessage(
+        "Username Already Exists, Please Use Login Option Instead"
+      );
+    }
   };
   return (
-    <div className="form">
-      <h2 className="plsLogin2"><Link className="signUpButton" to="/Login">Log In</Link></h2>
-      <h2 className="plsSignUp2">Please begin to Sign Up</h2>
-      <form className="SignUpForm" onSubmit={handleSubmit}>
-        <div className="">
-          <div className="">
-            <div className="set1">
-          <input
-          className="formL"
-            id="first_name"
-            onChange={handleOnChange}
-            placeholder="First Name Here"
-            value={first_name}
-            type="text"
-          />
-         
-          <input
-          className="formR"
-            id="last_name"
-            onChange={handleOnChange}
-            placeholder="Last Name Here"
-            value={last_name}
-            type="text"
-          />
-         </div>
-         <div className="set2">
-          <input
-          className="formL"
-            id="email"
-            onChange={handleOnChange}
-            placeholder="Email Here"
-            value={email}
-            type="text"
-          />
+    <div className="fullPage">
+      <div className="form-Container">
+      <div className="tabs">
+        <h2 className="otherTab"><Link className="tabText" to="/Login">Log In</Link></h2>
+        <h2 className="activeTab">Sign Up</h2>
+        </div>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="inputs">
 
-         
-          <input
-          className="formR"
-            id="address"
-            onChange={handleOnChange}
-            placeholder="address Here"
-            value={address}
-            type="text"
-          />
-         </div>
-         <div className="set3">
-            <input
-            className="formLu"
+            <div>First Name:<input
+              className="textBox"
+              id="first_name"
+              onChange={handleOnChange}
+              placeholder="First Name"
+              value={first_name}
+              type="input"
+            /></div>
+
+            <div>Last Name:<input
+              className="textBox"
+              id="last_name"
+              onChange={handleOnChange}
+              placeholder="Last Name"
+              value={last_name}
+              type="input"
+            /></div>
+
+            <div>Email:<input
+              className="textBox"
+              id="email"
+              onChange={handleOnChange}
+              placeholder="Email"
+              value={email}
+              type="input"
+            /></div>
+
+            <div>Address:<input
+              className="textBox"
+              id="address"
+              onChange={handleOnChange}
+              placeholder="Address"
+              value={address}
+              type="input"
+            /></div>
+
+            <div>Username:<input
+              className="textBox"
               id="username"
               onChange={handleOnChange}
-              placeholder="Username Here"
+              placeholder="Username"
               value={username}
-              type="text"
-            />
-          </div>
+              type="input"
+            /></div>
 
-          <input
-          className="formRp"
-            id="password"
-            onChange={handleOnChange}
-            placeholder="Password Here"
-            value={password}
-            type="password"
-          />
+            <div>Password:<input
+              className="textBox"
+              id="password"
+              onChange={handleOnChange}
+              placeholder="Password"
+              value={password}
+              type="password"
+            /></div>
           </div>
           <button className="button" type="submit">
             Register
           </button>
           <p className="errorMessage">{errorMessage}</p>
           <p className="registered">{registeredIn}</p>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

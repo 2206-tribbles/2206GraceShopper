@@ -1,21 +1,52 @@
+.fullPage {
+  display: flex;
+  justify-content: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+ 
+.inputs {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+
+}
+
 .SignUpForm {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: rgb(236, 234, 221);
-  margin: 10px;
   margin-top: 0px;
   border-radius: 10px;
-  height: 15vh;
+  height: fit-content;
   justify-content: center;
   padding: 20px;
   border-top-left-radius: 0px;
 }
 
+.textBox {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 10px;
+  margin-bottom: 2px;
+  width: 270px;
+  align-items: right;
+  justify-content: right;
+
+}
+
 .plsLogin2 {
   background-color: gray;
-  width: 100px;
   border-radius: 10px;
   padding: 10px;
-  margin-left: 10px;
   margin-bottom: 0px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -36,19 +67,20 @@
   text-decoration: none;
 }
 
-.formL {
-  border-radius: 5px;
-  display: inline;
+.RegisterButton {
+  display: block;
+  background-color: rgb(156, 64, 53);
+  border: none;
+  border-radius: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  width: 50%;
+  margin-top: 0px;
+  padding: 5px;
+  transition: .3s;
+  
 }
-
-.formLu {
-  display: inline;
-}
-
-.formR {
-  display: inline;
-}
-
-.formRp {
-  display: inline;
+.RegisterButton:hover {
+  background-color: orange;
+  transition: .3s;
 }
