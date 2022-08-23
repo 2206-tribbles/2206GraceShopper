@@ -2,16 +2,24 @@ import { Link } from "react-router-dom";
 import "./components_css/Checkout.css";
 import React, { useEffect, useState } from "react";
 import { MyCart } from "./index";
+import { checkoutUser } from "../api_adapter";
 
 const Checkout = (props) => {
   const cart = props.cart;
   const user = props.user;
+  const setCart = props.setCart;
+
   console.log("user??", user);
   const [userInfo, setUserInfo] = useState({
     first_name: user.first_name,
     last_name: user.last_name,
     email: user.email,
     address: user.address,
+    card_name: "",
+    card_number: "",
+    exp_month: "",
+    exp_year: "",
+    cvv: "",
   });
 
   useEffect(() => {
@@ -21,6 +29,11 @@ const Checkout = (props) => {
         last_name: user.last_name,
         email: user.email,
         address: user.address,
+        card_name: "",
+        card_number: "",
+        exp_month: "",
+        exp_year: "",
+        cvv: "",
       });
     }
   }, [user]);
@@ -35,11 +48,24 @@ const Checkout = (props) => {
     return totalPrice;
   };
 
+  const checkoutCart = async (event) => {
+    event.preventDefault();
+    const token = localStorage.getItem("token");
+    const result = await checkoutUser(token, {
+      cart_id: cart[0].cart_id,
+      user_id: user.id,
+      cart,
+    });
+    // Clear out cart
+    setCart([]);
+    localStorage.setItem("cart", JSON.stringify([]));
+  };
+
   return (
-    <div className="row">
-      <div className="col-75">
+    <div className="checkoutContainer">
+      <div className="userInfoContainer">
         <div className="container">
-          <form action="/action_page.php">
+          <form onSubmit={checkoutCart}>
             <div className="row">
               <div className="col-50">
                 <h3>Mailing Address</h3>
@@ -116,22 +142,34 @@ const Checkout = (props) => {
                 <input
                   type="text"
                   id="cname"
-                  name="cardname"
+                  name="card_name"
                   placeholder="John More Doe"
+                  onChange={(event) =>
+                    setUserInfo({ ...userInfo, card_name: event.target.value })
+                  }
                 />
                 <label htmlFor="ccnum">Credit card number</label>
                 <input
                   type="text"
                   id="ccnum"
-                  name="cardnumber"
+                  name="card_number"
                   placeholder="1111-2222-3333-4444"
+                  onChange={(event) =>
+                    setUserInfo({
+                      ...userInfo,
+                      card_number: event.target.value,
+                    })
+                  }
                 />
                 <label htmlFor="expmonth">Exp Month</label>
                 <input
                   type="text"
                   id="expmonth"
-                  name="expmonth"
+                  name="exp_month"
                   placeholder="September"
+                  onChange={(event) =>
+                    setUserInfo({ ...userInfo, exp_month: event.target.value })
+                  }
                 />
 
                 <div className="row">
@@ -140,31 +178,47 @@ const Checkout = (props) => {
                     <input
                       type="text"
                       id="expyear"
-                      name="expyear"
+                      name="exp_year"
                       placeholder="2018"
+                      onChange={(event) =>
+                        setUserInfo({
+                          ...userInfo,
+                          exp_year: event.target.value,
+                        })
+                      }
                     />
                   </div>
                   <div className="col-50">
                     <label htmlFor="cvv">CVV</label>
-                    <input type="text" id="cvv" name="cvv" placeholder="352" />
+                    <input
+                      type="text"
+                      id="cvv"
+                      name="cvv"
+                      placeholder="352"
+                      onChange={(event) =>
+                        setUserInfo({ ...userInfo, cvv: event.target.value })
+                      }
+                    />
                   </div>
                 </div>
               </div>
             </div>
             <label>
               <input type="checkbox" defaultChecked={true} name="sameadr" />{" "}
-              Shipping address same as billing
+              Billing address same as shipping
             </label>
-            <input type="submit" value="Continue to checkout" className="btn" />
+            <button type="submit" className="btn">
+              Checkout
+            </button>
           </form>
         </div>
       </div>
-    <div className='col-25'>
-      <MyCart
-        cart={cart}
-        incrementQty={props.incrementQty}
-        decrementQty={props.decrementQty}
-        deleteFromCart={props.deleteFromCart}
+      <div className="cartContainer">
+        <MyCart
+          cart={cart}
+          incrementQty={props.incrementQty}
+          decrementQty={props.decrementQty}
+          deleteFromCart={props.deleteFromCart}
         />
       </div>
     </div>

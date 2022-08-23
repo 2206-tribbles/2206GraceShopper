@@ -133,6 +133,7 @@ usersRouter.get("/me", async (req, res, next) => {
   console.log(token, userInfo);
   try {
     if (userInfo) {
+      console.log("userInfo: ", userInfo);
       const user = await getUserById(userInfo);
       res.json(user);
     } else {
