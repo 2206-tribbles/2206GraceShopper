@@ -8,4 +8,6 @@ export { default as App } from "./App";
 export { default as MyCart} from "./MyCart"
 export { default as Login } from "./Login";
 export { default as Register } from "./Register";
+export { default as Admin } from "./AdminPage"
+export { default as ProductEdit } from "./ProductEdit";
 export { default as Checkout } from "./Checkout";

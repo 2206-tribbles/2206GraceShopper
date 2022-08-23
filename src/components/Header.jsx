@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { getAllProducts } from "../api_adapter";
-import "./components_css/Header.css"
+import { getAllProducts, } from "../api_adapter";
+import "./components_css/Header.css";
 import ProductDetails from "./ProductDetails";
 
 const Header = (props) => {
@@ -11,6 +11,7 @@ const Header = (props) => {
   const [selectedFormat, setSelectedFormat] = useState("all")
   const [searchValue, setSearchValue] = useState("")
   const navigate = useNavigate()  
+  const userId = localStorage.getItem("userId");
   useEffect( () => {
        getAllProducts().then((products) => {
         const _genres = []
@@ -56,10 +57,19 @@ const Header = (props) => {
                 </div>
                 <div id="userlinks">
                     <NavLink to="/Login" className="link">Login/Register</NavLink>
+
                     <NavLink to="/Checkout" className="link cartLink">
+
+                    {userId === "6" ? (
+                  <NavLink to="/Admin">Admin</NavLink>
+                  ): null}
+
                         <img className="cartIcon" src="/pics/cart2.png"/>
                         <span className="productNumber">{totalProducts}</span> 
                     </NavLink>
+            
+                
+
                 </div>
             </div>
         </header>

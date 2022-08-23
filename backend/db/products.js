@@ -10,14 +10,16 @@ async function createProduct({
   format,
   genre,
   photo,
+  spotif,
+  staffpick
 }) {
   try {
     const {
       rows: [product],
     } = await client.query(
       `
-            INSERT INTO products(title, artist, description, release_date, price, inventory, format, genre, photo)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            INSERT INTO products(title, artist, description, release_date, price, inventory, format, genre, photo, spotif, staffpick)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
             RETURNING *;
             `,
       [
@@ -30,6 +32,8 @@ async function createProduct({
         format,
         genre,
         photo,
+        spotif,
+        staffpick
       ]
     );
 
@@ -158,16 +162,6 @@ async function destroyProduct(id) {
        WHERE id=${id};
       `
   );
-  // await client.query(
-  //   `
-  //  DELETE FROM an_order cart
-  //   WHERE product_id=${id};
-  //  DELETE FROM order_history reviews
-  //   WHERE product_id=${id};
-  //  DELETE FROM products
-  //   WHERE id=${id};
-  //   `
-  // );
 }
 
 //export functions
