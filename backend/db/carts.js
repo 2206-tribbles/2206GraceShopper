@@ -42,18 +42,20 @@ async function getCartById({ id }) {
 
 async function getCartByUserId(id) {
   try {
-    const {
-      rows: [cart],
-    } = await client.query(
+    const { rows } = await client.query(
       `
             SELECT *
             FROM carts
+            JOIN carts_products
+            ON carts.id = carts_products.cart_id
+            JOIN products
+            ON carts_products.product_id = products.id
             WHERE user_id = $1 AND order_completed = false;
             
             `,
       [id]
     );
-    return cart;
+    return rows;
   } catch (error) {
     console.error("Error Retrieving Cart", error);
     throw error;
@@ -87,11 +89,19 @@ async function updateCart({ id, ...fields }) {
   const setString = Object.keys(fields)
     .map((key, index) => `"${key}"=$${index + 1}`)
     .join(", ");
+  console.log("set string", setString);
+  console.log("fields", Object.values(fields));
 
   // return early if this is called without fields
   if (setString.length === 0) {
     return;
   }
+  console.log(`
+  UPDATE carts
+  SET ${setString}
+  WHERE id=${id}
+  RETURNING *;
+  `);
   try {
     const {
       rows: [cart],
@@ -106,7 +116,7 @@ async function updateCart({ id, ...fields }) {
     );
     return cart;
   } catch (error) {
-    console.error("Error Retrieving Product", error);
+    console.error("Error Updating cart", error);
     throw error;
   }
 }

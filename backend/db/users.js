@@ -77,7 +77,7 @@ async function getUserById({ id }) {
       rows: [user],
     } = await client.query(
       `
-            SELECT first_name,
+            SELECT id, first_name,
             last_name,
             email,
             address,

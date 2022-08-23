@@ -7,6 +7,8 @@ import { checkoutUser } from "../api_adapter";
 const Checkout = (props) => {
   const cart = props.cart;
   const user = props.user;
+  const setCart = props.setCart;
+
   console.log("user??", user);
   const [userInfo, setUserInfo] = useState({
     first_name: user.first_name,
@@ -48,14 +50,17 @@ const Checkout = (props) => {
 
   const checkoutCart = async (event) => {
     event.preventDefault();
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     const result = await checkoutUser(token, {
-      cart_id: cart.id,
-      user_id: user.id
-    })
+      cart_id: cart[0].cart_id,
+      user_id: user.id,
+      cart,
+    });
+    // Clear out cart
+    setCart([]);
+    localStorage.setItem("cart", JSON.stringify([]));
+  };
 
-  }
-  
   return (
     <div className="checkoutContainer">
       <div className="userInfoContainer">
@@ -150,7 +155,10 @@ const Checkout = (props) => {
                   name="card_number"
                   placeholder="1111-2222-3333-4444"
                   onChange={(event) =>
-                    setUserInfo({ ...userInfo, card_number: event.target.value })
+                    setUserInfo({
+                      ...userInfo,
+                      card_number: event.target.value,
+                    })
                   }
                 />
                 <label htmlFor="expmonth">Exp Month</label>
@@ -173,16 +181,23 @@ const Checkout = (props) => {
                       name="exp_year"
                       placeholder="2018"
                       onChange={(event) =>
-                        setUserInfo({ ...userInfo, exp_year: event.target.value })
+                        setUserInfo({
+                          ...userInfo,
+                          exp_year: event.target.value,
+                        })
                       }
                     />
                   </div>
                   <div className="col-50">
                     <label htmlFor="cvv">CVV</label>
-                    <input type="text" id="cvv" name="cvv" placeholder="352" 
-                     onChange={(event) =>
-                      setUserInfo({ ...userInfo, cvv: event.target.value })
-                    }
+                    <input
+                      type="text"
+                      id="cvv"
+                      name="cvv"
+                      placeholder="352"
+                      onChange={(event) =>
+                        setUserInfo({ ...userInfo, cvv: event.target.value })
+                      }
                     />
                   </div>
                 </div>
@@ -193,7 +208,7 @@ const Checkout = (props) => {
               Billing address same as shipping
             </label>
             <button type="submit" className="btn">
-               Checkout
+              Checkout
             </button>
           </form>
         </div>

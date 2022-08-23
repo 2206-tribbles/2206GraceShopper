@@ -98,7 +98,7 @@ export async function getProductById(productId) {
 
 export async function getCartByUserId(userId) {
   try {
-    const response = await fetch(`${BASE}/products/${userId}`);
+    const response = await fetch(`${BASE}/carts/${userId}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -111,6 +111,29 @@ export async function createCart(userId) {
     const response = await fetch(`${BASE}/products/createCart/${userId}`);
     const data = await response.json();
     return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function updateCart(userId, cartId, cart) {
+  console.log("cart in frontend", cart);
+  try {
+    const response = await fetch(`${BASE}/carts/update`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cart: cart,
+        user_id: userId,
+        cart_id: cartId,
+      }),
+    });
+    const result = await response.json();
+    console.log("result: ", result);
+    console.log("line 23 this is response:", response);
+    return result;
   } catch (error) {
     throw error;
   }

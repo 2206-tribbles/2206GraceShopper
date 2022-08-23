@@ -1,12 +1,10 @@
 const client = require("./client");
 
-
 async function createCartsProducts({
   cart_id,
   product_id,
-  quantity, 
-  sale_price
-  
+  quantity,
+  sale_price,
 }) {
   try {
     const {
@@ -23,18 +21,15 @@ async function createCartsProducts({
       `,
       [cart_id, product_id, quantity, sale_price]
     );
-    console.log("LINE 26 INSIDE CREATE CP: ", carts_products)
     return carts_products;
   } catch (error) {
     throw error;
   }
 }
 
-async function getCartsProductsById({id}) {
+async function getCartsProductsById({ id }) {
   try {
-    const {
-      rows,
-    } = await client.query(
+    const { rows } = await client.query(
       `
       SELECT *
       FROM carts_products
@@ -95,16 +90,16 @@ async function updateCartsProducts({ id, ...fields }) {
   }
 }
 
-async function destroyCartsProducts({id}) {
+async function destroyCartsProducts({ cart_id }) {
   try {
     const {
       rows: [product],
     } = await client.query(
       `
     DELETE FROM carts_products
-    WHERE id = $1
+    WHERE cart_id = $1
     `,
-      [id]
+      [cart_id]
     );
     return true;
   } catch (error) {
@@ -113,9 +108,9 @@ async function destroyCartsProducts({id}) {
 }
 
 module.exports = {
-    createCartsProducts,
-    destroyCartsProducts,
-    updateCartsProducts,
-    getCartsProductsById,
-    getCartsProductsByProductId
+  createCartsProducts,
+  destroyCartsProducts,
+  updateCartsProducts,
+  getCartsProductsById,
+  getCartsProductsByProductId,
 };
