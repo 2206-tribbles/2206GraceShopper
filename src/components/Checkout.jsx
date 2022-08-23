@@ -64,7 +64,8 @@ const Checkout = (props) => {
   return (
     <div className="checkoutContainer">
       <div className="userInfoContainer">
-        <div className="container">
+        <div className="container"> 
+        <h3>Checkout</h3>
           <form className="inputContainer" onSubmit={checkoutCart}>
             <div className="row">
               <div className="col-50">
@@ -155,31 +156,30 @@ const Checkout = (props) => {
                       }
                     /></div>
 
-                    <div className="subcat">Expiration Year:
-                      <input
-                        type="text"
-                        id="expyear"
-                        name="exp_year"
-                        placeholder="2018"
-                        onChange={(event) =>
-                          setUserInfo({
-                            ...userInfo,
-                            exp_year: event.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                    <div className="subcat">CVV:
-                      <input
-                        type="text"
-                        id="cvv"
-                        name="cvv"
-                        placeholder="352"
-                        onChange={(event) =>
-                          setUserInfo({ ...userInfo, cvv: event.target.value })
-                        }
-                      />
-                    </div>
+                  <div className="subcat">Expiration Year:
+                    <input
+                      type="text"
+                      id="expyear"
+                      name="exp_year"
+                      placeholder="2018"
+                      onChange={(event) =>
+                        setUserInfo({
+                          ...userInfo,
+                          exp_year: event.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                  <div className="subcat">CVV:
+                    <input
+                      type="text"
+                      id="cvv"
+                      name="cvv"
+                      placeholder="352"
+                      onChange={(event) =>
+                        setUserInfo({ ...userInfo, cvv: event.target.value })
+                      }
+                    />
                   </div>
                   <div className="cardInfo"><label htmlFor="fname">Accepted Cards</label>
                     <a href="https://www.shift4shop.com/credit-card-logos.html"><img alt="Credit Card Logos" title="Credit Card Logos" src="https://www.shift4shop.com/images/credit-card-logos/cc-sm-4_b.png" width="198" height="28" border="0" /></a>
@@ -195,7 +195,7 @@ const Checkout = (props) => {
                         style={{ color: "orange" }}
                       ></i>
                     </div>
-                  
+                  </div>
                 </div>
               </div>
             </div>
