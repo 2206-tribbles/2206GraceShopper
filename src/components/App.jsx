@@ -9,7 +9,9 @@ import {
   ProductDetails,
   Login,
   Register,
-  Checkout,
+  Cart,
+  Admin,
+  ProductEdit,
 } from "./index";
 import { getUserByToken, getCartByUserId, updateCart } from "../api_adapter";
 
@@ -141,8 +143,11 @@ const App = () => {
             />
           }
         />
-        <Route path="/login" element={<Login  setUser={setUser}/>} />
-        <Route path="/register" element={<Register setUser={setUser}/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route path="/Admin" element={<Admin />} />
+        <Route path="/ProductEdit" element={<ProductEdit />} />
         <Route
           path="/checkout"
           element={<Checkout setCart={setCart} cart={cart} user={user} />}

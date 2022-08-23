@@ -108,9 +108,9 @@ async function destroyCartsProducts({ cart_id }) {
 }
 
 module.exports = {
-  createCartsProducts,
-  destroyCartsProducts,
-  updateCartsProducts,
-  getCartsProductsById,
-  getCartsProductsByProductId,
+    createCartsProducts,
+    destroyCartsProducts,
+    updateCartsProducts,
+    getCartsProductsById,
+    getCartsProductsByProductId,
 };
