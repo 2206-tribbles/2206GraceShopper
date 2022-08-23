@@ -6,7 +6,7 @@
 }
 
 
-.product {
+.productPage {
     display:flex;
     flex-direction: column;
     background-color: rgb(236, 234, 221);
@@ -32,6 +32,7 @@
 .product_photo {
     width: 400px;
     height: 400px;
+    border-radius: 15px;
 }
 
 .product_title {
@@ -107,13 +108,14 @@
     padding: 25px;
     width: fit-content;
 } */
+
 .add_to_cart {
+    
     display:flex;
     flex-direction: column;
     background-color: rgb(236, 234, 221);
     border-radius: 15px;
     margin: 25px;
-    padding: 25px;
     box-shadow: 10px 10px 10px rgb(0, 0, 0);
     width: fit-content;
 }
