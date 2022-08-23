@@ -25,7 +25,12 @@ h3 {
   align-items: center;
   justify-content: center;
   margin-bottom: 0px;
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+.addressInput {
+  width: 200px;
+  margin-right: 3px;
 }
 
 .col-25 {
@@ -58,6 +63,7 @@ min-height: 727px;
 .subcat {
   margin: 10px;
 text-align: right;
+margin-right: 75px;
 }
 
 .cat {
@@ -65,7 +71,27 @@ text-align: right;
   border: 1px black solid;
   border-radius: 15px;
   margin-bottom: 10px;
+  align-items: center;
 }
+
+label {
+  padding-top: 10px;
+}
+
+.catShipping {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width:450px;
+  border: 1px black solid;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  text-align: right;
+}
+.shippingLabel {
+  text-align: center;
+}
+
 
 .container {
   background-color: rgb(236, 234, 221);

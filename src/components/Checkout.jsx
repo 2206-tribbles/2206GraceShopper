@@ -64,8 +64,8 @@ const Checkout = (props) => {
   return (
     <div className="checkoutContainer">
       <div className="userInfoContainer">
-        <div className="container"> 
-        <h3>Checkout</h3>
+        <div className="container">
+          <h3>Checkout</h3>
           <form className="inputContainer" onSubmit={checkoutCart}>
             <div className="row">
               <div className="col-50">
@@ -75,6 +75,7 @@ const Checkout = (props) => {
                     <input
                       type="text"
                       id="first_name"
+                      className="addressInput"
                       name="first_name"
                       placeholder="John"
                       defaultValue={userInfo.first_name}
@@ -86,6 +87,7 @@ const Checkout = (props) => {
                     <input
                       type="text"
                       id="last_name"
+                      className="addressInput"
                       name="last_name"
                       placeholder="John"
                       defaultValue={userInfo.last_name}
@@ -97,6 +99,7 @@ const Checkout = (props) => {
                     <input
                       type="text"
                       id="email"
+                      className="addressInput"
                       name="email"
                       placeholder="john@example.com"
                       defaultValue={userInfo.email}
@@ -108,6 +111,7 @@ const Checkout = (props) => {
                     <input
                       type="text"
                       id="adr"
+                      className="addressInput"
                       name="address"
                       placeholder="542 W. 15th Street"
                       defaultValue={userInfo.address}
@@ -122,6 +126,10 @@ const Checkout = (props) => {
                 <div><h3>Payment</h3></div>
 
                 <div className="cat">
+                  <div className="cardInfo"><label htmlFor="fname">Accepted Cards</label>
+                    <img className="cards" src="/pics/cards.png" />
+
+                  </div>
                   <div className="subcat">Name on Card:
                     <input
                       type="text"
@@ -181,28 +189,31 @@ const Checkout = (props) => {
                       }
                     />
                   </div>
-                  <div className="cardInfo"><label htmlFor="fname">Accepted Cards</label>
-                    <a href="https://www.shift4shop.com/credit-card-logos.html"><img alt="Credit Card Logos" title="Credit Card Logos" src="https://www.shift4shop.com/images/credit-card-logos/cc-sm-4_b.png" width="198" height="28" border="0" /></a>
-                    <div className="icon-container">
-                      <i className="fa fa-cc-visa" style={{ color: "navy" }}></i>
-                      <i className="fa fa-cc-amex" style={{ color: "blue" }}></i>
-                      <i
-                        className="fa fa-cc-mastercard"
-                        style={{ color: "red" }}
-                      ></i>
-                      <i
-                        className="fa fa-cc-discover"
-                        style={{ color: "orange" }}
-                      ></i>
-                    </div>
+
+                  <div><label>
+                    <input type="checkbox" defaultChecked={true} name="sameadr" />{" "}
+                    Billing address same as shipping
+                  </label>
                   </div>
                 </div>
               </div>
-            </div>
-            <div><label>
-              <input type="checkbox" defaultChecked={true} name="sameadr" />{" "}
-              Billing address same as shipping
-            </label>
+              <div className="col-50">
+               <div><h3>Shipping Prices</h3></div>
+               <form><div className="catShipping">
+               <div><label className="shippingLabel">
+                    <input type="radio" defaultChecked={true} name="sameadr" />{" "}
+                    Standard:  <b>Free</b>
+                  </label></div>
+                  <div><label className="shippingLabel">
+                    <input type="radio" defaultChecked={true} name="sameadr" />{" "}
+                    2-3 Day:  <b>$12.95</b>
+                  </label></div>
+                  <div><label className="shippingLabel">
+                    <input type="radio" defaultChecked={true} name="sameadr" />{" "}
+                    Overnight:  <b>$27.50</b>
+                  </label></div>
+                </div></form>
+              </div>
               <button type="submit" className="btn">
                 Checkout
               </button>
