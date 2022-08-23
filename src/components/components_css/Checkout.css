@@ -1,11 +1,15 @@
 .row {
   display: flex;
-  flex-wrap: wrap;
+
+  flex: row;
+  justify-content: center;
   margin: 0 -16px;
+  margin-bottom: 15px;
 }
 
 .col-25 {
-  flex: 25%;
+min-height: 727px;
+
 }
 
 .col-50 {
@@ -13,7 +17,7 @@
 }
 
 .col-75 {
-  flex: 75%;
+
 }
 
 .col-25,
@@ -23,13 +27,22 @@
 }
 
 .container {
-  background-color: #f2f2f2;
-  padding: 5px 20px 15px 20px;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
+
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(236, 234, 221);
+  border-radius: 15px;
+  margin: 25px;
+  padding: 25px;
+  width: fit-content;
+  justify-content: top;
+  text-align: left;
+  box-shadow: 10px 10px 10px rgb(0, 0, 0);
+  min-height: 707px;
 }
 
-input[type="text"] {
+input[type=input] {
+
   width: 90%;
   margin-bottom: 20px;
   padding: 12px;
@@ -49,13 +62,17 @@ label {
 }
 
 .btn {
-  background-color: #04aa6d;
+
+  background-color: #04AA6D;
+
   color: white;
   padding: 12px;
   margin: 10px 0;
   border: none;
   width: 100%;
-  border-radius: 3px;
+
+  border-radius: 15px;
+
   cursor: pointer;
   font-size: 17px;
 }
@@ -74,19 +91,10 @@ span.price {
   .row {
     flex-direction: column-reverse;
   }
+
+
   .col-25 {
     margin-bottom: 20px;
   }
 }
 
-.checkoutContainer {
-  display: flex;
-}
-
-.userInfoContainer {
-  width: 75%;
-}
-
-.cartContainer {
-  width: 25%;
-}
