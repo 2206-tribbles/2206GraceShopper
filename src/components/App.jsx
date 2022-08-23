@@ -148,7 +148,7 @@ const App = () => {
         <Route path="/register" element={<Register setUser={setUser}/>} />
         <Route
           path="/checkout"
-          element={<Checkout setCart={setCart} cart={cart} user={user} />}
+          element={<Checkout setCart={setCart} cart={cart} user={user} incrementQty={incrementQty} decrementQty={decrementQty}  deleteFromCart={deleteFromCart}/>}
         />
         {/* <Route path="
             path="/profile"
