@@ -1,8 +1,13 @@
-import { Link } from "react-router-dom";
+import { Route, Routes, Link, useNavigate, NavLink } from "react-router-dom";
 import "./components_css/MyCart.css";
 
 const MyCart = (props) => {
   const cart = props.cart;
+  const navigate = useNavigate();
+
+  const navigateToCheckout = () => {
+    navigate('/checkout');
+  };
 
   // // calculate and render subtotal
   const calculateSubtotal = () => {
@@ -16,7 +21,7 @@ const MyCart = (props) => {
 
   return (
     <div className="add_to_cart">
-      <div className="cartText"> Cart</div>
+      <div className="cartText">My Cart</div>
       <div className="cart-item-box">{cart.map((product) => (
         <div className="cart-item">
           <div className="item-info" >
@@ -53,7 +58,12 @@ const MyCart = (props) => {
         </div>
       ))}
       </div>
-      <div className="cartSubtotal">Subtotal: ${calculateSubtotal().toFixed(2)}</div>
+      <div className="cartSubtotal">
+        <div>Subtotal: ${calculateSubtotal().toFixed(2)}</div>
+        <button className="goToCheckoutBtn" onClick={navigateToCheckout}>
+        Go to Checkout
+        </button>
+      </div>
     </div>
   );
 };

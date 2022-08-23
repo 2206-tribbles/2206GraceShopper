@@ -65,116 +65,106 @@ const Checkout = (props) => {
     <div className="checkoutContainer">
       <div className="userInfoContainer">
         <div className="container">
-          <form onSubmit={checkoutCart}>
+          <h3>Checkout</h3>
+          <form className="inputContainer" onSubmit={checkoutCart}>
             <div className="row">
               <div className="col-50">
-                <h3>Mailing Address</h3>
-                <label htmlFor="first_name">
-                  <i className="fa fa-user"></i> First Name
-                </label>
-                <input
-                  type="text"
-                  id="first_name"
-                  name="first_name"
-                  placeholder="John"
-                  defaultValue={userInfo.first_name}
-                  onChange={(event) =>
-                    setUserInfo({ ...userInfo, first_name: event.target.value })
-                  }
-                />
-                <label htmlFor="last_name">
-                  <i className="fa fa-user"></i> Last Name
-                </label>
-                <input
-                  type="text"
-                  id="last_name"
-                  name="last_name"
-                  placeholder="John"
-                  defaultValue={userInfo.last_name}
-                  onChange={(event) =>
-                    setUserInfo({ ...userInfo, last_name: event.target.value })
-                  }
-                />
-                <label htmlFor="email">
-                  <i className="fa fa-envelope"></i> Email
-                </label>
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  placeholder="john@example.com"
-                  defaultValue={userInfo.email}
-                  onChange={(event) =>
-                    setUserInfo({ ...userInfo, email: event.target.value })
-                  }
-                />
-                <label htmlFor="adr">
-                  <i className="fa fa-address-card-o"></i> Address
-                </label>
-                <input
-                  type="text"
-                  id="adr"
-                  name="address"
-                  placeholder="542 W. 15th Street"
-                  defaultValue={userInfo.address}
-                  onChange={(event) =>
-                    setUserInfo({ ...userInfo, address: event.target.value })
-                  }
-                />
+                <div><h3>Shipping Address</h3></div>
+                <div className="cat">
+                  <div className="subcat">First Name:
+                    <input
+                      type="text"
+                      id="first_name"
+                      className="addressInput"
+                      name="first_name"
+                      placeholder="John"
+                      defaultValue={userInfo.first_name}
+                      onChange={(event) =>
+                        setUserInfo({ ...userInfo, first_name: event.target.value })
+                      }
+                    /></div>
+                  <div className="subcat">Last Name:
+                    <input
+                      type="text"
+                      id="last_name"
+                      className="addressInput"
+                      name="last_name"
+                      placeholder="John"
+                      defaultValue={userInfo.last_name}
+                      onChange={(event) =>
+                        setUserInfo({ ...userInfo, last_name: event.target.value })
+                      }
+                    /></div>
+                  <div className="subcat">Email:
+                    <input
+                      type="text"
+                      id="email"
+                      className="addressInput"
+                      name="email"
+                      placeholder="john@example.com"
+                      defaultValue={userInfo.email}
+                      onChange={(event) =>
+                        setUserInfo({ ...userInfo, email: event.target.value })
+                      }
+                    /></div>
+                  <div className="subcat">Address:
+                    <input
+                      type="text"
+                      id="adr"
+                      className="addressInput"
+                      name="address"
+                      placeholder="542 W. 15th Street"
+                      defaultValue={userInfo.address}
+                      onChange={(event) =>
+                        setUserInfo({ ...userInfo, address: event.target.value })
+                      }
+                    /></div>
+                </div>
               </div>
 
               <div className="col-50">
-                <h3>Payment</h3>
-                <label htmlFor="fname">Accepted Cards</label>
-                <div className="icon-container">
-                  <i className="fa fa-cc-visa" style={{ color: "navy" }}></i>
-                  <i className="fa fa-cc-amex" style={{ color: "blue" }}></i>
-                  <i
-                    className="fa fa-cc-mastercard"
-                    style={{ color: "red" }}
-                  ></i>
-                  <i
-                    className="fa fa-cc-discover"
-                    style={{ color: "orange" }}
-                  ></i>
-                </div>
-                <label htmlFor="cname">Name on Card</label>
-                <input
-                  type="text"
-                  id="cname"
-                  name="card_name"
-                  placeholder="John More Doe"
-                  onChange={(event) =>
-                    setUserInfo({ ...userInfo, card_name: event.target.value })
-                  }
-                />
-                <label htmlFor="ccnum">Credit card number</label>
-                <input
-                  type="text"
-                  id="ccnum"
-                  name="card_number"
-                  placeholder="1111-2222-3333-4444"
-                  onChange={(event) =>
-                    setUserInfo({
-                      ...userInfo,
-                      card_number: event.target.value,
-                    })
-                  }
-                />
-                <label htmlFor="expmonth">Exp Month</label>
-                <input
-                  type="text"
-                  id="expmonth"
-                  name="exp_month"
-                  placeholder="September"
-                  onChange={(event) =>
-                    setUserInfo({ ...userInfo, exp_month: event.target.value })
-                  }
-                />
+                <div><h3>Payment</h3></div>
 
-                <div className="row">
-                  <div className="col-50">
-                    <label htmlFor="expyear">Exp Year</label>
+                <div className="cat">
+                  <div className="cardInfo"><label htmlFor="fname">Accepted Cards</label>
+                    <img className="cards" src="/pics/cards.png" />
+
+                  </div>
+                  <div className="subcat">Name on Card:
+                    <input
+                      type="text"
+                      id="cname"
+                      name="card_name"
+                      placeholder="John More Doe"
+                      onChange={(event) =>
+                        setUserInfo({ ...userInfo, card_name: event.target.value })
+                      }
+                    /></div>
+                  <div className="subcat">Credit card number:
+                    <input
+                      type="text"
+                      id="ccnum"
+                      name="card_number"
+                      placeholder="1111-2222-3333-4444"
+                      onChange={(event) =>
+                        setUserInfo({
+                          ...userInfo,
+                          card_number: event.target.value,
+                        })
+                      }
+                    /></div>
+                  <div className="subcat">Expiration Month:
+                    <input
+                      type="text"
+                      id="expmonth"
+                      name="exp_month"
+                      placeholder="September"
+                      onChange={(event) =>
+                        setUserInfo({ ...userInfo, exp_month: event.target.value })
+                      }
+                    /></div>
+
+                  <div className="subcat">Expiration Year:
                     <input
                       type="text"
                       id="expyear"
@@ -188,8 +178,7 @@ const Checkout = (props) => {
                       }
                     />
                   </div>
-                  <div className="col-50">
-                    <label htmlFor="cvv">CVV</label>
+                  <div className="subcat">CVV:
                     <input
                       type="text"
                       id="cvv"
@@ -200,16 +189,35 @@ const Checkout = (props) => {
                       }
                     />
                   </div>
+
+                  <div><label>
+                    <input type="checkbox" defaultChecked={true} name="sameadr" />{" "}
+                    Billing address same as shipping
+                  </label>
+                  </div>
                 </div>
               </div>
+              <div className="col-50">
+               <div><h3>Shipping Prices</h3></div>
+               <form><div className="catShipping">
+               <div><label className="shippingLabel">
+                    <input type="radio" defaultChecked={true} name="sameadr" />{" "}
+                    Standard:  <b>Free</b>
+                  </label></div>
+                  <div><label className="shippingLabel">
+                    <input type="radio" defaultChecked={true} name="sameadr" />{" "}
+                    2-3 Day:  <b>$12.95</b>
+                  </label></div>
+                  <div><label className="shippingLabel">
+                    <input type="radio" defaultChecked={true} name="sameadr" />{" "}
+                    Overnight:  <b>$27.50</b>
+                  </label></div>
+                </div></form>
+              </div>
+              <button type="submit" className="btn">
+                Checkout
+              </button>
             </div>
-            <label>
-              <input type="checkbox" defaultChecked={true} name="sameadr" />{" "}
-              Billing address same as shipping
-            </label>
-            <button type="submit" className="btn">
-              Checkout
-            </button>
           </form>
         </div>
       </div>
