@@ -59,7 +59,7 @@ const Login = (props) => {
                 onChange={handleOnChange}
                 placeholder="Username"
                 value={username}
-                type="input"
+                type="text"
               />
             </div>
             <div>

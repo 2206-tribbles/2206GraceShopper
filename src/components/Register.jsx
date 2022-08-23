@@ -80,7 +80,7 @@ const Register = (props) => {
                 onChange={handleOnChange}
                 placeholder="First Name"
                 value={first_name}
-                type="input"
+                type="text"
               />
             </div>
 
@@ -92,7 +92,7 @@ const Register = (props) => {
                 onChange={handleOnChange}
                 placeholder="Last Name"
                 value={last_name}
-                type="input"
+                type="text"
               />
             </div>
 
@@ -104,7 +104,7 @@ const Register = (props) => {
                 onChange={handleOnChange}
                 placeholder="Email"
                 value={email}
-                type="input"
+                type="text"
               />
             </div>
 
@@ -116,7 +116,7 @@ const Register = (props) => {
                 onChange={handleOnChange}
                 placeholder="Address"
                 value={address}
-                type="input"
+                type="text"
               />
             </div>
 
@@ -128,7 +128,7 @@ const Register = (props) => {
                 onChange={handleOnChange}
                 placeholder="Username"
                 value={username}
-                type="input"
+                type="text"
               />
             </div>
 
