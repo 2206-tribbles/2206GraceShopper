@@ -3,23 +3,11 @@ import { BrowserRouter, Route, Link, useParams } from "react-router-dom";
 
 import { NavLink } from "react-router-dom";
 
-import { createProduct, getProductById, getCartByUserId, createCart } from "../api_adapter";
 
-const Admin = (props) => {
-  // const params = useParams();
-  // const productId = params.productId;
-  // console.log("product Id", productId);
-  // const [orderQuantity, setOrderQuantity] = useState(1);
-  // const [product, setProduct] = useState({});
-  // //get product
-  // useEffect(() => {
-  //   console.log("grabbing single product details...");
-  //   const _product = async () => {
-  //     const singleProduct = await getProductById(productId);
-  //     setProduct(singleProduct);
-  //   };
-  //   _product();
-  // }, [productId]);
+import { createProduct, getProductById, getCartByUserId, createCart, getAllProducts } from "../api_adapter";
+
+const Admin = () => {
+  const [allProducts, setAllProducts] =useState("")
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [description, setDescription] = useState("");
@@ -31,6 +19,21 @@ const Admin = (props) => {
   const [photo, setPhoto] = useState("");
   const [spotif, setSpotif] = useState("");
   const [staffpick, setStaffpick] = useState(false);
+
+  useEffect(() => {
+    getAllProducts()
+      .then((products) => {
+        getAllProducts(products);
+      })
+      .catch((error) => {
+        console.error(error, "Something broke");
+      });
+  }, []);
+
+  // console.log(products, "line 33")
+
+
+  
 
 
 const handleOnChange = (event) => {
@@ -222,33 +225,7 @@ return (<div>
       <button type="submit">CREATE NEW PRODUCT</button>
     </form>
   </div>
-  {/* <div className="product">
-  <div className="album_spotif">
-    <div className="album_info">
-  <div className="product_title">{product.title}</div>
-      <div className="photo_info">
-        <img className="product_photo" src={product.photo} />
-      </div>
-      <div className="product_artist">
-        <div>{product.artist}</div>
-      </div>
-      <div className="main_info">
-        <div>Release Date: {product.release_date}</div>
-        <div className="product_description">
-          Description: {product.description}
-        </div>
-        <div className="format_genre">
-          <div>Genre: {product.genre}</div>
-          <div>Format: {product.format}</div>
-        </div>
-      </div>
-      <div className="storeInfo">
-        <div>{product.inventory} in stock</div>
-        <div>{product.price}</div>
-      </div>
-    </div>
-  </div>
-</div> */}
+  
 </div>
 );
 };
