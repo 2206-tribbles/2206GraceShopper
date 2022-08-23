@@ -103,14 +103,6 @@ async function createTables() {
         purchase_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
 
-        INSERT INTO carts(user_id)
-        VALUES
-        ('1'),
-        ('2'),
-        ('1'),
-        ('4'),
-        ('5')
-
         `);
 
     await client.query(`
@@ -119,17 +111,11 @@ async function createTables() {
           cart_id INTEGER REFERENCES carts(id),
           product_id INTEGER REFERENCES products(id), 
           quantity INTEGER NOT NULL,
-          sale_price MONEY NOT NULL,
+          sale_price DECIMAL(12, 2) NOT NULL,
           UNIQUE (cart_id, product_id)
           );
 
-          INSERT INTO carts_products(cart_id, product_id, quantity, sale_price)
-          VALUES
-          ('1','1','2','10'),
-          ('2','3','3','4.35'),
-          ('3','2','8','400'),
-          ('4','1','10','30')
-   
+         
           `);
 
     await client.query(`
@@ -140,11 +126,7 @@ async function createTables() {
         review_comments TEXT NOT NULL
         );
 
-        INSERT INTO reviews(carts_id, review_title, review_comments)
-        VALUES
-        ('1','Test review for Cart 1','This is the greatest of tests'),
-        ('3','Test review for cart 3','This is the greatest of tests yahoo for you'),
-        ('4','Test review for Cart 4','This is the greatest of tests')
+
 
     `);
     console.log("Finished building tables!");

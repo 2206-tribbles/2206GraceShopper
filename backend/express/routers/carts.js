@@ -60,4 +60,25 @@ cartsRouter.delete("/:cartId", async (req, res, next) => {
   }
 });
 
+cartsRouter.post("/checkout", async (req, res, next) => {
+  console.log("herfe");
+  // Check to see if that cart already exists
+  const { cart_id, user_id } = req.body;
+  if (cart_id) {
+    console.log(1);
+    const cart = await getCartById({ id: cart_id });
+    console.log(2);
+    if (!cart) {
+      // Create the cart for the user
+      console.log(3);
+      const createdCart = await createCart({ user_id });
+      console.log("createdCart", createdCart);
+    }
+  } else {
+    const createdCart = await createCart({ user_id });
+    console.log("createdCart", createdCart);
+  }
+  res.json("hello");
+});
+
 module.exports = cartsRouter;

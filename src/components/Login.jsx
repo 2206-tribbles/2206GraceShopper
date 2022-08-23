@@ -22,12 +22,10 @@ const Login = (props) => {
   const handleSubmit = async (event) => {
     try {
         const user = {username, password}
-        console.log("USER: ", user)
       event.preventDefault();
       const result = await loginUser(user);
       console.log("THIS IS THE RESULT ",result);
       const token = result.token;
-      console.log(token, "token inside of login");
       localStorage.setItem("token", token);
       
 

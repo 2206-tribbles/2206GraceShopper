@@ -16,7 +16,6 @@ export async function registerUser(userObj) {
   }
 }
 export async function loginUser(userObj) {
-
   try {
     const response = await fetch(`${BASE}/users/login`, {
       method: "POST",
@@ -26,7 +25,7 @@ export async function loginUser(userObj) {
       body: JSON.stringify(userObj),
     });
     const result = await response.json();
-    
+
     return result;
   } catch (error) {
     throw error;
@@ -34,13 +33,31 @@ export async function loginUser(userObj) {
 }
 
 export async function getUserByToken(token) {
-
   try {
     const response = await fetch(`${BASE}/users/me`, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
+    });
+    const result = await response.json();
+    console.log("result: ", result);
+    console.log("line 23 this is response:", response);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function checkoutUser(token, cart) {
+  try {
+    const response = await fetch(`${BASE}/carts/checkout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(cart),
     });
     const result = await response.json();
     console.log("result: ", result);
