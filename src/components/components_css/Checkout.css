@@ -1,5 +1,6 @@
 .row {
   display: flex;
+
   flex: row;
   justify-content: center;
   margin: 0 -16px;
@@ -8,6 +9,7 @@
 
 .col-25 {
 min-height: 727px;
+
 }
 
 .col-50 {
@@ -15,7 +17,7 @@ min-height: 727px;
 }
 
 .col-75 {
-  
+
 }
 
 .col-25,
@@ -25,6 +27,7 @@ min-height: 727px;
 }
 
 .container {
+
   display: flex;
   flex-direction: column;
   background-color: rgb(236, 234, 221);
@@ -39,6 +42,7 @@ min-height: 727px;
 }
 
 input[type=input] {
+
   width: 90%;
   margin-bottom: 20px;
   padding: 12px;
@@ -58,13 +62,17 @@ label {
 }
 
 .btn {
+
   background-color: #04AA6D;
+
   color: white;
   padding: 12px;
   margin: 10px 0;
   border: none;
   width: 100%;
+
   border-radius: 15px;
+
   cursor: pointer;
   font-size: 17px;
 }
@@ -84,7 +92,9 @@ span.price {
     flex-direction: column-reverse;
   }
 
+
   .col-25 {
     margin-bottom: 20px;
   }
 }
+

@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { loginUser } from "../api_adapter";
@@ -21,25 +20,22 @@ const Login = (props) => {
   };
   const handleSubmit = async (event) => {
     try {
-      const user = { username, password }
-      console.log("USER: ", user)
+      const user = { username, password };
       event.preventDefault();
       const result = await loginUser(user);
+      props.setUser(result.user);
       console.log("THIS IS THE RESULT ", result);
       const token = result.token;
-      console.log(token, "token inside of login");
       localStorage.setItem("token", token);
 
-
       if (token !== undefined) {
-        setLoggedIn("You are now logged in")
+        setLoggedIn("You are now logged in");
         navigate("/");
+      } else {
+        throw new Error("username or password is incorrect");
       }
-      else { throw new Error("username or password is incorrect"); }
     } catch (err) {
-      setErrorMessage(
-        "Username or password is incorrect"
-      );
+      setErrorMessage("Username or password is incorrect");
     }
   };
   return (
@@ -47,22 +43,30 @@ const Login = (props) => {
       <div className="formContainer">
         <div className="tabs">
           <h2 className="activeTab">Log In</h2>
-          <h2 className="otherTab"><Link className="tabText" to="/Register">Sign Up</Link></h2>
+          <h2 className="otherTab">
+            <Link className="tabText" to="/Register">
+              Sign Up
+            </Link>
+          </h2>
         </div>
         <form className="form" onSubmit={handleSubmit}>
           <div className="inputs">
-            <div>Username:
-              <input className="textBox"
-              id="username"
+            <div>
+              Username:
+              <input
+                className="textBox"
+                id="username"
                 onChange={handleOnChange}
                 placeholder="Username"
                 value={username}
                 type="input"
               />
             </div>
-            <div>Password:
-              <input className="textBox"
-              id="password"
+            <div>
+              Password:
+              <input
+                className="textBox"
+                id="password"
                 onChange={handleOnChange}
                 placeholder="Password"
                 value={password}
@@ -70,11 +74,11 @@ const Login = (props) => {
               />
             </div>
           </div>
-            <button className="button" type="submit">
-              Login
-            </button>
-            <p className="errorMessage">{errorMessage}</p>
-            <p className="yourLoggedIn">{loggedIn}</p>
+          <button className="button" type="submit">
+            Login
+          </button>
+          <p className="errorMessage">{errorMessage}</p>
+          <p className="yourLoggedIn">{loggedIn}</p>
         </form>
       </div>
     </div>
