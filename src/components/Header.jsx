@@ -56,7 +56,7 @@ const Header = (props) => {
                 </div>
                 <div id="userlinks">
                     <NavLink to="/Login" className="link">Login/Register</NavLink>
-                    <NavLink to="/Cart" className="link cartLink">
+                    <NavLink to="/Checkout" className="link cartLink">
                         <img className="cartIcon" src="/pics/cart2.png"/>
                         <span className="productNumber">{totalProducts}</span> 
                     </NavLink>

@@ -1,6 +1,11 @@
+.checkoutContainer {
+display: flex;
+flex-direction: row;
+justify-content: center;
+}
+
 .row {
   display: flex;
-
   flex: row;
   justify-content: center;
   margin: 0 -16px;
@@ -9,7 +14,6 @@
 
 .col-25 {
 min-height: 727px;
-
 }
 
 .col-50 {
@@ -17,7 +21,7 @@ min-height: 727px;
 }
 
 .col-75 {
-
+  
 }
 
 .col-25,
@@ -27,22 +31,23 @@ min-height: 727px;
 }
 
 .container {
-
-  display: flex;
-  flex-direction: column;
   background-color: rgb(236, 234, 221);
   border-radius: 15px;
   margin: 25px;
   padding: 25px;
   width: fit-content;
-  justify-content: top;
   text-align: left;
   box-shadow: 10px 10px 10px rgb(0, 0, 0);
   min-height: 707px;
 }
 
-input[type=input] {
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
+input[type=input] {
   width: 90%;
   margin-bottom: 20px;
   padding: 12px;
@@ -62,17 +67,13 @@ label {
 }
 
 .btn {
-
   background-color: #04AA6D;
-
   color: white;
   padding: 12px;
   margin: 10px 0;
   border: none;
   width: 100%;
-
   border-radius: 15px;
-
   cursor: pointer;
   font-size: 17px;
 }
@@ -92,9 +93,7 @@ span.price {
     flex-direction: column-reverse;
   }
 
-
   .col-25 {
     margin-bottom: 20px;
   }
 }
-
