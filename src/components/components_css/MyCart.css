@@ -5,6 +5,8 @@
 align-items: center;
 padding: 15px;
 position: relative;
+min-width: 212px;
+min-height: 727px;
 }
 
 .cart-item-box {

@@ -51,7 +51,7 @@ const Header = (props) => {
                     <button onClick={(event) => handleNavigate("/Products") }>Search</button>
                 </div>
                 <div id="searchbarcontainer">
-                    <input onChange={(event) => setSearchValue(event.target.value)} name="search_products" type="input" placeholder="Search all products..." id="searchbar"></input>
+                    <input onChange={(event) => setSearchValue(event.target.value)} name="search_products" type="text" placeholder="Search all products..." id="searchbar"></input>
                     <button onClick={(event) => handleNavigate("/Products") }>Search</button>
                 </div>
                 <div id="userlinks">
