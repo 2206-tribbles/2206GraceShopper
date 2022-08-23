@@ -132,11 +132,8 @@ productsRouter.patch("/:productId", async (req, res, next) => {
 productsRouter.delete("/:productId", async (req, res, next) => {
   const id = req.params.productId;
   try {
-    const product = await getProductById({ id });
-    console.log("before delete product: ", product);
-    await destroyProduct(id);
-    console.log("after delete product: ", product);
-    res.send(product);
+    const deletedProduct = await destroyProduct(id);
+    res.send(deletedProduct);
   } catch (error) {
     next(error);
   }

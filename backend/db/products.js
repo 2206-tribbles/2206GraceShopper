@@ -156,12 +156,18 @@ async function addProductToCart({ cart_id, product_id, quantity, sale_price }) {
 }
 
 async function destroyProduct(id) {
+ try{
+  console.log(id, "line160")
   await client.query(
     `
       DELETE FROM products
-       WHERE id=${id};
-      `
+       WHERE id=$1;
+      `,
+      [id]
   );
+ }catch(error){
+  throw error;
+ }
 }
 
 //export functions

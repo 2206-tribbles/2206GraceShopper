@@ -78,7 +78,7 @@ export async function getHealth() {
 }
 export async function getAllProducts() {
   try {
-    const response = await fetch(`${BASE}/Products`);
+    const response = await fetch(`${BASE}/products`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -173,17 +173,17 @@ export async function createProduct({
   catch (error) {console.log(error, "your createProduct function is breaking")}
   }
 
-  export async function destroyProduct(productId) {
+  export async function destroyProduct(ProductId) {
     try{
-      const token = localStorage.getItem("token")
-      const response = await fetch(`${BASE}/products/${productId}`, {
+      const response = await fetch(`${BASE}/products/${ProductId}`, {
         method: "DELETE",
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       }) 
+      console.log(response, "is this working?")
       const result = await response.json()
-      console.log(result, "line 152")
+      console.log(result, "line 185")
       return result
   
     }catch (error) {
@@ -209,6 +209,16 @@ export async function createProduct({
       console.log("result: ", result);
       console.log("line 23 this is response:", response);
       return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  export async function getAllUsers() {
+    try {
+      const response = await fetch(`${BASE}/users`)
+      const data = await response.json();
+      return data;
     } catch (error) {
       throw error;
     }

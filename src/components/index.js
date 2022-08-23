@@ -11,3 +11,4 @@ export { default as Register } from "./Register";
 export { default as Admin } from "./AdminPage"
 export { default as ProductEdit } from "./ProductEdit";
 export { default as Checkout } from "./Checkout";
+export { default as AdminUsers } from "./AdminUserlist";
