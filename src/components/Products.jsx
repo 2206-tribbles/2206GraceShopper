@@ -8,7 +8,8 @@ import { useLocation } from "react-router-dom";
 const Products = (props) => {
   const [allProducts, setAllProducts] = useState([]);
   const { search } = useLocation();
-  const query = React.useMemo(() => new URLSearchParams(search),[search]);
+  const query = React.useMemo(() => new URLSearchParams(search), [search]);
+
   useEffect(() => {
     const allProducts = async () => {
       const allProducts = await getAllProducts();
@@ -17,15 +18,14 @@ const Products = (props) => {
       const searchValue = query.get("search")?.toLowerCase() || "";
       const products = allProducts.filter(
         (product) =>
-        (product.title.toLowerCase().includes(searchValue) ||
-        product.artist.toLowerCase().includes(searchValue) ||
-        product.description.toLowerCase().includes(searchValue) ||
-        product.price.toLowerCase().includes(searchValue)) &&
-        
-        (product.genre === selectedGenre ||
-          selectedGenre === "all") &&
-         (product.format === selectedFormat ||
-          selectedFormat === "all")
+          (product.title.toLowerCase().includes(searchValue) ||
+            product.artist.toLowerCase().includes(searchValue) ||
+            product.description.toLowerCase().includes(searchValue) ||
+            product.price.toLowerCase().includes(searchValue)) &&
+          (product.genre === selectedGenre ||
+            selectedGenre === "all") &&
+          (product.format === selectedFormat ||
+            selectedFormat === "all")
       );
       setAllProducts(products);
     };

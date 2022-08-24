@@ -1,13 +1,21 @@
 import React from "react";
+import StaffPicks from "./StaffPicks";
 import "./components_css/Home.css"
 
 const Home = () => {
 
     return (
         <div id="home">
-            <div id="staffpicks"><div className="divtitle">Staff picks</div></div>
-            <div id="highlights"><div className="divtitle">Highlights</div></div>
-            <div id="misc"><div className="divtitle">Misc</div></div>
+            <div>
+                <StaffPicks />
+            </div>
+            <div id="highlights">
+                <div className="divtitle">Highlights</div>
+            </div>
+
+            <div id="misc">
+                <div className="divtitle">Misc</div>
+            </div>
         </div>
     );
 }

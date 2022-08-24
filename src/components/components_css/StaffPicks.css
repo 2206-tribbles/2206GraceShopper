@@ -1,38 +1,30 @@
 body {
-    background-color: rgb(56, 93, 101);
     font-family: 'Courier New', Courier, monospace;
 }
 
-#home {
-    display: flex;
-    justify-content: space-evenly;
-}
 
-#misc,
-#highlights {
+
+#staffpicks
+{
     display: flex;
     flex-direction: column;
     background-color: rgb(236, 234, 221);
     margin: 10px;
     border-radius: 10px;
     height: 74vh;
+    width: min-content;
     text-align: center;
     padding: 10px;
 }
 
-#misc {
-    width: 25%
-}
 
-#highlights {
-    width: 45%;
-}
 
 .divtitle {
     justify-content: center;
     font-weight: bold;
     font-size: large;
     margin-bottom: 10px;
+    font-size: 14px;
 }
 /* --------------------------
 ---------STAFF PICKS---------
