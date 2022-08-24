@@ -4,7 +4,7 @@ body {
 
 
 
-#staffpicks
+#recentlyAdded
 {
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@ body {
 ---------STAFF PICKS---------
 -------------------------- */
 
-.staffPicksContainer {
+.recentlyAddedContainer {
 
     border-radius: 10px;
     max-height: 610px;
