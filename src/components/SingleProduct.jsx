@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./components_css/SingleProduct.css";
 
-const SingleProduct = ({ element }) => {
+const SingleProduct = ({ element, user }) => {
   return (
     <div className="single_product_container">
       <Link className="single_product" to={`/products/${element.id}`}>
@@ -12,7 +12,13 @@ const SingleProduct = ({ element }) => {
           <div className="artist">{element.artist}</div>
           <div className="price">${element.price}</div>
         </div>
-    </Link>
+      </Link>
+      {user.username === "Admin" ? (
+        <div>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      ) : null}
     </div>
   );
 };
