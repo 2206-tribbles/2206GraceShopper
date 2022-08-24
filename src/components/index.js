@@ -1,4 +1,5 @@
 export { default as Home } from "./Home";
+export { default as StaffPicks } from "./StaffPicks"
 export { default as Header } from "./Header";
 export { default as Footer } from "./Footer";
 export { default as Products } from "./Products";
