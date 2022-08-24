@@ -67,7 +67,10 @@ const Header = (props) => {
           <div className="loggedInAs">Browsing as Guest</div>
         )}
         {user.username === "Admin" ? (
-          <NavLink to="/AdminPage">Admin</NavLink>
+          <NavLink className="link" to="/AdminPage">Admin</NavLink>
+        ) : null }
+        {user.username === "Admin" ? (
+          <NavLink className="link" to="/AdminUsers">Users</NavLink>
         ) : null }
       </div>
       <div id="controls">

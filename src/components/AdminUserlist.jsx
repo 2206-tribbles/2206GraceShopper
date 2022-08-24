@@ -19,30 +19,24 @@ const AdminUsers = () => {
         }, []);
         console.log(allUsers, "line14")
       
-        // const displayProducts = allProducts.map((product, index) => {
-        //   const id = product.id;
-        //   console.log(id, "line33")
-        //   return (
-        //     <div>
-        //       <h4 className="adminTitle">Title: {product.title}</h4>
-        //       <p className="adminArtist">Artist: {product.artist}</p>
-        //       <p className="adminDescription">Description: {product.description}</p>
-        //       <p className="adminPrice">Price: {product.price}</p>
-        //       <p className="adminFormat">Format: {product.format}</p>
-        //       <p className="adminGenre">Genre: {product.genre}</p>
-        //       <p className="adminInventory">Inventory: {product.inventory}</p>
-        //       <p className="adminPhoto">Photo: {product.photo}</p>
-        //       <p className="adminReleaseDate">Release Date: {product.release_date}</p>
-        //       <p className="adminSpotify">Spotify: {product.spotif}</p>
-        //       <p className="adminStaffPick">Staff Pick: {product.staffpick}</p>
-        //       <p className="AdminId">Id: {product.id}</p>
-        //       <button>Edit</button><button onClick={async () => {
-        //        await destroyProduct(`${product.id}`)
-        //        alert(`Product ${product.id} was deleted`)
-        //       }}>Delete</button>
-        //     </div>
-        //   )
-        // })
+        const displayUsers = allUsers.map((user, index) => {
+          const id = user.id;
+          console.log(id, "line33")
+          return (
+            <div className="adminUsers">
+              <h4>First Name: {user.first_name}</h4>
+              <h4>Last Name: {user.last_name}</h4>
+              <h4>Email: {user.email}</h4>
+              <h4>Address: {user.address}</h4>
+              <h4>Username: {user.username}</h4>
+              <h4>Password: {user.password}</h4>
+              <h4>Id: {user.id}</h4>
+            </div>
+          )
+        })
+        return(
+          <div>{displayUsers}</div>
+        )
     }
  
 export default AdminUsers;

@@ -7,6 +7,7 @@ const {
   getUserById,
   destroyUser,
   loginUser,
+  getAllUsers,
 } = require("../../db");
 // /api/users/register
 usersRouter.post("/register", async (req, res, next) => {
@@ -157,5 +158,12 @@ usersRouter.get("/me", async (req, res, next) => {
     next(error);
   }
 });
-
+usersRouter.get("/", async (req, res, next) => {
+  try {
+    const users = await getAllUsers();
+    res.json(users);
+  } catch ({ name, message }) {
+    next({ name, message });
+  }
+});
 module.exports = usersRouter;
