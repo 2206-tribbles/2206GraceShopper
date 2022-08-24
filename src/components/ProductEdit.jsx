@@ -42,7 +42,6 @@ const ProductEdit = ({product}) => {
      <div>
 <button onClick={ async () => {
         setShowEdit(true)
-        console.log(showEdit, "line79")
       }}>
         Edit</button>
      {showEdit ? <div className="">
@@ -146,7 +145,8 @@ const ProductEdit = ({product}) => {
         <button
           className=""
           onClick={() => {
-            setShowEdit(false);
+              window.location.reload(false)
+              setShowEdit(false);
           }}
         >
           Cancel Edit

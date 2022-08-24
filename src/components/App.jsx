@@ -13,7 +13,8 @@ import {
   Checkout,
   Cart,
   AdminPage,
-  ProductEdit
+  ProductEdit,
+  AdminUsers
 } from "./index";
 import { getUserByToken, getCartByUserId, updateCart } from "../api_adapter";
 
@@ -148,6 +149,7 @@ const App = () => {
         <Route path="/login" element={<Login  setUser={setUser}/>} />
         <Route path="/register" element={<Register setUser={setUser}/>} />
         {user.username==="Admin" ? <Route path="/AdminPage" element={<AdminPage />} />: null}
+        {user.username==="Admin" ? <Route path="/AdminUsers" element={<AdminUsers/>}/>: null}
         <Route
           path="/checkout"
           element={<Checkout setCart={setCart} cart={cart} user={user} incrementQty={incrementQty} decrementQty={decrementQty}  deleteFromCart={deleteFromCart}/>}
