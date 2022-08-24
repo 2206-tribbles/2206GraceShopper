@@ -7,11 +7,10 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [loggedIn, setLoggedIn] = useState("");
   const navigate = useNavigate();
   const handleOnChange = (event) => {
     const changed = event.target.id;
-  
+
     if (changed === "username") {
       setUsername(event.target.value);
     } else {
@@ -23,20 +22,18 @@ const Login = (props) => {
       const user = { username, password };
       event.preventDefault();
       const result = await loginUser(user);
-      props.setUser(result.user);
-      console.log("THIS IS THE RESULT ", result);
       const token = result.token;
-      localStorage.setItem("token", token);
-      localStorage.setItem("username", username)
+      console.log("THIS IS THE RESULT ", result);
 
       if (token !== undefined) {
-        setLoggedIn("You are now logged in");
+        props.setUser(result.user);
+        localStorage.setItem("token", token);
         navigate("/");
       } else {
-        throw new Error("username or password is incorrect");
+        setErrorMessage(result.message);
       }
     } catch (err) {
-      setErrorMessage("Username or password is incorrect");
+      console.error(err);
     }
   };
   return (
@@ -79,7 +76,6 @@ const Login = (props) => {
             Login
           </button>
           <p className="errorMessage">{errorMessage}</p>
-          <p className="yourLoggedIn">{loggedIn}</p>
         </form>
       </div>
     </div>

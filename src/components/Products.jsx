@@ -5,7 +5,7 @@ import "./components_css/Products.css";
 import { useLocation } from "react-router-dom";
 // import { NavLink } from "react-router-dom";
 
-const Products = ({}) => {
+const Products = (props) => {
   const [allProducts, setAllProducts] = useState([]);
   const { search } = useLocation();
   const query = React.useMemo(() => new URLSearchParams(search),[search]);
@@ -36,7 +36,7 @@ const Products = ({}) => {
     <>
       <section className="products_gallery">
         {allProducts.map((element) => {
-          return <SingleProduct element={element} />;
+          return <SingleProduct element={element} user={props.user} />;
         })}
       </section>
     </>

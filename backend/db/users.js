@@ -47,6 +47,7 @@ async function loginUser({ username, password }) {
     return tempUser;
   } else {
     console.log("Error getting user!");
+    return null;
   }
 }
 
