@@ -11,8 +11,9 @@ import {
   Register,
   Checkout,
   Cart,
-  Admin,
+  AdminPage,
   ProductEdit,
+  AdminUsers,
 } from "./index";
 import { getUserByToken, getCartByUserId, updateCart } from "../api_adapter";
 
@@ -127,11 +128,11 @@ const App = () => {
   };
   return (
     <>
-      <Header cart={cart} />
+      <Header cart={cart}  user={user} setUser={setUser} setCart={setCart} setCartId={setCartId}/>
       <Routes>
         {/* <Route path="/" element={<Navigate replace to="/home" />} /> */}
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products" element={<Products user={user}/>} />
         <Route
           path="/products/:productId"
           element={
@@ -146,10 +147,13 @@ const App = () => {
         />
         <Route path="/login" element={<Login  setUser={setUser}/>} />
         <Route path="/register" element={<Register setUser={setUser}/>} />
+        {user.username==="Admin" ? <Route path="/AdminPage" element={<AdminPage />} />: null}
         <Route
           path="/checkout"
           element={<Checkout setCart={setCart} cart={cart} user={user} incrementQty={incrementQty} decrementQty={decrementQty}  deleteFromCart={deleteFromCart}/>}
         />
+        <Route path="/Admin" element={<Admin user={user} />} />
+        <Route path="/AdminUsers" element={<AdminUsers user={user}/>} />
         {/* <Route path="
             path="/profile"
             element={

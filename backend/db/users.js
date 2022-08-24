@@ -47,6 +47,7 @@ async function loginUser({ username, password }) {
     return tempUser;
   } else {
     console.log("Error getting user!");
+    return null;
   }
 }
 
@@ -126,6 +127,21 @@ async function updateUser({ id, ...fields }) {
   }
 }
 
+async function getAllUsers() {
+  try {
+    const { rows } = await client.query(
+      `
+          SELECT *
+          FROM Users;
+          `
+    );
+    return rows;
+  } catch (error) {
+    console.error("Error Retrieving Users", error);
+    throw error;
+  }
+}
+
 async function destroyUser(id) {
   await client.query(
     `
@@ -150,4 +166,5 @@ module.exports = {
   loginUser,
   updateUser,
   destroyUser,
+  getAllUsers,
 };

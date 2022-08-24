@@ -39,7 +39,7 @@ async function createTables() {
     ('Phelan','Oneil','vel.pede.blandit@icloud.couk','1704 Enim Rd.','DPete','abcdef'),
     ('Declan','Petersen','imperdiet.erat@icloud.org','188-821 Sed, Ave','Pouch','nightmare'),
     ('Tana','Kline','ante.dictum@yahoo.couk','662-532 Arcu Street','TheKline','a;sldkjf'),
-    ('Ad','Min','admin@gracelandshopper.com', '1000 Cool Drive', 'Admin','Password' ); 
+    ('Ad','Min','admin@gracelandshopper.com', '1000 Cool Drive', 'Admin','$2b$10$6njV7c1/.mlaT9DVhdYk2O/9/RjdFNMHPRitW7ySxzxxfOsE1fKOm'); 
     `);
 
     await client.query(`
@@ -88,10 +88,26 @@ async function createTables() {
       ('Underwater Moonlight', 'The Soft Boys', 'Underwater Moonlight is the second studio album by English rock band The Soft Boys, released on 28 June 1980 by record label Armageddon.',
       '06/28/1980', '25.00', '2', 'Vinyl', 'Alternative', '/pics/UnderwaterMoonlight.bmp', 'https://open.spotify.com/embed/album/4ENlMxVTUYIuMS4b0CVZyk?utm_source=generator', 'false'),
       ('Animals', 'Pink Floyd', 'Animals is the tenth studio album by the English rock band Pink Floyd, released on 21 January 1977[2] through Harvest and Columbia Records.',
-      '01/21/1977', '30.00', '66', 'Vinyl', 'Rock', '/pics/Animals.bmp', 'https://open.spotify.com/embed/album/3b4E89rxzZQ9zkhgKpj8N4?utm_source=generator', 'false');
-
-
-
+      '01/21/1977', '30.00', '66', 'Vinyl', 'Rock', '/pics/Animals.bmp', 'https://open.spotify.com/embed/album/3b4E89rxzZQ9zkhgKpj8N4?utm_source=generator', 'false'),
+      ('My Aim is True', 'Elvis Costello', 'My Aim Is True is the debut studio album by English singer-songwriter Elvis Costello, originally released in the United Kingdom on 22 July 1977 through Stiff Records.',
+      '07/22/1977', '25.00', '3', 'Vinyl', 'Rock', '/pics/MyAimIsTrue.bmp', 'https://open.spotify.com/embed/album/1aucGNKimhgARC7iO2xLt2?utm_source=generator', 'false'),
+      ('Strawberry Switchblade', 'Strawberry Switchblade', 'Strawberry Switchblade is the only studio album released by the Scottish new wave duo Strawberry Switchblade.',
+      '07/22/1977', '30.00', '1', 'Vinyl', 'Alternative', '/pics/StrawberrySwitchblade.bmp', 'https://open.spotify.com/embed/album/6ypn6HP6UuJCBSGRRCQLd6?utm_source=generator', 'false'),
+      ('More Songs About Buildings and Food', 'Talking Heads', 'More Songs About Buildings and Food is the second studio album by American rock band Talking Heads, released on July 14, 1978, by Sire Records.',
+      '07/14/1978', '10.00', '4', 'Cassette', 'Alternative', '/pics/MoreSongsAbout.bmp', 'https://open.spotify.com/embed/album/39jsLMRmrTpfdq2vE4TCUe?utm_source=generator', 'false'),
+      ('Pet Sounds', 'The Beach Boys', 'Pet Sounds is the 11th studio album by the American rock band the Beach Boys, released on May 16, 1966 by Capitol Records.',
+      '05/16/1966', '28.00', '3', 'Vinyl', 'Rock', '/pics/PetSounds.bmp', 'https://open.spotify.com/embed/album/6GphKx2QAPRoVGWE9D7ou8?utm_source=generator', 'false'),
+      ('The Pleasure Principle', 'Gary Numan', 'The Pleasure Principle is the debut solo studio album by English new wave musician Gary Numan, released on 7 September 1979 by Beggars Banquet Records.',
+      '09/07/1979', '12.00', '9', 'CD', 'Alternative', '/pics/ThePleasurePrinciple.bmp', 'https://open.spotify.com/embed/album/5xFlkqLDx3wbgqtvrez1n0?utm_source=generator', 'false'),
+      ('New Traditionalists', 'DEVO', 'New Traditionalists is the fourth studio album by the American new wave band Devo. It was originally released in August 1981, on the labels Warner Bros. and Virgin.',
+      '08/26/1981', '14.00', '2', 'Cassette', 'Alternative', '/pics/NewTraditionalists.bmp', 'https://open.spotify.com/embed/album/69RnQKuF0WHKl2NcaB8z7t?utm_source=generator', 'false'),
+      ('The Cars', 'The Cars', 'The Cars is the debut studio album by American rock band the Cars, released on June 6, 1978, by Elektra Records.',
+      '06/06/1978', '15.00', '4', 'Cassette', 'Rock', '/pics/TheCars.bmp', 'https://open.spotify.com/embed/album/4tJPWT4r4FSKwy784Qs1Fq?utm_source=generator', 'false'),
+      ('Through the Looking Glass', 'Siouxsie and the Banshees', 'Through the Looking Glass is the eighth studio album by English rock band Siouxsie and the Banshees.',
+      '03/02/1987', '19.00', '1', 'CD', 'Rock', '/pics/ThroughTheLookingGlass.bmp', 'https://open.spotify.com/embed/album/7kEqVGkLoruahp34YW16oe?utm_source=generator', 'false'),
+      ('Soul Mining', 'The The', 'Soul Mining is the debut album by British post-punk/synth-pop band the The (the 1981 album Burning Blue Soul was originally released by the band’s frontman Matt Johnson as a solo album, but later reissues credited it to the The).',
+      '10/21/1983', '24.00', '6', 'CD', 'Rock', '/pics/SoulMining.bmp', 'https://open.spotify.com/embed/album/0I7bOh7mYGUEyqCFHU9R0A?utm_source=generator', 'false');
+    
 
       `);
 

@@ -6,6 +6,7 @@ const {
   createUser,
   getUserById,
   destroyUser,
+  loginUser,
 } = require("../../db");
 // /api/users/register
 usersRouter.post("/register", async (req, res, next) => {
@@ -70,33 +71,41 @@ usersRouter.post("/login", async (req, res, next) => {
       message: "Please supply both a username and password",
     });
   }
-  try {
-    const user = await getUserByUsername(username);
 
-    if (user) {
-      const jwtToken = jwt.sign(
-        {
-          id: user.id,
-          username: user.username,
-        },
-        process.env.JWT_SECRET,
-        {
-          expiresIn: "1w",
-        }
-      );
-      console.log(jwtToken);
-      res.send({
-        message: "you're logged in!",
-        token: jwtToken,
-        user,
+  try {
+    const _user = await getUserByUsername(username);
+    if (!_user) {
+      next({
+        error: "Username does not exist.  Please Register First",
+        message: "Username does not exist. Please Register First",
+        name: "IncorrectCredentialsError",
       });
-    } else {
+    }
+    // Make sure password correct
+    const user = await loginUser({ username, password });
+    if (!user) {
       next({
         error: "Incorrect username or password",
         message: "Username or password is incorrect",
         name: "IncorrectCredentialsError",
       });
     }
+    const jwtToken = jwt.sign(
+      {
+        id: user.id,
+        username: user.username,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1w",
+      }
+    );
+    console.log(jwtToken);
+    res.send({
+      message: "you're logged in!",
+      token: jwtToken,
+      user,
+    });
   } catch (error) {
     console.log(error);
     next(error);
