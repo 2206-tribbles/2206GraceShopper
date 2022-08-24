@@ -8,12 +8,10 @@ const ProductDetails = (props) => {
   const cart = props.cart;
   const params = useParams();
   const productId = params.productId;
-  console.log("product Id", productId);
   const [orderQuantity, setOrderQuantity] = useState(1);
   const [product, setProduct] = useState({});
   //get product
   useEffect(() => {
-    console.log("grabbing single product details...");
     const _product = async () => {
       const singleProduct = await getProductById(productId);
       setProduct(singleProduct);

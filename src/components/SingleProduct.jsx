@@ -16,7 +16,7 @@ const SingleProduct = ({ element, user }) => {
       {user.username === "Admin" ? (
         <div>
           <button>Edit</button>
-          <button>Delete</button>
+          <button onClick={() => deleteProduct(ProductId)}>Delete</button>
         </div>
       ) : null}
     </div>
