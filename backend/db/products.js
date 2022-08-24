@@ -63,7 +63,7 @@ async function updateProduct({ id, ...fields }) {
       `
              UPDATE products
              SET ${setString}
-             WHERE id=${id}
+             WHERE id=${id};
              RETURNING *;
              `,
       Object.values(fields)
@@ -101,7 +101,7 @@ async function getAllProducts() {
       `
           SELECT *
           FROM products;
-          `
+          `,
     );
     return rows;
   } catch (error) {
