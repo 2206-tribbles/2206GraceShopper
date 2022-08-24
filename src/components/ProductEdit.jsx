@@ -1,10 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { BrowserRouter, Route, Link, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { updateProduct } from "../api_adapter";
 
 
-const ProductEdit = () => {
-    const [showEdit, setShowEdit] = useState(false)
+const ProductEdit = ({product}) => {
+    const [showEdit, setShowEdit] = useState(false);
     const [allProducts, setAllProducts] = useState([]);
     const [title, setTitle] = useState("");
     const [artist, setArtist] = useState("");
@@ -18,25 +19,33 @@ const ProductEdit = () => {
     const [spotif, setSpotif] = useState("");
     const [staffpick, setStaffpick] = useState(false);
 
-    const displayProducts = allProducts.map((product, index) => {
-        const id = product.id;
+    const handleSubmit2 = async (event) => {
+        event.preventDefault();
+       await updateProduct(
+          product.id,
+          title,
+          artist,
+          description,
+          release_date,
+          price,
+          inventory,
+          format,
+          genre,
+          photo,
+          spotif,
+          staffpick,
+        )
+        setShowEdit(false);
+      }
+        console.log(product, "line40")
   return (
-    <div>
-    <button onClick={ async () => {
+     <div>
+<button onClick={ async () => {
         setShowEdit(true)
+        console.log(showEdit, "line79")
       }}>
         Edit</button>
-      <button
-        onClick={async () => {
-          await destroyProduct(`${product.id}`);
-          alert(`Product ${product.id} was deleted`);
-          window.location.reload(false)
-        }}
-      >
-        Delete
-      </button>
-      {showEdit ? (
-      <div className="">
+     {showEdit ? <div className="">
         <h1>Edit Album</h1>
         <form className="" onSubmit={handleSubmit2}>
           <h2>Title:</h2>
@@ -137,14 +146,13 @@ const ProductEdit = () => {
         <button
           className=""
           onClick={() => {
-            setShowCreate(false);
+            setShowEdit(false);
           }}
         >
           Cancel Edit
         </button>
-      </div>
-    ) : null}
+      </div> :null }
     </div>
-  )})};
+  )};
 
 export default ProductEdit;

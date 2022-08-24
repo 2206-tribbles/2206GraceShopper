@@ -72,8 +72,9 @@ productsRouter.post("/Admin", async (req, res, next) => {
 });
 
 productsRouter.patch("/:productId", async (req, res, next) => {
+  console.log("line75 in .patch")
   const id = req.params.productId;
-  console.log("id: ", id);
+  console.log("id: line77", id);
   const {
     title,
     artist,
@@ -88,9 +89,10 @@ productsRouter.patch("/:productId", async (req, res, next) => {
     staffpick,
   } = req.body;
   console.log("req.body: ", req.body);
-  const _product = await getProductById({id} );
+  const _product = await getProductById( id );
   console.log("_product: ", _product);
   const updateFields = {};
+  updateFields.id =id;
   if (title) {
     updateFields.title = title;
   }
@@ -126,6 +128,7 @@ productsRouter.patch("/:productId", async (req, res, next) => {
   }
   try {
     const updatedProduct = await updateProduct(updateFields);
+    console.log(updatedProduct, "line130")
     res.send(updatedProduct);
   } catch (error) {
     next();

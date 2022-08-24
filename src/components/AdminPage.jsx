@@ -14,7 +14,7 @@ import {
 } from "../api_adapter";
 
 const AdminPage = () => {
-  const [showEdit, setShowEdit] = useState(false)
+  
   const [allProducts, setAllProducts] = useState([]);
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
@@ -39,27 +39,27 @@ const AdminPage = () => {
   }, []);
   console.log(allProducts, "line29");
 
-  const handleSubmit2 = async (event) => {
-    event.preventDefault();
-   await updateProduct(
-      title,
-      artist,
-      description,
-      release_date,
-      price,
-      inventory,
-      format,
-      genre,
-      photo,
-      spotif,
-      staffpick,
-    )
-    setShowEdit(false);
-  }
+  // const handleSubmit2 = async (event) => {
+  //   event.preventDefault();
+  //  await updateProduct(
+  //     title,
+  //     artist,
+  //     description,
+  //     release_date,
+  //     price,
+  //     inventory,
+  //     format,
+  //     genre,
+  //     photo,
+  //     spotif,
+  //     staffpick,
+  //   )
+  //   setShowEdit(false);
+  // }
 
   const displayProducts = allProducts.map((product, index) => {
     const id = product.id;
-    
+    console.log(product, "line 62")
     return (
       <div>
         <h4 className="adminTitle">Title: {product.title}</h4>
@@ -74,8 +74,22 @@ const AdminPage = () => {
         <p className="adminSpotify">Spotify: {product.spotif}</p>
         <p className="adminStaffPick">Staff Pick: {product.staffpick}</p>
         <p className="AdminId">Id: {product.id}</p>
-        <ProductEdit/>
-
+        {/* <button onClick={ async () => {
+        setShowEdit(true)
+        console.log(showEdit, "line79")
+      }}>
+        Edit</button> */}
+      <button
+        onClick={async () => {
+          await destroyProduct(`${product.id}`);
+          alert(`Product ${product.id} was deleted`);
+          window.location.reload(false)
+        }}
+      >
+        Delete
+      </button>
+       <ProductEdit product={product} /> 
+        
         
         {/* <button onClick={ async () => {
           setShowEdit(true)
@@ -203,7 +217,7 @@ const AdminPage = () => {
     );
   });
   // console.log(products, "line 33")
-
+// create form
   const handleOnChange = (event) => {
     const changed = event.target.id;
     console.log("This is Change: ", changed);
