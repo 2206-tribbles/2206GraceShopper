@@ -1,13 +1,10 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { BrowserRouter, Route, Link, useParams } from "react-router-dom";
-
 import { NavLink } from "react-router-dom";
-
-
-import { createProduct, getProductById, getCartByUserId, createCart, getAllProducts } from "../api_adapter";
+import { createProduct, getProductById, getCartByUserId, createCart, getAllProducts, destroyProduct } from "../api_adapter";
 
 const Admin = () => {
-  const [allProducts, setAllProducts] =useState("")
+  const [allProducts, setAllProducts] =useState([])
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [description, setDescription] = useState("");
@@ -23,14 +20,39 @@ const Admin = () => {
   useEffect(() => {
     getAllProducts()
       .then((products) => {
-        getAllProducts(products);
-      })
+        setAllProducts(products);
+      })  
       .catch((error) => {
         console.error(error, "Something broke");
       });
   }, []);
+  console.log(allProducts, "line29")
 
-  // console.log(products, "line 33")
+  const displayProducts = allProducts.map((product, index) => {
+    const id = product.id;
+    console.log(id, "line33")
+    return (
+      <div>
+        <h4 className="adminTitle">Title: {product.title}</h4>
+        <p className="adminArtist">Artist: {product.artist}</p>
+        <p className="adminDescription">Description: {product.description}</p>
+        <p className="adminPrice">Price: {product.price}</p>
+        <p className="adminFormat">Format: {product.format}</p>
+        <p className="adminGenre">Genre: {product.genre}</p>
+        <p className="adminInventory">Inventory: {product.inventory}</p>
+        <p className="adminPhoto">Photo: {product.photo}</p>
+        <p className="adminReleaseDate">Release Date: {product.release_date}</p>
+        <p className="adminSpotify">Spotify: {product.spotif}</p>
+        <p className="adminStaffPick">Staff Pick: {product.staffpick}</p>
+        <p className="AdminId">Id: {product.id}</p>
+        <button>Edit</button><button onClick={async () => {
+         await destroyProduct(`${product.id}`)
+         alert(`Product ${product.id} was deleted`)
+        }}>Delete</button>
+      </div>
+    )
+  })
+
 
 
   
@@ -224,6 +246,7 @@ return (<div>
       </div>
       <button type="submit">CREATE NEW PRODUCT</button>
     </form>
+    <div className="adminProducts">{displayProducts}</div>
   </div>
   
 </div>
