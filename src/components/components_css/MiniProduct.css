@@ -20,14 +20,14 @@
   flex-direction: column;
   text-decoration: none;
   align-items: center;
-  width: 200px;
+  width: 150px;
   height: 270px;
   border-radius: 15px;
   padding-left: 25px;
   padding-right: 25px;
   justify-content: center;
   text-align: center;
-  box-shadow: 10px 10px 10px rgb(0, 0, 0);
+  margin: 0px;
   background-color: rgb(156, 64, 53);
 }
 
