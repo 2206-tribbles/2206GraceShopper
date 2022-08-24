@@ -14,7 +14,7 @@ const RecentlyAdded = () => {
             const allProducts = await getAllProducts();
             const products = allProducts.filter(
                 (product) =>
-                    (product.id > allProducts.length - 9)
+                    (product.id > allProducts.length - 8)
             );
             setAllProducts(products);
         };
