@@ -206,8 +206,6 @@ export async function createProduct({
         }),
       });
       const result = await response.json();
-      console.log("result: ", result);
-      console.log("line 23 this is response:", response);
       return result;
     } catch (error) {
       throw error;
@@ -219,6 +217,37 @@ export async function createProduct({
       const response = await fetch(`${BASE}/users`)
       const data = await response.json();
       return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+  export async function updateProduct(productId, title, artist, description, release_date, price, inventory, format, genre, photo, spotif, staffpick) {
+    try {
+      console.log(productId, "line228")
+      const response = await fetch(`${BASE}/products/${productId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          artist: artist,
+          description: description,
+          release_date: release_date,
+          price: price,
+          inventory: inventory,
+          format: format,
+          genre: genre,
+          photo: photo,
+          spotif: spotif,
+          staffpick: staffpick
+        }),
+      });console.log("line246")
+      const result = await response.json();
+      console.log("line248: ", result);
+      return response;
     } catch (error) {
       throw error;
     }

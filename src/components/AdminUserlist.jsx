@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import { BrowserRouter, Route, Link, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { getAllUsers } from "../api_adapter";
+import { ProductEdit } from "./index";
 
 
 const AdminUsers = () => {

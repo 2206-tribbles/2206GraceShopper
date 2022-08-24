@@ -45,9 +45,9 @@ async function createProduct({
   }
 }
 
-async function updateProduct({ id, ...fields }) {
+async function updateProduct( {id, ...fields} ) {
   // build the set string
-  console.log(id, fields, "line27");
+  console.log(id, fields, "line27 id and fields");
   const setString = Object.keys(fields)
     .map((key, index) => `"${key}"=$${index + 1}`)
     .join(", ");
@@ -55,7 +55,7 @@ async function updateProduct({ id, ...fields }) {
   // return early if this is called without fields
   if (setString.length === 0) {
     return;
-  }
+  } console.log(setString, "setstring line 58")
   try {
     const {
       rows: [product],
@@ -101,7 +101,7 @@ async function getAllProducts() {
       `
           SELECT *
           FROM products;
-          `
+          `,
     );
     return rows;
   } catch (error) {
