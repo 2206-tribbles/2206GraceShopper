@@ -6,6 +6,7 @@ import {
   Footer,
   Products,
   SingleProduct,
+  MiniProduct,
   ProductDetails,
   Login,
   Register,

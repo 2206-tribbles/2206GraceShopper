@@ -12,11 +12,12 @@ body {
 #misc,
 #highlights {
     display: flex;
+    flex-direction: column;
     background-color: rgb(236, 234, 221);
     margin: 10px;
     border-radius: 10px;
     height: 74vh;
-    justify-content: center;
+    text-align: center;
     padding: 10px;
 }
 
@@ -33,4 +34,15 @@ body {
     justify-content: center;
     font-weight: bold;
     font-size: large;
+    margin-bottom: 10px;
+}
+/* --------------------------
+---------STAFF PICKS---------
+-------------------------- */
+
+.staffPicksContainer {
+
+    border-radius: 10px;
+    max-height: 610px;
+    overflow-y:scroll;
 }
