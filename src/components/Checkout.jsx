@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 import { MyCart } from "./index";
 import { checkoutUser } from "../api_adapter";
 
+
 const Checkout = (props) => {
   const cart = props.cart;
   const user = props.user;
-  const setCart = props.setCart;
-
-  console.log("user??", user);
+  const setCart = props.setCart; 
+  const [shipCost, setShipCost] = useState(0)
   const [userInfo, setUserInfo] = useState({
     first_name: user.first_name,
     last_name: user.last_name,
@@ -37,15 +37,20 @@ const Checkout = (props) => {
       });
     }
   }, [user]);
-
-  // // calculate and render subtotal
-  const calculateSubtotal = () => {
-    let totalPrice = 0;
-
-    cart.forEach((product) => {
-      totalPrice += product.price * product.quantity;
-    });
-    return totalPrice;
+  
+  
+  const calculateShipping = () => {
+    const radioNodes = document.getElementsByName("shipping");
+    let cost = 0;
+    for (let i = 0; i < radioNodes.length; i++){
+      if (radioNodes[i].checked) {
+        cost = parseFloat(radioNodes[i].value)
+      }
+      console.log("SHIPPING COST IS:", cost)
+    }
+    console.log("THIS IS THE COST FOR RADIO BUTTON:", cost)
+    setShipCost(cost)
+    return (shipCost); 
   };
 
   const checkoutCart = async (event) => {
@@ -60,7 +65,7 @@ const Checkout = (props) => {
     setCart([]);
     localStorage.setItem("cart", JSON.stringify([]));
   };
-
+  
   return (
     <div className="checkoutContainer">
       <div className="userInfoContainer">
@@ -201,15 +206,15 @@ const Checkout = (props) => {
                <div><h3>Shipping Prices</h3></div>
                <form><div className="catShipping">
                <div><label className="shippingLabel">
-                    <input type="radio" defaultChecked={true} name="sameadr" />{" "}
+                    <input type="radio" value = "0" defaultChecked={true} name="shipping" onClick={calculateShipping} />{" "}
                     Standard:  <b>Free</b>
                   </label></div>
                   <div><label className="shippingLabel">
-                    <input type="radio" defaultChecked={true} name="sameadr" />{" "}
+                    <input type="radio" value="12.95" defaultChecked={false} name="shipping" onClick={calculateShipping} />{" "}
                     2-3 Day:  <b>$12.95</b>
                   </label></div>
                   <div><label className="shippingLabel">
-                    <input type="radio" defaultChecked={true} name="sameadr" />{" "}
+                    <input type="radio" value = "27.50" defaultChecked={false} name="shipping" onClick={calculateShipping} />{" "}
                     Overnight:  <b>$27.50</b>
                   </label></div>
                 </div></form>
@@ -223,6 +228,7 @@ const Checkout = (props) => {
       </div>
       <div className="cartContainer">
         <MyCart
+          shipCost={shipCost}
           cart={cart}
           incrementQty={props.incrementQty}
           decrementQty={props.decrementQty}
