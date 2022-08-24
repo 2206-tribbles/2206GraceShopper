@@ -1,12 +1,11 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { BrowserRouter, Route, Link, useParams } from "react-router-dom";
-
 import { NavLink } from "react-router-dom";
 
 
 import { createProduct, getProductById, getCartByUserId, createCart, getAllProducts } from "../api_adapter";
 
-const AdminPage = () => {
+const ProductsMod = () => {
   const [allProducts, setAllProducts] =useState("")
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
@@ -230,4 +229,4 @@ return (<div>
 );
 };
 
-export default AdminPage;
+export default ProductsMod
