@@ -9,13 +9,13 @@ export { default as SingleProduct } from "./SingleProduct";
 export { default as MiniProduct } from "./MiniProduct";
 export { default as ProductDetails } from "./ProductDetails";
 export { default as App } from "./App";
-export { default as MyCart} from "./MyCart"
+export { default as MyCart } from "./MyCart";
 export { default as Login } from "./Login";
 export { default as Register } from "./Register";
 export { default as AdminPage } from "./AdminPage";
-export { default as ContactForm} from "./ContactForm";
+export { default as ContactForm } from "./ContactForm";
 export { default as SingleProductEdit } from "./SingleProductEdit";
 export { default as ProductEdit } from "./ProductEdit";
 export { default as Checkout } from "./Checkout";
 export { default as AdminUsers } from "./AdminUserlist";
-export { default as ProductDetailsEdit } from "./ProductDetailsEdit";
+// export { default as ProductDetailsEdit } from "./ProductDetailsEdit";
