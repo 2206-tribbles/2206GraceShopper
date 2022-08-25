@@ -9,8 +9,9 @@
     "server": "nodemon index.js",
     "seed": "node backend/db/seed.js",
     "start": "node index.js",
-    "start:dev": "react-scripts start"
+    "start:dev": "nodemon index.js"
   },
+
   "devDependencies": {
     "eslint": "^8.2.0",
     "eslint-plugin-jest": "^25.2.4",
