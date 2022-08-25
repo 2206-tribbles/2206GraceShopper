@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { BrowserRouter, Route, Link, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { ProductEdit } from "./index";
 import "./components_css/AdminPage.css";
 import { SingleProductEdit, ProductEdit } from "./index";
 

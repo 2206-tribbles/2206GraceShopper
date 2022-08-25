@@ -9,7 +9,7 @@ import {
   destroyProduct,
   updateProduct,
 } from "../api_adapter";
-import { ProductDetailsEdit, SingleProductEdit } from "./index";
+import {  SingleProductEdit } from "./index";
 
 const SingleProduct = (props) => {
   const { element, user, setAllProducts, allProducts } = props;
@@ -24,7 +24,7 @@ const SingleProduct = (props) => {
           <div className="price">${element.price}</div>
         </div>
       </Link>
-      {user.username === "Admin" ? (
+      {/* {user.username === "Admin" ? (
         <div>
        
           <button
@@ -41,7 +41,7 @@ const SingleProduct = (props) => {
           <button><Link to="/ProductDetailsEdit">Edit</Link></button>
           <ProductDetailsEdit product={product} /> 
         </div>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };

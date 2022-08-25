@@ -16,7 +16,6 @@ import {
   AdminPage,
   ProductEdit,
   AdminUsers,
-  ProductDetailsEdit,
 } from "./index";
 import { getUserByToken, getCartByUserId, updateCart } from "../api_adapter";
 
@@ -142,7 +141,7 @@ const App = () => {
         {/* <Route path="/" element={<Navigate replace to="/home" />} /> */}
         <Route path="/" element={<Home />} />
         <Route path="/ContactForm" element={<ContactForm />} />
-        <Route path="/ProductDetailsEdit" element={<ProductDetailsEdit />} />
+        {/* <Route path="/ProductDetailsEdit" element={<ProductDetailsEdit />} /> */}
         <Route path="/products" element={<Products user={user} />} />
         <Route
           path="/products/:productId"
