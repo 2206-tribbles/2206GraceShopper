@@ -1,5 +1,3 @@
-const client = new Client(process.env.DATABASE_URL || 'postgres://localhost:5432/graceShopper-dev');
-
 
 module.exports = {
     ...require('./users'),

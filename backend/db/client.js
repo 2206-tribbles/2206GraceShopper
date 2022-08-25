@@ -20,5 +20,4 @@ if (process.env.CI) {
   client = new Client(DB_URL);
 }
 
-client.connect();
 module.exports = client;
