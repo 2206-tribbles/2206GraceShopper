@@ -37,7 +37,7 @@ const ProductEdit = ({product}) => {
         )
         setShowEdit(false);
       }
-        console.log(product, "line40")
+      
   return (
      <div>
 <button onClick={ async () => {

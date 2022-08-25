@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import "./components_css/Checkout.css";
 import React, { useEffect, useState } from "react";
 import { MyCart } from "./index";
@@ -46,9 +46,7 @@ const Checkout = (props) => {
       if (radioNodes[i].checked) {
         cost = parseFloat(radioNodes[i].value)
       }
-      console.log("SHIPPING COST IS:", cost)
     }
-    console.log("THIS IS THE COST FOR RADIO BUTTON:", cost)
     setShipCost(cost)
     return (shipCost); 
   };
@@ -62,8 +60,10 @@ const Checkout = (props) => {
       cart,
     });
     // Clear out cart
+    setShipCost(0)
     setCart([]);
     localStorage.setItem("cart", JSON.stringify([]));
+    alert('You Order Has Been Processed.  A Receipt Has Been Sent to your Email Address.  Thank You For Shopping With Graceland Shoppers!!');
   };
   
   return (

@@ -18,31 +18,6 @@ const ProductDetails = (props) => {
     };
     _product();
   }, [productId]);
-  //changing quantity
-
-  // function subQuantity() {
-  //   btnAdd.addEventListener("click", (event) => {
-  //     event.preventDefault();
-  //     const currentValue = Number(inputField.value);
-  //     inputField.value = currentValue + 1;
-  //   });
-  // }
-  // function addQuantity() {
-  //   btnSubtract.addEventListener("click", (event) => {
-  //     event.preventDefault();
-  //     const currentValue = Number(inputField.value);
-  //     inputField.value = currentValue - 1;
-  //   });
-  // }
-  // function buttonHandler(userId) {
-  //   const cartId = getCartByUserId(userId);
-
-  //   if (cartId === undefined) {
-  //     createCart(userId);
-  //   }
-  //   console.log("cartId: ", cartId);
-  //   return cartId;
-  // }
 
   return (
     <div className="page">
@@ -92,7 +67,7 @@ const ProductDetails = (props) => {
         incrementQty={props.incrementQty}
         decrementQty={props.decrementQty}
         deleteFromCart={props.deleteFromCart}
-      />
+      /> 
     </div>
   );
 };
