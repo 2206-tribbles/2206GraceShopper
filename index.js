@@ -23,7 +23,7 @@ server.use((req, res, next) => {
 
 const { client } = require('./backend/db');
 
-const PORT = process.env.PORT || 5432;
+const PORT = process.env.PORT || 3005;
 
 
 
