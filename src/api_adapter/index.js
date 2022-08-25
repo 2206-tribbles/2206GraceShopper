@@ -1,4 +1,4 @@
-const BASE = "http://localhost:3005/api"; //Port to talk to Backend Server
+const BASE = "https://agile-falls-71270.herokuapp.com/api"; //Port to talk to Backend Server
 
 export async function registerUser(userObj) {
   try {
