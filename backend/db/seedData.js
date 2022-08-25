@@ -2,6 +2,7 @@ const client = require("./client");
 
 async function dropTables() {
   try {
+    client.connect();
     console.log("Dropping All Tables...");
     await client.query(`
     DROP TABLE IF EXISTS reviews;
