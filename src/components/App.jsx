@@ -11,10 +11,12 @@ import {
   Login,
   Register,
   Checkout,
+  ContactForm,
   Cart,
   AdminPage,
   ProductEdit,
-  AdminUsers
+  AdminUsers,
+  ProductDetailsEdit,
 } from "./index";
 import { getUserByToken, getCartByUserId, updateCart } from "../api_adapter";
 
@@ -129,11 +131,19 @@ const App = () => {
   };
   return (
     <>
-      <Header cart={cart}  user={user} setUser={setUser} setCart={setCart} setCartId={setCartId}/>
+      <Header
+        cart={cart}
+        user={user}
+        setUser={setUser}
+        setCart={setCart}
+        setCartId={setCartId}
+      />
       <Routes>
         {/* <Route path="/" element={<Navigate replace to="/home" />} /> */}
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products user={user}/>} />
+        <Route path="/ContactForm" element={<ContactForm />} />
+        <Route path="/ProductDetailsEdit" element={<ProductDetailsEdit />} />
+        <Route path="/products" element={<Products user={user} />} />
         <Route
           path="/products/:productId"
           element={
@@ -146,15 +156,28 @@ const App = () => {
             />
           }
         />
-        <Route path="/login" element={<Login  setUser={setUser}/>} />
-        <Route path="/register" element={<Register setUser={setUser}/>} />
-        {user.username==="Admin" ? <Route path="/AdminPage" element={<AdminPage />} />: null}
-        {user.username==="Admin" ? <Route path="/AdminUsers" element={<AdminUsers/>}/>: null}
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/register" element={<Register setUser={setUser} />} />
+        {user.username === "Admin" ? (
+          <Route path="/AdminPage" element={<AdminPage />} />
+        ) : null}
+        {user.username === "Admin" ? (
+          <Route path="/AdminUsers" element={<AdminUsers />} />
+        ) : null}
         <Route
           path="/checkout"
-          element={<Checkout setCart={setCart} cart={cart} user={user} incrementQty={incrementQty} decrementQty={decrementQty}  deleteFromCart={deleteFromCart}/>}
+          element={
+            <Checkout
+              setCart={setCart}
+              cart={cart}
+              user={user}
+              incrementQty={incrementQty}
+              decrementQty={decrementQty}
+              deleteFromCart={deleteFromCart}
+            />
+          }
         />
-        
+
         {/* <Route path="
             path="/profile"
             element={
@@ -174,17 +197,3 @@ const App = () => {
   );
 };
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-

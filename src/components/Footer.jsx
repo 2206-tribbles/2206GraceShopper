@@ -9,7 +9,7 @@ const Footer = () => {
         <footer id="footer">
             <div id="footerlinks">              
                 <NavLink to="/ContactForm" className="link">Contact us</NavLink>
-                <ContactForm></ContactForm>
+        
             </div>
         </footer>
     );
