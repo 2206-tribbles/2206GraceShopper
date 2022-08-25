@@ -24,7 +24,7 @@ const SingleProduct = (props) => {
           <div className="price">${element.price}</div>
         </div>
       </Link>
-      {user.username === "Admin" ? (
+      {/* {user.username === "Admin" ? (
         <div>
        
           <button
@@ -39,9 +39,9 @@ const SingleProduct = (props) => {
             Delete
           </button>
           <button><Link to="/ProductDetailsEdit">Edit</Link></button>
-          {/* <ProductDetailsEdit product={product} />  */}
+          <ProductDetailsEdit product={product} /> 
         </div>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
