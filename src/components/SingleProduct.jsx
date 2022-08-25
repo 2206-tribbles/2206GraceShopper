@@ -9,7 +9,7 @@ import {
   destroyProduct,
   updateProduct,
 } from "../api_adapter";
-import { SingleProductEdit } from "./index";
+import { ProductDetailsEdit, SingleProductEdit } from "./index";
 
 const SingleProduct = (props) => {
   const { element, user, setAllProducts, allProducts } = props;
@@ -38,7 +38,8 @@ const SingleProduct = (props) => {
           >
             Delete
           </button>
-          <SingleProductEdit product={product} /> 
+          <button><Link to="/ProductDetailsEdit">Edit</Link></button>
+          {/* <ProductDetailsEdit product={product} />  */}
         </div>
       ) : null}
     </div>
