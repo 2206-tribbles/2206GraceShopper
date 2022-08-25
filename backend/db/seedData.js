@@ -106,8 +106,17 @@ async function createTables() {
       ('Through the Looking Glass', 'Siouxsie and the Banshees', 'Through the Looking Glass is the eighth studio album by English rock band Siouxsie and the Banshees.',
       '03/02/1987', '19.00', '1', 'CD', 'Rock', '/pics/ThroughTheLookingGlass.bmp', 'https://open.spotify.com/embed/album/7kEqVGkLoruahp34YW16oe?utm_source=generator', 'false'),
       ('Soul Mining', 'The The', 'Soul Mining is the debut album by British post-punk/synth-pop band the The (the 1981 album Burning Blue Soul was originally released by the band’s frontman Matt Johnson as a solo album, but later reissues credited it to the The).',
-      '10/21/1983', '24.00', '6', 'CD', 'Rock', '/pics/SoulMining.bmp', 'https://open.spotify.com/embed/album/0I7bOh7mYGUEyqCFHU9R0A?utm_source=generator', 'false');
-    
+      '10/21/1983', '24.00', '6', 'CD', 'Rock', '/pics/SoulMining.bmp', 'https://open.spotify.com/embed/album/0I7bOh7mYGUEyqCFHU9R0A?utm_source=generator', 'false'),
+      ('Parallel Lines', 'Blondie', 'Parallel Lines is the third studio album by American rock band Blondie, released on September 23, 1978, by Chrysalis Records to international commercial success.',
+      '09/23/1978', '25.00', '4', 'Vinyl', 'Rock', '/pics/ParallelLines.bmp', 'https://open.spotify.com/embed/album/4M6s2jbhKWEcOdXZ8WiHts?utm_source=generator', 'false'),
+      ('Talking Heads: 77', 'Talking Heads', 'Talking Heads: 77 is the debut studio album by American rock band Talking Heads. It was recorded in April 1977 at New York’s Sundragon Studios and released on September 16 of that year by Sire Records.',
+      '09/16/1977', '32.00', '7', 'Vinyl', 'Alternative', '/pics/TalkingHeads77.bmp', 'https://open.spotify.com/embed/album/5eqcF7pWzHgWpGdEmHgeSN?utm_source=generator', 'false'),
+      ('Marquee Moon', 'Television', 'Marquee Moon is the debut album by American rock band Television. It was released on February 8, 1977, by Elektra Records.).',
+      '02/08/1977', '24.00', '2', 'CD', 'Alternative', '/pics/MarqueeMoon.bmp', 'https://open.spotify.com/embed/album/630o1rKTDsLeIPreOY1jqP?utm_source=generator', 'false'),
+      ('Dare!', 'The Human League', 'Dare (released as Dare! in the United States) is the third studio album by English synth-pop band The Human League, first released in the United Kingdom in October 1981 then subsequently in the US in mid-1982.',
+      '10/16/1981', '13.00', '2', 'Cassette', 'Alternative', '/pics/Dare.bmp', 'https://open.spotify.com/embed/album/3ls7tE9D2SIvjTmRuEtsQY?utm_source=generator', 'false');
+
+      
 
       `);
 

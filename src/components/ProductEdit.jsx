@@ -138,14 +138,15 @@ const ProductEdit = ({product}) => {
          placeholder={`${product.staffpick}`}
          ></input>
           
-          <button className="" type="submit">
+          <button className="" type="submit" onClick={() => {
+            window.location.reload(false)
+          }}>
             Submit
           </button>
         </form>
         <button
           className=""
           onClick={() => {
-              window.location.reload(false)
               setShowEdit(false);
           }}
         >
