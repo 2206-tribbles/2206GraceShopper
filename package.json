@@ -9,7 +9,8 @@
     "server": "nodemon index.js",
     "seed": "node backend/db/seed.js",
     "start": "node index.js",
-    "start:dev": "react-scripts start"
+    "start:dev": "react-scripts start",
+    "client:build": "react-scripts build"
   },
 
   
