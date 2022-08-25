@@ -1,4 +1,35 @@
-.adminProducts{
+.adminBody{
     margin: 10px;
     padding: 10px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.allProducts {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.newProductForm {
+    background-color: rgb(236, 234, 221);
+    border-radius: 15px;
+    margin: 25px;
+    width: 400px;
+    padding: 25px;
+    padding-top: 15px;
+    text-align: left;
+    box-shadow: 10px 10px 10px rgb(0, 0, 0);
+}
+
+.editForm {
+    background-color: rgb(236, 234, 221);
+    border-radius: 15px;
+    margin: 25px;
+    width: 400px;
+    padding: 25px;
+    padding-top: 15px;
+    text-align: left;
+    box-shadow: 10px 10px 10px rgb(0, 0, 0);
 }

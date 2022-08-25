@@ -1,7 +1,10 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { BrowserRouter, Route, Link, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { ProductEdit } from "./index";
+import "./components_css/AdminPage.css";
 import { SingleProductEdit, ProductEdit } from "./index";
+
 
 import {
   createProduct,
@@ -14,7 +17,7 @@ import {
 } from "../api_adapter";
 
 const AdminPage = () => {
-  
+
   const [allProducts, setAllProducts] = useState([]);
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
@@ -59,9 +62,8 @@ const AdminPage = () => {
 
   const displayProducts = allProducts.map((product, index) => {
     const id = product.id;
-    console.log(product, "line 62")
     return (
-      <div>
+      <div className="editForm">
         <h4 className="adminTitle">Title: {product.title}</h4>
         <p className="adminArtist">Artist: {product.artist}</p>
         <p className="adminDescription">Description: {product.description}</p>
@@ -74,27 +76,6 @@ const AdminPage = () => {
         <p className="adminSpotify">Spotify: {product.spotif}</p>
         <p className="adminStaffPick">Staff Pick: {product.staffpick}</p>
         <p className="AdminId">Id: {product.id}</p>
-        {/* <button onClick={ async () => {
-        setShowEdit(true)
-        console.log(showEdit, "line79")
-      }}>
-        Edit</button> */}
-      <button
-        onClick={async () => {
-          await destroyProduct(`${product.id}`);
-          alert(`Product ${product.id} was deleted`);
-          window.location.reload(false)
-        }}
-      >
-        Delete
-      </button>
-       <ProductEdit product={product} /> 
-        
-        
-        {/* <button onClick={ async () => {
-          setShowEdit(true)
-        }}>
-          Edit</button>
         <button
           onClick={async () => {
             await destroyProduct(`${product.id}`);
@@ -104,120 +85,11 @@ const AdminPage = () => {
         >
           Delete
         </button>
-        {showEdit ? (
-        <div className="">
-          <h1>Edit Album</h1>
-          <form className="" onSubmit={handleSubmit2}>
-            <h2>Title:</h2>
-            <input
-              value={title}
-              onChange={(event) => {
-                setTitle(event.target.value);
-              }}
-              placeholder={`${product.title}`}
-            ></input>
-            <h2>Artist:</h2>
-            <input
-              value={artist}
-              onChange={(event) => {
-                setArtist(event.target.value);
-              }}
-              placeholder={`${product.artist}`}
-            ></input>
-            <h2>Description:</h2>
-            <input
-              value={description}
-              onChange={(event) => {
-                setDescription(event.target.value);
-              }}
-              placeholder={`${product.description}`}
-            ></input>
-            <h2>Release Date:</h2>
-            <input
-              value={release_date}
-              onChange={(event) => {
-                setReleaseDate(event.target.value);
-              }}
-              placeholder={`${product.release_date}`}
-            ></input>
-            <h2>Price:</h2>
-            <input
-              value={price}
-              onChange={(event) => {
-                setPrice(event.target.value);
-              }}
-              placeholder={`${product.price}`}
-            ></input>
-            <h2>Inventory:</h2>
-            <input
-              value={inventory}
-              onChange={(event) => {
-                setInventory(event.target.value);
-              }}
-              placeholder={`${product.inventory}`}
-            ></input>
-            <h2>Format: </h2>
-            <input
-              value={format}
-              onChange={(event) => {
-                setFormat(event.target.value);
-              }}
-           placeholder={`${product.format}`}
-           ></input>
-            <h2>Genre:</h2>
-            <input
-              value={genre}
-              onChange={(event) => {
-                setGenre(event.target.value);
-              }}
-           placeholder={`${product.genre}`}
-           ></input>
-            <h2>Photo:</h2>
-            <input
-              value={photo}
-              onChange={(event) => {
-                setPhoto(event.target.value);
-              }}
-           placeholder={`${product.photo}`}
-           ></input>
-            <h2>Spotify:</h2>
-            <input
-              value={spotif}
-              onChange={(event) => {
-                setSpotif(event.target.value);
-              }}
-           placeholder={`${product.spotif}`}
-           ></input>
-            
-            <h2>Staff Pick:</h2>
-            <input
-            className=""
-              checked={staffpick}
-              onChange={(event) => {
-                setStaffpick(event.target.value);
-              }}
-           placeholder={`${product.staffpick}`}
-           ></input>
-            
-            <button className="" type="submit">
-              Submit
-            </button>
-          </form>
-          <button
-            className=""
-            onClick={() => {
-              setShowCreate(false);
-            }}
-          >
-            Cancel Edit
-          </button>
-        </div>
-      ) : null} */}
+        <ProductEdit product={product} />
       </div>
     );
   });
-  // console.log(products, "line 33")
-// create form
+  // create form
   const handleOnChange = (event) => {
     const changed = event.target.id;
     console.log("This is Change: ", changed);
@@ -297,12 +169,11 @@ const AdminPage = () => {
     setSpotif("");
     setStaffpick(false);
   };
-  // console.log(productInfo, " productInfo");
 
   return (
-    <div>
+    <div className="adminBody">
       <div className="newProductForm">
-        <div>New Product</div>
+        <h4>New Product</h4>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Title: </label>
@@ -403,11 +274,11 @@ const AdminPage = () => {
               placeholder="Staff Pick"
               value={staffpick}
             />
-          </div>
+          </div> <br></br>
           <button type="submit">CREATE NEW PRODUCT</button>
         </form>
-        <div>{displayProducts}</div>
       </div>
+        <div className="allProducts">{displayProducts}</div>
     </div>
   );
 };
