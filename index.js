@@ -13,7 +13,8 @@ const path = require('path');
 server.use(express.static(path.join(__dirname, 'build')));
 
 // here's our API
-server.use('/api', require('./api'));
+const router = require("./backend/express");
+server.use('/api', router);
 
 // by default serve up the react app if we don't recognize the route
 server.use((req, res, next) => {
@@ -24,10 +25,7 @@ const { client } = require('./backend/db');
 
 const PORT = process.env.PORT || 5432;
 
-const router = require("./backend/express");
 
-
-server.use("/api", router); //get server functionality from /api routes
 
 server.use((error, req, res, _) => {
   if (res.statusCode < 400) res.status(500);
