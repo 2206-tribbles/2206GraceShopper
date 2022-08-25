@@ -2,9 +2,10 @@ import React, { useState, useEffect, Fragment } from "react";
 import { BrowserRouter, Route, Link, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { updateProduct } from "../api_adapter";
+import "./components_css/SingleProductEdit.css";
 
 
-const ProductEdit = ({product}) => {
+const SingleProductEdit = ({product}) => {
     const [showEdit, setShowEdit] = useState(false);
     const [allProducts, setAllProducts] = useState([]);
     const [title, setTitle] = useState("");
@@ -44,9 +45,10 @@ const ProductEdit = ({product}) => {
         setShowEdit(true)
       }}>
         Edit</button>
-     {showEdit ? <div className="">
+     {showEdit ? 
+      <div class="container">
+       <form onSubmit={handleSubmit2}>
         <h1>Edit Album</h1>
-        <form className="" onSubmit={handleSubmit2}>
           <h2>Title:</h2>
           <input
             value={title}
@@ -126,8 +128,7 @@ const ProductEdit = ({product}) => {
               setSpotif(event.target.value);
             }}
          placeholder={`${product.spotif}`}
-         ></input>
-          
+         ></input>  
           <h2>Staff Pick:</h2>
           <input
           className=""
@@ -141,7 +142,7 @@ const ProductEdit = ({product}) => {
           <button className="" type="submit">
             Submit
           </button>
-        </form>
+
         <button
           className=""
           onClick={() => {
@@ -151,8 +152,10 @@ const ProductEdit = ({product}) => {
         >
           Cancel Edit
         </button>
-      </div> :null }
+      </form> 
+      </div>
+      :null }
     </div>
   )};
 
-export default ProductEdit;
+export default SingleProductEdit;

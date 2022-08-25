@@ -36,7 +36,7 @@ const Products = (props) => {
     <>
       <section className="products_gallery">
         {allProducts.map((element) => {
-          return <SingleProduct element={element} user={props.user} />;
+          return <SingleProduct element={element} user={props.user} setAllProducts={setAllProducts} allProducts={allProducts}/>;
         })}
       </section>
     </>
