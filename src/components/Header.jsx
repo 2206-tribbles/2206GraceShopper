@@ -40,6 +40,22 @@ const Header = (props) => {
     });
   };
 
+  const navigateToCheckout = () => {
+    navigate("/checkout");
+  };
+
+ 
+
+  const calculateSubtotal = () => {
+    let totalPrice = 0;
+
+    cart.forEach((product) => {
+      totalPrice += product.price * product.quantity;
+    });
+    runningTotal = totalPrice;
+    return totalPrice;
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     props.setUser({})
@@ -123,7 +139,7 @@ const Header = (props) => {
           </button>
         </div>
         <div id="userlinks">
-          <NavLink to="/Checkout" className="link cartLink">
+          <NavLink to="/checkout" className="link cartLink">
             <img className="cartIcon" src="/pics/cart2.png" />
             <span className="productNumber">{totalProducts}</span>
           </NavLink>
