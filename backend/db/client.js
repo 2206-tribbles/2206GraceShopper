@@ -2,7 +2,7 @@ const {Client} = require('pg')
 
 const DB_NAME = 'graceShopper-dev';
 
-const DB_URL =
+const connectionString =
   process.env.DATABASE_URL || `postgres://localhost:5432/${DB_NAME}`;
 
   const client = new Client({
